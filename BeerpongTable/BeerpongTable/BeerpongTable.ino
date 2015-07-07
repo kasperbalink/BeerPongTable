@@ -72,38 +72,6 @@ void writeLed(int column, int row, int interval)
 	}
 }
 
-void upToDown(int interval, int startAt)
-{
-	for (int i = startAt; i < rows; i++)
-	{
-		row(i, interval);
-	}
-}
-
-void downToUp(int interval, int startAt)
-{
-	for (int i = rows - startAt - 1; i >= 0; i--)
-	{
-		row(i, interval);
-	}
-}
-
-
-void leftToRight(int interval, int startAt)
-{
-	for (int i = startAt; i < columns; i++)
-	{
-		column(i, interval);
-	}
-}
-
-void rightToLeft(int interval, int startAt)
-{
-	for (int i = columns - startAt - 1; i >= 0; i--)
-	{
-		column(i, interval);
-	}
-}
 
 void diagonalLeftUpRightDown(int interval, int startAt)
 {
@@ -198,45 +166,6 @@ void diagonalRightDownLeftUp(int interval, int startAt)
 	}
 }
 
-void row(int row, int interval)
-{
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
-	{
-		for (int i = 0; i < columns; i++)
-		{
-			writeLed(i, row);
-		}
-	}
-}
-void row(int row)
-{
-	for (int i = 0; i < columns; i++)
-	{
-		writeLed(i, row);
-	}
-}
-
-void column(int column, int interval)
-{
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
-	{
-		for (int i = 0; i < rows; i++)
-		{
-			writeLed(column, i);
-		}
-	}
-}
-
-void column(int column)
-{
-	for (int i = 0; i < rows; i++)
-	{
-		writeLed(column, i);
-	}
-}
-
 void snake(int interval)
 {
 	for (int i = 0; i < rows; i++)
@@ -264,63 +193,60 @@ void squareOutside(int interval)
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		row(0);
+		/*row(0);
 		row(3);
 		column(0);
-		column(3);
+		column(3);*/
 	}
-}
-
-void allOn(int interval)
-{
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
-	{
-		for (int i = 0; i < rows; i++)
-			row(i);
-	}
-}
-void allOff(int interval)
-{
-	byte dataToSend = (0);
-	// setlatch pin low so the LEDs don't change while sending in bits
-	digitalWrite(latchPin, LOW);
-	// shift out the bits of dataToSend to the 74HC595
-	shiftOut(dataPin, clockPin, LSBFIRST, dataToSend);
-	shiftOut(dataPin, clockPin, LSBFIRST, dataToSend);
-	//set latch pin high- this sends data to outputs so the LEDs will light up
-	digitalWrite(latchPin, HIGH);
-	delay(interval);
 }
 void loop()
 {
-	//writeLed(8, 7);
-	//upToDown(50, 0);
-	//leftToRight(50, 0);
-	//allOn(500);
-	//visual.drawLetter('a', 0, 0, 2000);
-	//visual.drawLetter('b', 0, 0, 2000);
-	//visual.drawLetter('c', 0, 0, 2000);
-	//visual.drawLetter('d', 0, 0, 2000);
-	//visual.drawLetter('e', 0, 0, 2000);
+	/*visual.drawLetter('a', 0, 0, 2000);
+	visual.drawLetter('b', 0, 0, 2000);
+	visual.drawLetter('c', 0, 0, 2000);
+	visual.drawLetter('d', 0, 0, 2000);
+	visual.drawLetter('e', 0, 0, 2000);*/
 	for (int i = 0; i < 5; i++)
 	{
-		for (int x = -4; x < 8; x++)
-			visual.drawArrow(1, x, 0, 50);
-		allOff(50);
+		for (int x = -7; x <= 7; x++)
+		{
+			visual.arrow(1, x, 0, 50);
+		}
 	}
 
 	for (int i = 0; i < 5; i++)
 	{
-		for (int x = 7; x >= -4; x--)
-			visual.drawArrow(3, x, 0, 50);
-		allOff(50);
+		for (int x = 7; x >= -7; x--)
+		{
+			visual.arrow(3, x, 0, 50);
+		}
 	}
-	visual.drawLetter('a', 0, 0, 100);
+	for (int i = 0; i < 5; i++)
+	{
+		visual.upToDown(50, 0);
+		visual.downToUp(50, 1);
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		visual.leftToRight(50, 0);
+		visual.rightToLeft(50, 1);
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		for (int x = 0; x < 4; x++)
+		{
+			elapsedMillis tempTimer;
+			tempTimer = 0;
+			while (tempTimer < 400)
+			{
+				visual.bracket(1, x - 4, 0);
+				visual.bracket(1, x, 0);
+				visual.bracket(1, x + 4, 0);
+			}
+		}
+	}
+
 }
-
-// the heart of the program
-
 
 
 

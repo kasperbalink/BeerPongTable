@@ -77,9 +77,6 @@
     <None Include="BeerpongTable.ino">
       <FileType>CppCode</FileType>
     </None>
-    <None Include="Multiplex.ino">
-      <FileType>CppCode</FileType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="elapsedMillis.h" />

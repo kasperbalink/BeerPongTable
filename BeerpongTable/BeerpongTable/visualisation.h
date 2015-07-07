@@ -16,9 +16,20 @@ class visualisation
 
 
 public:
-	void drawLetter(char letter, int x, int y, int interval);
-	void drawArrow(int direction, int x, int y, int interval);
-
+	void letter(char letter, int x, int y, int interval);
+	void arrow(int direction, int x, int y, int interval);
+	void arrow(int direction, int x, int y);
+	void allOff(int interval);
+	void allOn(int interval);
+	void row(int row, int interval);
+	void row(int row);
+	void column(int column, int interval);
+	void column(int column);
+	void upToDown(int interval, int startAt);
+	void downToUp(int interval, int startAt);
+	void leftToRight(int interval, int startAt);
+	void rightToLeft(int interval, int startAt);
+	void bracket(int direction, int x, int y);
 
 
 private:

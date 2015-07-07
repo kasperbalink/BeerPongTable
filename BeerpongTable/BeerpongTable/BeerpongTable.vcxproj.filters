@@ -15,7 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Multiplex.ino" />
     <None Include="BeerpongTable.ino" />
   </ItemGroup>
   <ItemGroup>
