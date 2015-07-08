@@ -1,17 +1,8 @@
-//LED TEST 2 w/ 74HC595
-//by Amanda Ghassaei 2012
-//http://www.instructables.com/id/Multiplexing-with-Arduino-and-the-74HC595/
-
-/*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
+/* 
+*	Title: Beerpong Table
+*	Author: Kasper Balink
+*	Date: 08-July-2015
+*	
 */
 
 //this code will display the values of ledData across a 4x4 led matrix
@@ -22,14 +13,7 @@
 #define clockPin A0
 #define dataPin A2
 
-
-
-//looping variables
-byte i;
-byte j;
 visualisation visual;
-//storage variable
-byte dataToSend;
 
 //storage for led states, 4 bytes
 byte r[] = { 1, 2, 4, 8, 16, 32, 64, 128 };
