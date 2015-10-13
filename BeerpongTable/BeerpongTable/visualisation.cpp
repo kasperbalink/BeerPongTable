@@ -10,7 +10,7 @@ void visualisation::letter(char _letter, int _column, int _row, int interval)
 	while (tempTimer < interval)
 	{
 		letter(_letter, _column, _row);
-	}	
+	}
 }
 
 void visualisation::letter(char _letter, int _column, int _row)
@@ -18,20 +18,20 @@ void visualisation::letter(char _letter, int _column, int _row)
 	switch (_letter)
 	{
 	case 'a':
-			for (int i = 3; i <= 7; i++)
-			{
-				drawLed(0 + _column, i + _row);
-			}
-			drawLed(1 + _column, 2 + _row);
-			drawLed(1 + _column, 4 + _row);
-			drawLed(2 + _column, 1 + _row);
-			drawLed(2 + _column, 4 + _row);
-			drawLed(3 + _column, 2 + _row);
-			drawLed(3 + _column, 4 + _row);
-			for (int i = 3; i <= 7; i++)
-			{
-				drawLed(4 + _column, i + _row);
-			}
+		for (int i = 3; i <= 7; i++)
+		{
+			drawLed(0 + _column, i + _row);
+		}
+		drawLed(1 + _column, 2 + _row);
+		drawLed(1 + _column, 4 + _row);
+		drawLed(2 + _column, 1 + _row);
+		drawLed(2 + _column, 4 + _row);
+		drawLed(3 + _column, 2 + _row);
+		drawLed(3 + _column, 4 + _row);
+		for (int i = 3; i <= 7; i++)
+		{
+			drawLed(4 + _column, i + _row);
+		}
 		break;
 
 	case 'b':
@@ -54,70 +54,133 @@ void visualisation::letter(char _letter, int _column, int _row)
 	}
 }
 
-void visualisation::bracket(int direction, int x, int y)
+void visualisation::bracket(int direction, int _column, int _row)
 {
-	switch (direction)
-	{
-	case 1:
-		break;
-	}
-}
 
-void visualisation::arrow(int direction, int _column, int _row, int interval) //arrow method with interval
+}
+void visualisation::number(int _number, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		arrow(direction, _column, _row);
+		number(_number);
 	}
-} 
-
-void visualisation::arrow(int direction, int _column, int _row)
-{
-
-	switch (direction)
-	{
-	case 0: //to center
-		for (int i = 0; i < 8; i++)
-		{
-			drawLed(5 + _row, i + _column);
-			drawLed(6 + _row, i + _column);
-			drawLed(7 + _row, i + _column);
-		}
-		drawLed(6 + _row, 9);
-
-		for (int i = 2; i < 10; i++)
-		{
-			drawLed(i + _row, 5 + _column);
-		}
-		drawLed(3 + _row, 6 + _column);
-		drawLed(4 + _row, 6 + _column);
-		drawLed(4 + _row, 7 + _column);
-
-		drawLed(8 + _row, 7 + _column);
-		drawLed(8 + _row, 6 + _column);
-		drawLed(9 + _row, 6 + _column);
-		
-		break;
-
-	case 1: //to player
-		break;
-
-	case 2: //to left from player view
-		break;
-
-	case 3: //to right from player view
-		break;
-	}
-
 }
 
+void visualisation::number(int _number)
+{
+	switch (_number)
+	{
+	case 0:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
+		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
+		drawLed(6, 10);
+		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
+		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
+		drawLed(8, 7); drawLed(7, 7);
+		break;
+	case 1:
+		drawLed(3, 9); drawLed(4, 8); drawLed(4, 9);
+		drawLed(5, 7); drawLed(5, 9); drawLed(6, 9);
+		drawLed(7, 9); drawLed(8, 9); drawLed(9, 9);
+		drawLed(9, 7); drawLed(9, 8); drawLed(9, 10);
+		break;
+	case 2:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10); drawLed(4, 10);
+		drawLed(5, 10); drawLed(6, 7);
+		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
+		drawLed(9, 10);
+		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
+		drawLed(8, 7); drawLed(7, 7);
+		break;
+	case 3:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10);drawLed(4, 10);
+		drawLed(5, 10); drawLed(6, 7);
+		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
+		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
+		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);		
+		break;
+	case 4:
+		drawLed(3, 7); 
+		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
+		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
+		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
+		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
+		break;
+	case 5:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10); drawLed(4, 7); 
+		drawLed(5, 7); drawLed(6, 7);
+		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
+		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
+		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
+		
+		break;
+	case 6:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10); drawLed(4, 7); drawLed(5, 7);
+		drawLed(6, 7); drawLed(6, 8); drawLed(6, 9);
+		drawLed(6, 10);	drawLed(7, 10); drawLed(8, 10);
+		drawLed(9, 10);	drawLed(9, 9); drawLed(9, 8);
+		drawLed(9, 7); drawLed(8, 7); drawLed(7, 7);
+		break;
+	case 7:
+		drawLed(4, 7); drawLed(3, 7); drawLed(3, 8);
+		drawLed(3, 9); drawLed(3, 10); drawLed(4, 10);
+		drawLed(5, 10); drawLed(6, 10); drawLed(7, 10);
+		drawLed(8, 10); drawLed(9, 10); drawLed(6, 9);
+		drawLed(6, 11);
+		break;
+	case 8:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
+		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
+		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
+		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
+		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
+		drawLed(8, 7); drawLed(7, 7);
+		break;
+	case 9:
+		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
+		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
+		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
+		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
+		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
+		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
 
+		break;
+	case 10:
+		drawLed(5, 4); drawLed(4, 5); drawLed(3, 6);
+		drawLed(4, 6); drawLed(5, 6); drawLed(6, 6);
+		drawLed(7, 6); drawLed(8, 6); drawLed(9, 6);
+		drawLed(9, 4); drawLed(9, 5); drawLed(9, 7);
 
+		drawLed(3, 11); drawLed(3, 12); drawLed(3, 13);
+		drawLed(4, 10); drawLed(4, 14); drawLed(5, 10);
+		drawLed(5, 14); drawLed(6, 10); drawLed(6, 14);
+		drawLed(7, 10); drawLed(7, 14); drawLed(8, 10);
+		drawLed(9, 11); drawLed(9, 12); drawLed(9, 13);
+		break;
+	}
+}
 
+void visualisation::showScore(int _number)
+{
+	scoreSquare();
+	number(_number);
+}
 
-
-
+void visualisation::showScore(int _number, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		showScore(_number);
+	}
+}
 
 //ROWS AND COLUMNS
 void visualisation::row(int row)
@@ -205,7 +268,54 @@ void visualisation::rightToLeft(int timeBetweenSteps)
 	}
 }
 
+void visualisation::arrow(int direction, int _column, int _row, int interval) //arrow method with interval
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		arrow(direction, _column, _row);
+	}
+}
 
+void visualisation::arrow(int direction, int _column, int _row)
+{
+
+	switch (direction)
+	{
+	case 0: //to center
+		for (int i = 0; i < 8; i++)
+		{
+			drawLed(5 + _row, i + _column);
+			drawLed(6 + _row, i + _column);
+			drawLed(7 + _row, i + _column);
+		}
+		drawLed(6 + _row, 9);
+
+		for (int i = 2; i < 10; i++)
+		{
+			drawLed(i + _row, 5 + _column);
+		}
+		drawLed(3 + _row, 6 + _column);
+		drawLed(4 + _row, 6 + _column);
+		drawLed(4 + _row, 7 + _column);
+
+		drawLed(8 + _row, 7 + _column);
+		drawLed(8 + _row, 6 + _column);
+		drawLed(9 + _row, 6 + _column);
+
+		break;
+
+	case 1: //to player
+		break;
+
+	case 2: //to left from player view
+		break;
+
+	case 3: //to right from player view
+		break;
+	}
+
+}
 
 
 //FIELDS: INSIDE, OUTSIDE, BOTH, NOTHING
@@ -235,6 +345,19 @@ void visualisation::insideOn(int interval)
 	}
 }
 
+void visualisation::scoreSquare()
+{
+	for (int i = 2; i < plus - 2; i++)
+	{
+		drawLed(1, i);
+		drawLed(11, i);
+	}
+	for (int i = 2; i < min - 2; i++)
+	{
+		drawLed(i, 2);
+		drawLed(i, 16);
+	}
+}
 
 void visualisation::allOff(int interval)
 {
@@ -247,16 +370,16 @@ void visualisation::allOff(int interval)
 
 void visualisation::allOff()
 {
-		digitalWrite(latchPin, LOW);
-		//minnen uit
-		shiftOut(dataPin, clockPin, LSBFIRST, ~0);
-		shiftOut(dataPin, clockPin, LSBFIRST, ~0);
+	digitalWrite(latchPin, LOW);
+	//minnen uit
+	shiftOut(dataPin, clockPin, LSBFIRST, ~0);
+	shiftOut(dataPin, clockPin, LSBFIRST, ~0);
 
-		//plussen uit
-		shiftOut(dataPin, clockPin, LSBFIRST, 0);
-		shiftOut(dataPin, clockPin, LSBFIRST, 0);
-		shiftOut(dataPin, clockPin, LSBFIRST, 0);
-		digitalWrite(latchPin, HIGH);
+	//plussen uit
+	shiftOut(dataPin, clockPin, LSBFIRST, 0);
+	shiftOut(dataPin, clockPin, LSBFIRST, 0);
+	shiftOut(dataPin, clockPin, LSBFIRST, 0);
+	digitalWrite(latchPin, HIGH);
 }
 
 void visualisation::allOn(int interval)
