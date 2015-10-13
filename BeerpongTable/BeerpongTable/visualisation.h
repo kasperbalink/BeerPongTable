@@ -15,10 +15,12 @@ class visualisation
 
 
 public:
-	void letter(char letter, int x, int y, int interval);
-	void arrow(int direction, int x, int y, int interval);
-	void arrow(int direction, int x, int y);
+	void letter(char _letter, int _column, int _row, int interval);
+	void letter(char _letter, int _column, int _row);
+	void arrow(int direction, int _column, int _row, int interval);
+	void arrow(int direction, int _column, int _row);
 	void allOff(int interval);
+	void allOff();
 	void allOn(int interval);
 	void row(int row, int interval);
 	void row(int row);
@@ -26,16 +28,17 @@ public:
 	void column(int column, int interval);
 	void column(int column);
 	void columnInside(int column);
-	void upToDown(int interval);
-	void downToUp(int interval);
-	void leftToRight(int interval);
-	void rightToLeft(int interval);
+	void upToDown(int timeBetweenSteps);
+	void downToUp(int timeBetweenSteps);
+	void leftToRight(int timeBetweenSteps);
+	void rightToLeft(int timeBetweenSteps);
 	void outsideOn(int interval);
 	void insideOn(int interval);
 	void bracket(int direction, int x, int y);
 
-
-private:
 	int drawLed(int column, int row);
 	byte data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
+
+private:
+
 };
