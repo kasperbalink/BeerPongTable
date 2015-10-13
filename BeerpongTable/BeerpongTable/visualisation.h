@@ -2,14 +2,13 @@
 
 #include "elapsedMillis.h"
 
-#define latchPin A1
-#define clockPin A0
-#define dataPin A2
+#define latchPin  A0
+#define clockPin A1
+#define dataPin  A2
 
-#define rows 8
-#define columns 8
+#define min 12  //0 t/m 8 (13 rijen)
+#define plus 18 // 0 t/m 18 (19 kolommen)
 
-//storage for led states, 4 bytes
 
 class visualisation
 {
@@ -23,18 +22,20 @@ public:
 	void allOn(int interval);
 	void row(int row, int interval);
 	void row(int row);
+	void rowInside(int row);
 	void column(int column, int interval);
 	void column(int column);
-	void upToDown(int interval, int startAt);
-	void downToUp(int interval, int startAt);
-	void leftToRight(int interval, int startAt);
-	void rightToLeft(int interval, int startAt);
+	void columnInside(int column);
+	void upToDown(int interval);
+	void downToUp(int interval);
+	void leftToRight(int interval);
+	void rightToLeft(int interval);
+	void outsideOn(int interval);
+	void insideOn(int interval);
 	void bracket(int direction, int x, int y);
 
 
 private:
 	int drawLed(int column, int row);
-	byte r[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
-	byte c[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
-	byte c2[8] = { 128, 64, 32, 16, 8, 4, 2, 1 }; //inverted
+	byte data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 };

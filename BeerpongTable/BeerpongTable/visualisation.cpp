@@ -29,74 +29,23 @@ void visualisation::letter(char letter, int x, int y, int interval)
 	case 'b':
 		while (tempTimer < interval)
 		{
-			for (int r = 1; r <= 7; r++)
-			{
-				drawLed(0 + x, r + y);
-			}
-			for (int c = 1; c <= 3; c++)
-			{
-				drawLed(c + x, 1 + y);
-				drawLed(c + x, 4 + y);
-				drawLed(c + x, 7 + y);
-			}
-			drawLed(4 + x, 2 + y);
-			drawLed(4 + x, 3 + y);
-			drawLed(4 + x, 5 + y);
-			drawLed(4 + x, 6 + y);
+			
 		}
 		break;
 	case 'c':
 		while (tempTimer < interval)
 		{
-			for (int r = 2; r < 6; r++)
-			{
-				drawLed(0 + x, r + y);
-			}
-			for (int c = 1; c <= 3; c++)
-			{
-				drawLed(c + x, 1 + y);
-				drawLed(c + x, 7 + y);
-			}
-			drawLed(4 + x, 2 + y);
-			drawLed(4 + x, 6 + y);
 		}
 		break;
 	case 'd':
 		while (tempTimer < interval)
 		{
-			for (int r = 1; r <= 7; r++)
-			{
-				drawLed(0 + x, r + y);
-			}
-			for (int c = 1; c <= 3; c++)
-			{
-				drawLed(c + x, 1 + y);
-				drawLed(c + x, 7 + y);
-			}
-			for (int r = 2; r <= 6; r++)
-			{
-				drawLed(4 + x, r + y);
-			}
 		}
 		break;
 
 	case 'e':
 		while (tempTimer < interval)
 		{
-			for (int r = 1; r <= 7; r++)
-			{
-				drawLed(0 + x, r + y);
-			}
-			for (int c = 1; c <= 4; c++)
-			{
-				drawLed(c + x, 1 + y);
-				drawLed(c + x, 7 + y);
-			}
-			for (int c = 1; c <= 3; c++)
-			{
-				drawLed(c + x, 4 + y);
-			}
-
 		}
 		break;
 
@@ -117,87 +66,10 @@ void visualisation::letter(char letter, int x, int y, int interval)
 void visualisation::arrow(int direction, int x, int y, int interval)
 {
 	elapsedMillis tempTimer;
-	tempTimer = 0;
-	switch (direction)
+	while (tempTimer < interval)
 	{
-	case 0: //up
-
-		while (tempTimer < interval)
-		{
-			for (int r = 0; r <= 7; r++)
-			{
-				drawLed(3 + x, r);
-				drawLed(4 + x, r);
-			}
-			drawLed(2 + x, 2 + y);
-			drawLed(2 + x, 3 + y);
-			drawLed(1 + x, 3 + y);
-			drawLed(5 + x, 2 + y);
-			drawLed(5 + x, 3 + y);
-			drawLed(6 + x, 3 + y);
-		}
-		break;
-
-	case 1: //right
-		while (tempTimer < interval)
-		{
-			for (int c = x; c <= 6 + x; c++)
-			{
-				drawLed(c, 3 + y);
-				drawLed(c, 4 + y);
-				drawLed(c, 5 + y);
-			}
-			drawLed(5 + x, 2 + y);
-			drawLed(5 + x, 5 + y);
-			drawLed(5 + x, 6 + y);
-			drawLed(6 + x, 5 + y);
-			drawLed(4 + x, 6 + y);
-			drawLed(4 + x, 7 + y);
-			drawLed(4 + x, 1 + y);
-			drawLed(4 + x, 2 + y);
-			drawLed(7 + x, 4 + y);
-
-		}
-		break;
-
-	case 2: //down
-		while (tempTimer < interval)
-		{
-			for (int r = 0; r <= 7; r++)
-			{
-				drawLed(3 + x, r);
-				drawLed(4 + x, r);
-
-			}
-			drawLed(2 + x, 5 + y);
-			drawLed(2 + x, 6 + y);
-			drawLed(1 + x, 5 + y);
-			drawLed(5 + x, 5 + y);
-			drawLed(5 + x, 6 + y);
-			drawLed(6 + x, 5 + y);
-		}
-		break;
-
-	case 3: //left
-		while (tempTimer < interval)
-		{
-			for (int c = x + 1; c <= 7 + x; c++)
-			{
-				drawLed(c, 3 + y);
-				drawLed(c, 4 + y);
-				drawLed(c, 5 + y);
-			}
-			drawLed(0 + x, 4 + y);
-			drawLed(2 + x, 2 + y);
-			drawLed(2 + x, 6 + y);
-			drawLed(3 + x, 1 + y);
-			drawLed(3 + x, 2 + y);
-			drawLed(3 + x, 6 + y);
-			drawLed(3 + x, 7 + y);
-		}
-		break;
+		arrow(direction, x, y);
 	}
-
 }
 
 void visualisation::arrow(int direction, int x, int y)
@@ -206,113 +78,104 @@ void visualisation::arrow(int direction, int x, int y)
 	switch (direction)
 	{
 	case 0: //up
-
-		for (int r = 0; r <= 7; r++)
-		{
-			drawLed(3 + x, r);
-			drawLed(4 + x, r);
-		}
-		drawLed(2 + x, 2 + y);
-		drawLed(2 + x, 3 + y);
-		drawLed(1 + x, 3 + y);
-		drawLed(5 + x, 2 + y);
-		drawLed(5 + x, 3 + y);
-		drawLed(6 + x, 3 + y);
-
 		break;
 
 	case 1: //right
-
-		for (int c = x; c <= 6 + x; c++)
-		{
-			drawLed(c, 3 + y);
-			drawLed(c, 4 + y);
-			drawLed(c, 5 + y);
-		}
-		drawLed(5 + x, 2 + y);
-		drawLed(5 + x, 5 + y);
-		drawLed(5 + x, 6 + y);
-		drawLed(6 + x, 5 + y);
-		drawLed(4 + x, 6 + y);
-		drawLed(4 + x, 7 + y);
-		drawLed(4 + x, 1 + y);
-		drawLed(4 + x, 2 + y);
-		drawLed(7 + x, 4 + y);
-
-
 		break;
 
 	case 2: //down
-
-		for (int r = 0; r <= 7; r++)
-		{
-			drawLed(3 + x, r);
-			drawLed(4 + x, r);
-
-		}
-		drawLed(2 + x, 5 + y);
-		drawLed(2 + x, 6 + y);
-		drawLed(1 + x, 5 + y);
-		drawLed(5 + x, 5 + y);
-		drawLed(5 + x, 6 + y);
-		drawLed(6 + x, 5 + y);
-
 		break;
 
 	case 3: //left
-
-		for (int c = x + 1; c <= 7 + x; c++)
-		{
-			drawLed(c, 3 + y);
-			drawLed(c, 4 + y);
-			drawLed(c, 5 + y);
-		}
-		drawLed(0 + x, 4 + y);
-		drawLed(2 + x, 2 + y);
-		drawLed(2 + x, 6 + y);
-		drawLed(3 + x, 1 + y);
-		drawLed(3 + x, 2 + y);
-		drawLed(3 + x, 6 + y);
-		drawLed(3 + x, 7 + y);
-
 		break;
 	}
 
 }
 
-int visualisation::drawLed(int column, int row)
+int visualisation::drawLed(int _min, int _plus)
 {
-	if (column < 0)
+	if (_plus < 0 || _plus > plus || _min < 0 || _min > min) //foute waarde? -> niks doen
+	{
 		return -1;
-	else if (column > columns - 1)
-		return -1;
-	if (row < 0)
-		return -1;
-	else if (row > rows - 1)
-		return -1;
-	//	byte dataToSend = ((c[column] | 15 & ~r[row]));
-	// setlatch pin low so the LEDs don't change while sending in bits
-	digitalWrite(latchPin, LOW);
-	// shift out the bits of dataToSend to the 74HC595
-	//	shiftOut(dataPin, clockPin, LSBFIRST, r[column]);
-	shiftOut(dataPin, clockPin, LSBFIRST, r[row]);
-	shiftOut(dataPin, clockPin, LSBFIRST, c2[column]);
-	//set latch pin high- this sends data to outputs so the LEDs will light up
-	digitalWrite(latchPin, HIGH);
+	}
+
+
+	if (_plus < 8) //kolom 0 tm 7
+	{
+		digitalWrite(latchPin, LOW);
+		if (_min < 8)
+		{
+			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 8 t/m 12
+			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 0 t/m 7
+		}
+		else
+		{
+			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
+			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
+		}
+
+		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 16 t/m 18
+		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 8 t/m 15
+		shiftOut(dataPin, clockPin, LSBFIRST, data[_plus]); //plus 0 t/m 7
+		digitalWrite(latchPin, HIGH);
+	}
+	else if (_plus < 16) //kolom 8 tm 15
+	{
+		digitalWrite(latchPin, LOW);
+		if (_min < 8)
+		{
+			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 8 t/m 12
+			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 0 t/m 7
+		}
+		else
+		{
+			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
+			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
+		}
+
+		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 16 t/m 18
+		shiftOut(dataPin, clockPin, LSBFIRST, data[_plus]); //plus 8 t/m 15
+		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 0 t/m 7
+		digitalWrite(latchPin, HIGH);
+	}
+	else //kolom 16 tm 18
+	{
+		digitalWrite(latchPin, LOW);
+		if (_min < 8)
+		{
+			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 8 t/m 12
+			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 0 t/m 7
+		}
+		else
+		{
+			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
+			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
+		}
+
+		shiftOut(dataPin, clockPin, LSBFIRST, data[_plus]); //plus 16 t/m 18
+		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 8 t/m 15
+		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 0 t/m 7
+		digitalWrite(latchPin, HIGH);
+	}
 	return 0;
 }
 
 void visualisation::allOff(int interval)
 {
-	byte dataToSend = (0);
-	// setlatch pin low so the LEDs don't change while sending in bits
-	digitalWrite(latchPin, LOW);
-	// shift out the bits of dataToSend to the 74HC595
-	shiftOut(dataPin, clockPin, LSBFIRST, dataToSend);
-	shiftOut(dataPin, clockPin, LSBFIRST, dataToSend);
-	//set latch pin high- this sends data to outputs so the LEDs will light up
-	digitalWrite(latchPin, HIGH);
-	delay(interval);
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		digitalWrite(latchPin, LOW);
+		//minnen uit
+		shiftOut(dataPin, clockPin, LSBFIRST, ~0);
+		shiftOut(dataPin, clockPin, LSBFIRST, ~0);
+
+		//plussen uit
+		shiftOut(dataPin, clockPin, LSBFIRST, 0);
+		shiftOut(dataPin, clockPin, LSBFIRST, 0);
+		shiftOut(dataPin, clockPin, LSBFIRST, 0);
+		digitalWrite(latchPin, HIGH);
+	}
 }
 
 void visualisation::allOn(int interval)
@@ -320,78 +183,115 @@ void visualisation::allOn(int interval)
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < min; i++)
 			row(i);
 	}
 }
 
-void visualisation::row(int row, int interval)
+void visualisation::outsideOn(int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 0; i < columns; i++)
-		{
-			drawLed(i, row);
-		}
-	}
-}
-void visualisation::row(int row)
-{
-	for (int i = 0; i < columns; i++)
-	{
-		drawLed(i, row);
+		row(0);
+		row(min);
+		column(0);
+		column(plus);
 	}
 }
 
-void visualisation::column(int column, int interval)
+void visualisation::insideOn(int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 0; i < rows; i++)
+		for (int i = 1; i < min-1; i++)
 		{
-			drawLed(column, i);
+			rowInside(i);
 		}
+	}
+}
+
+void visualisation::row(int _row, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		row(_row);
+	}
+}
+
+void visualisation::column(int _column, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		column(_column);
+	}
+}
+
+
+void visualisation::row(int row)
+{
+	for (int i = 0; i < plus; i++)
+	{
+		drawLed(row, i);
+	}
+}
+
+void visualisation::rowInside(int row)
+{
+	for (int i = 1; i < plus-1; i++)
+	{
+		drawLed(row, i);
 	}
 }
 
 void visualisation::column(int column)
 {
-	for (int i = 0; i < rows; i++)
+	for (int i = 0; i < min; i++)
 	{
-		drawLed(column, i);
+		drawLed(i, column);
 	}
 }
 
-void visualisation::upToDown(int interval, int startAt)
+void visualisation::columnInside(int column)
 {
-	for (int i = startAt; i < rows; i++)
+	for (int i = 1; i < min-1; i++)
+	{
+		drawLed(i, column);
+	}
+}
+
+
+void visualisation::upToDown(int interval)
+{
+	for (int i = 0; i < min; i++)
 	{
 		row(i, interval);
 	}
 }
 
-void visualisation::downToUp(int interval, int startAt)
+void visualisation::downToUp(int interval)
 {
-	for (int i = rows - startAt - 1; i >= 0; i--)
+	for (int i = min; i > 0; i--)
 	{
 		row(i, interval);
 	}
 }
 
 
-void visualisation::leftToRight(int interval, int startAt)
+void visualisation::leftToRight(int interval)
 {
-	for (int i = startAt; i < columns; i++)
+	for (int i = 0; i < plus; i++)
 	{
 		column(i, interval);
 	}
 }
 
-void visualisation::rightToLeft(int interval, int startAt)
+void visualisation::rightToLeft(int interval)
 {
-	for (int i = columns - startAt - 1; i >= 0; i--)
+	for (int i = plus; i > 0; i--)
 	{
 		column(i, interval);
 	}
