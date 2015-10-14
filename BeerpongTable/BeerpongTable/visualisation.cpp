@@ -411,6 +411,7 @@ int visualisation::drawLed(int _min, int _plus)
 		}
 		else
 		{
+			_min = _min - 8;
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
 		}
@@ -422,6 +423,7 @@ int visualisation::drawLed(int _min, int _plus)
 	}
 	else if (_plus < 16) //kolom 8 tm 15
 	{
+		_plus = _plus - 8;
 		digitalWrite(latchPin, LOW);
 		if (_min < 8)
 		{
@@ -430,6 +432,7 @@ int visualisation::drawLed(int _min, int _plus)
 		}
 		else
 		{
+			_min = _min - 8;
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
 		}
@@ -441,6 +444,7 @@ int visualisation::drawLed(int _min, int _plus)
 	}
 	else //kolom 16 tm 18
 	{
+		_plus = _plus - 16;
 		digitalWrite(latchPin, LOW);
 		if (_min < 8)
 		{
@@ -449,6 +453,7 @@ int visualisation::drawLed(int _min, int _plus)
 		}
 		else
 		{
+			_min = _min - 8;
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
 		}
