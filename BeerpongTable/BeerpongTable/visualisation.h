@@ -2,9 +2,9 @@
 
 #include "elapsedMillis.h"
 
-#define latchPin  A0
-#define clockPin A1
-#define dataPin  A2
+#define  latchPin 12 //A0
+#define  clockPin 11 //A1
+#define  dataPin  8// A2
 
 #define min 12  //0 t/m 8 (13 rijen)
 #define plus 18 // 0 t/m 18 (19 kolommen)
@@ -49,6 +49,7 @@ public:
 	void allOff();
 	void allOn(int interval);
 	void outsideOn(int interval);
+	void outsideOn();
 	void insideOn(int interval);
 
 	int drawLed(int _plus, int _min);

@@ -11,9 +11,10 @@
 //pin connections- the #define tag will replace all instances of "latchPin" in your code with A1 (and so on)
 
 
-#define latchPin  A0
-#define clockPin A1
-#define dataPin  A2
+#define  latchPin 12 //A0
+#define  clockPin 11 //A1
+#define  dataPin  8// A2
+
 
 
 visualisation visual;
@@ -28,68 +29,45 @@ void setup()
 
 void loop()
 {
-	int time = 100;
+	int time = 20;
 	visual.downToUp(time);
 	visual.upToDown(time);
 	visual.downToUp(time);
 	visual.upToDown(time);
-	visual.downToUp(time);
-	visual.upToDown(time);
-	visual.leftToRight(time);
-	visual.rightToLeft(time);
 	visual.leftToRight(time);
 	visual.rightToLeft(time);
 	visual.leftToRight(time);
 	visual.rightToLeft(time);
 
-	visual.outsideOn(time);
-	visual.insideOn(time);
-	visual.outsideOn(time);
-	visual.insideOn(time);
-	visual.outsideOn(time);
-	visual.insideOn(time);
-
-	for (int i = 10; i > 0; i--)
+	for (int x = 0; x < 3; x++)
 	{
-		visual.showScore(i, 200);
+		for (int i = -10; i < 18; i++)
+		{
+			visual.arrow(0, i, 0, time);
+		}
 	}
 
-	//elapsedMillis tempTimer;
-	//tempTimer = 0;
-	//while (tempTimer < 500)
-	//{
-	//	for (int i = 128; i > 1; i = i / 2)
-	//	{
-	//		digitalWrite(latchPin, LOW);
-	//		// shift out the bits of dataToSend to the 74HC595
-	//		shiftOut(dataPin, clockPin, LSBFIRST, ~255);
-	//		shiftOut(dataPin, clockPin, LSBFIRST, ~255);
+	visual.outsideOn(50);
+	visual.insideOn(50);
+	visual.outsideOn(50);
+	visual.insideOn(50);
+	visual.outsideOn(50);
+	visual.insideOn(50);
+	visual.outsideOn(50);
+	visual.insideOn(50);
+	
+	for (int i = 0; i <= 10; i++)
+	{
+		elapsedMillis tempTimer;
+		while (tempTimer < 1000)
+		{
+			visual.number(i);
+		}
+	}
+		
+		
+	
 
-	//		shiftOut(dataPin, clockPin, LSBFIRST, i);
-	//		shiftOut(dataPin, clockPin, LSBFIRST, i);
-	//		shiftOut(dataPin, clockPin, LSBFIRST, i);
-	//		digitalWrite(latchPin, HIGH);
-	//		delay(100);
-	//	}
-	//}
-
-	//tempTimer = 0;
-	//while (tempTimer < 500)
-	//{
-	//	for (int i = 128; i > 1; i = i / 2)
-	//	{
-	//		digitalWrite(latchPin, LOW);
-	//		// shift out the bits of dataToSend to the 74HC595
-	//		shiftOut(dataPin, clockPin, LSBFIRST, ~i);
-	//		shiftOut(dataPin, clockPin, LSBFIRST, ~i);
-
-	//		shiftOut(dataPin, clockPin, LSBFIRST, 255);
-	//		shiftOut(dataPin, clockPin, LSBFIRST, 255);
-	//		shiftOut(dataPin, clockPin, LSBFIRST, 255);
-	//		digitalWrite(latchPin, HIGH);
-	//		delay(100);
-	//	}
-	//}
 
 }
 

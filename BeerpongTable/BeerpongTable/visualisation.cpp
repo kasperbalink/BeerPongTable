@@ -162,6 +162,7 @@ void visualisation::number(int _number)
 		drawLed(4, 10); drawLed(4, 14); drawLed(5, 10);
 		drawLed(5, 14); drawLed(6, 10); drawLed(6, 14);
 		drawLed(7, 10); drawLed(7, 14); drawLed(8, 10);
+		drawLed(8, 14);
 		drawLed(9, 11); drawLed(9, 12); drawLed(9, 13);
 		break;
 	}
@@ -185,7 +186,7 @@ void visualisation::showScore(int _number, int interval)
 //ROWS AND COLUMNS
 void visualisation::row(int row)
 {
-	for (int i = 0; i < plus; i++)
+	for (int i = 0; i <= plus; i++)
 	{
 		drawLed(row, i);
 	}
@@ -193,7 +194,7 @@ void visualisation::row(int row)
 
 void visualisation::rowInside(int row)
 {
-	for (int i = 1; i < plus - 1; i++)
+	for (int i = 1; i < plus; i++)
 	{
 		drawLed(row, i);
 	}
@@ -210,7 +211,7 @@ void visualisation::row(int _row, int interval)
 
 void visualisation::column(int column)
 {
-	for (int i = 0; i < min; i++)
+	for (int i = 0; i <= min; i++)
 	{
 		drawLed(i, column);
 	}
@@ -283,13 +284,13 @@ void visualisation::arrow(int direction, int _column, int _row)
 	switch (direction)
 	{
 	case 0: //to center
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i <= 8; i++)
 		{
 			drawLed(5 + _row, i + _column);
 			drawLed(6 + _row, i + _column);
 			drawLed(7 + _row, i + _column);
 		}
-		drawLed(6 + _row, 9);
+		drawLed(6 + _row, 9 + _column);
 
 		for (int i = 2; i < 10; i++)
 		{
@@ -302,6 +303,7 @@ void visualisation::arrow(int direction, int _column, int _row)
 		drawLed(8 + _row, 7 + _column);
 		drawLed(8 + _row, 6 + _column);
 		drawLed(9 + _row, 6 + _column);
+		drawLed(10 + _row, 5 + _column);
 
 		break;
 
@@ -319,16 +321,20 @@ void visualisation::arrow(int direction, int _column, int _row)
 
 
 //FIELDS: INSIDE, OUTSIDE, BOTH, NOTHING
+void visualisation::outsideOn()
+{
+	row(0);
+	row(min);
+	column(0);
+	column(plus);
+}
 void visualisation::outsideOn(int interval)
 {
 	allOff();
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		row(0);
-		row(min);
-		column(0);
-		column(plus);
+		outsideOn();
 	}
 }
 
@@ -338,7 +344,7 @@ void visualisation::insideOn(int interval)
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 1; i < min - 1; i++)
+		for (int i = 1; i < min; i++)
 		{
 			rowInside(i);
 		}
@@ -347,12 +353,12 @@ void visualisation::insideOn(int interval)
 
 void visualisation::scoreSquare()
 {
-	for (int i = 2; i < plus - 2; i++)
+	for (int i = 2; i < plus -1; i++)
 	{
 		drawLed(1, i);
 		drawLed(11, i);
 	}
-	for (int i = 2; i < min - 2; i++)
+	for (int i = 2; i < min; i++)
 	{
 		drawLed(i, 2);
 		drawLed(i, 16);
@@ -387,8 +393,10 @@ void visualisation::allOn(int interval)
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 0; i < min; i++)
-			row(i);
+		for (int i = 0; i <= plus; i++)
+		{
+			column(i);
+		}
 	}
 }
 
@@ -408,18 +416,22 @@ int visualisation::drawLed(int _min, int _plus)
 		{
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 0 t/m 7
+			
+			
 		}
 		else
 		{
 			_min = _min - 8;
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
+			
 		}
 
 		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 16 t/m 18
 		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 8 t/m 15
 		shiftOut(dataPin, clockPin, LSBFIRST, data[_plus]); //plus 0 t/m 7
 		digitalWrite(latchPin, HIGH);
+		return 0;
 	}
 	else if (_plus < 16) //kolom 8 tm 15
 	{
@@ -441,6 +453,8 @@ int visualisation::drawLed(int _min, int _plus)
 		shiftOut(dataPin, clockPin, LSBFIRST, data[_plus]); //plus 8 t/m 15
 		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 0 t/m 7
 		digitalWrite(latchPin, HIGH);
+		return 0;
+
 	}
 	else //kolom 16 tm 18
 	{
@@ -462,6 +476,8 @@ int visualisation::drawLed(int _min, int _plus)
 		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 8 t/m 15
 		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 0 t/m 7
 		digitalWrite(latchPin, HIGH);
+		return 0;
+
 	}
 	return 0;
 }
