@@ -186,7 +186,7 @@ void visualisation::showScore(int _number, int interval)
 //ROWS AND COLUMNS
 void visualisation::row(int row)
 {
-	for (int i = 0; i <= plus; i++)
+	for (int i = 0; i <= PLUS; i++)
 	{
 		drawLed(row, i);
 	}
@@ -194,7 +194,7 @@ void visualisation::row(int row)
 
 void visualisation::rowInside(int row)
 {
-	for (int i = 1; i < plus; i++)
+	for (int i = 1; i < PLUS; i++)
 	{
 		drawLed(row, i);
 	}
@@ -211,7 +211,7 @@ void visualisation::row(int _row, int interval)
 
 void visualisation::column(int column)
 {
-	for (int i = 0; i <= min; i++)
+	for (int i = 0; i <= MIN; i++)
 	{
 		drawLed(i, column);
 	}
@@ -219,7 +219,7 @@ void visualisation::column(int column)
 
 void visualisation::columnInside(int column)
 {
-	for (int i = 1; i < min - 1; i++)
+	for (int i = 1; i < MIN - 1; i++)
 	{
 		drawLed(i, column);
 	}
@@ -239,7 +239,7 @@ void visualisation::column(int _column, int interval)
 //VISUALISATIONS
 void visualisation::upToDown(int timeBetweenSteps)
 {
-	for (int i = 0; i < min; i++)
+	for (int i = 0; i < MIN; i++)
 	{
 		row(i, timeBetweenSteps);
 	}
@@ -247,7 +247,7 @@ void visualisation::upToDown(int timeBetweenSteps)
 
 void visualisation::downToUp(int timeBetweenSteps)
 {
-	for (int i = min; i > 0; i--)
+	for (int i = MIN; i > 0; i--)
 	{
 		row(i, timeBetweenSteps);
 	}
@@ -255,7 +255,7 @@ void visualisation::downToUp(int timeBetweenSteps)
 
 void visualisation::leftToRight(int timeBetweenSteps)
 {
-	for (int i = 0; i < plus; i++)
+	for (int i = 0; i < PLUS; i++)
 	{
 		column(i, timeBetweenSteps);
 	}
@@ -263,7 +263,7 @@ void visualisation::leftToRight(int timeBetweenSteps)
 
 void visualisation::rightToLeft(int timeBetweenSteps)
 {
-	for (int i = plus; i > 0; i--)
+	for (int i = PLUS; i > 0; i--)
 	{
 		column(i, timeBetweenSteps);
 	}
@@ -324,9 +324,9 @@ void visualisation::arrow(int direction, int _column, int _row)
 void visualisation::outsideOn()
 {
 	row(0);
-	row(min);
+	row(MIN);
 	column(0);
-	column(plus);
+	column(PLUS);
 }
 void visualisation::outsideOn(int interval)
 {
@@ -344,7 +344,7 @@ void visualisation::insideOn(int interval)
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 1; i < min; i++)
+		for (int i = 1; i < MIN; i++)
 		{
 			rowInside(i);
 		}
@@ -353,12 +353,12 @@ void visualisation::insideOn(int interval)
 
 void visualisation::scoreSquare()
 {
-	for (int i = 2; i < plus -1; i++)
+	for (int i = 2; i < PLUS -1; i++)
 	{
 		drawLed(1, i);
 		drawLed(11, i);
 	}
-	for (int i = 2; i < min; i++)
+	for (int i = 2; i < MIN; i++)
 	{
 		drawLed(i, 2);
 		drawLed(i, 16);
@@ -388,22 +388,36 @@ void visualisation::allOff()
 	digitalWrite(latchPin, HIGH);
 }
 
+
+
 void visualisation::allOn(int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 0; i <= plus; i++)
+		for (int i = 0; i <= PLUS; i++)
 		{
 			column(i);
 		}
 	}
 }
 
+void visualisation::allOn()
+{
+	for (int m = 0; m < MIN; m++)
+	{
+		for (int i = 0; i < PLUS; i++)
+		{
+			visual.setLedsInRow(i);
+		}
+		visual.drawRow(m);
+	}
+}
+
 //general method for drawing 1 led.
 int visualisation::drawLed(int _min, int _plus)
 {
-	if (_plus < 0 || _plus > plus || _min < 0 || _min > min) //foute waarde? -> niks doen
+	if (_plus < 0 || _plus > PLUS || _min < 0 || _min > MIN) //foute waarde? -> niks doen
 	{
 		return -1;
 	}
@@ -480,4 +494,37 @@ int visualisation::drawLed(int _min, int _plus)
 
 	}
 	return 0;
+}
+
+
+
+//RIJ 4, LED 2, 6 EN 9
+//setLedInRow(1);
+//setLedInRow(5);
+//setLedInRow(8);
+//drawRow(3);
+
+
+//_column = 0 t/m 18
+//rowData = _column -> welke kolommen moeten er aan?
+void visualisation::setLedsInRow(int _column)
+{
+	rowData |= (1 << _column);
+}
+
+//_row = 0 t/m 12
+void visualisation::drawRow(int _row)
+{
+	//@to-do //0xFF = 255 
+	digitalWrite(latchPin, LOW);
+
+	shiftOut(dataPin, clockPin, LSBFIRST, (1 << _row) & 0xFF); //min 8 t/m 12
+	shiftOut(dataPin, clockPin, LSBFIRST, ((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+
+	shiftOut(dataPin, clockPin, LSBFIRST, rowData & 0xFF); //plus 16 t/m 18
+	shiftOut(dataPin, clockPin, LSBFIRST, (rowData >> 8) & 0xFF); //plus 8 t/m 15
+	shiftOut(dataPin, clockPin, LSBFIRST, (rowData >> 16) & 0xFF); //plus 0 t/m 7
+
+	digitalWrite(latchPin, HIGH);
+	rowData = 0;
 }

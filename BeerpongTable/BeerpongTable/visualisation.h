@@ -6,8 +6,8 @@
 #define  clockPin 11 //A1
 #define  dataPin  8// A2
 
-#define min 12  //0 t/m 8 (13 rijen)
-#define plus 18 // 0 t/m 18 (19 kolommen)
+#define MIN 12  //0 t/m 8 (13 rijen)
+#define PLUS 18 // 0 t/m 18 (19 kolommen)
 
 
 class visualisation
@@ -48,11 +48,17 @@ public:
 	void allOff(int interval);
 	void allOff();
 	void allOn(int interval);
+	void allOn();
 	void outsideOn(int interval);
 	void outsideOn();
 	void insideOn(int interval);
 
 	int drawLed(int _plus, int _min);
+
+	void setLedsInRow(int _column);
+	void drawRow(int _row);
+
+	int rowData = 0;
 	byte data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
 private:
