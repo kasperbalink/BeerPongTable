@@ -29,17 +29,43 @@ void setup()
 
 void loop()
 {
-	elapsedMillis tempTimer;
-	while (tempTimer < 3000)
+	for (int x = 0; x < 5; x++)
 	{
-		visual.setLedsInRow(4);
-		visual.drawRow(2);
+
+		for (int i = 0; i <= 6; i++)
+		{
+			visual.square(i, 50);
+		}
+		for (int i = 6; i >= 0; i--)
+		{
+			visual.square(i, 50);
+		}
 	}
-	tempTimer = 0;
-	while (tempTimer < 5000)
+	//visual.scoreSquare();
+	visual.upToDown(20);
+	visual.downToUp(20);
+	visual.leftToRight(20);
+	visual.rightToLeft(20);
+	for (int i = 0; i < 10; i++)
 	{
-		visual.allOn(); //TEST NIEUWE PROGRAMMERING 
+		visual.insideOn(100);
+		visual.outsideOn(100);
 	}
+
+	/*visual.rowData = 0;
+	visual.setLedsInRow(17);
+	visual.setLedsInRow(15);
+	visual.setLedsInRow(0);
+	visual.setLedsInRow(4);
+
+	visual.setLedsInRow(9);
+
+	visual.drawRow(3);*/
+	//elapsedMillis tempTimer;
+	//while (tempTimer < 5000)
+	//{
+	//	visual.allOn(); //TEST NIEUWE PROGRAMMERING 
+	//}
 	/*int time = 20;
 	visual.downToUp(time);
 	visual.upToDown(time);

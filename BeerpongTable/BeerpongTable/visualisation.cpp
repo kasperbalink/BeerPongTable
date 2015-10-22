@@ -1,7 +1,65 @@
 #include "visualisation.h"
 
 
+//FIGURES
 
+int visualisation::square(int size, int interval)
+{
+	if (size > MIN / 2)
+	{
+		return -1;
+	}
+
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		square(size);
+	}
+}
+
+int visualisation::square(int size)
+{
+
+	if (size > MIN / 2)
+	{
+		return -1;
+	}
+	rowData = 0;
+	for (int i = 0 + size; i <= PLUS - size; i++)
+	{
+		setLedsInRow(i);
+	}
+	drawRow(0 + size);
+	drawRow(MIN - size);
+	rowData = 0;
+	setLedsInRow(size);
+	setLedsInRow(PLUS - size);
+	for (int i = 0 + size; i <= MIN - size; i++)
+	{
+		drawRow(i);
+	}
+	return 0;
+}
+
+void visualisation::scoreSquare()
+{
+	rowData = 0;
+	for (int i = 2; i < PLUS - 1; i++)
+	{
+		setLedsInRow(i);
+	}
+	drawRow(1);
+	drawRow(11);
+
+	rowData = 0;
+
+	setLedsInRow(2);
+	setLedsInRow(16);
+	for (int x = 2; x < MIN - 1; x++)
+	{
+		drawRow(x);
+	}
+}
 
 //CHARACTERS
 void visualisation::letter(char _letter, int _column, int _row, int interval)
@@ -18,20 +76,6 @@ void visualisation::letter(char _letter, int _column, int _row)
 	switch (_letter)
 	{
 	case 'a':
-		for (int i = 3; i <= 7; i++)
-		{
-			drawLed(0 + _column, i + _row);
-		}
-		drawLed(1 + _column, 2 + _row);
-		drawLed(1 + _column, 4 + _row);
-		drawLed(2 + _column, 1 + _row);
-		drawLed(2 + _column, 4 + _row);
-		drawLed(3 + _column, 2 + _row);
-		drawLed(3 + _column, 4 + _row);
-		for (int i = 3; i <= 7; i++)
-		{
-			drawLed(4 + _column, i + _row);
-		}
 		break;
 
 	case 'b':
@@ -58,115 +102,156 @@ void visualisation::bracket(int direction, int _column, int _row)
 {
 
 }
+
+/* _number is real number 0 - 99*/
+void visualisation::number(int _number)
+{
+	number(_number, 0, 0);
+}
+
+/* _number is real number 0 - 99
+interval is time to be dispaled in MS*/
 void visualisation::number(int _number, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		number(_number);
+		number(_number, 0, 0);
 	}
 }
 
-void visualisation::number(int _number)
+/* _number is real number 0 - 99
+_column is offset X, 0 = center
+_row is offset Y, 0 = center */
+void visualisation::number(int _number, int _column, int _row)
 {
-	switch (_number)
+	if (_number > 9 && _number < 100)
 	{
-	case 0:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
-		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
-		drawLed(6, 10);
-		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
-		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
-		drawLed(8, 7); drawLed(7, 7);
-		break;
-	case 1:
-		drawLed(3, 9); drawLed(4, 8); drawLed(4, 9);
-		drawLed(5, 7); drawLed(5, 9); drawLed(6, 9);
-		drawLed(7, 9); drawLed(8, 9); drawLed(9, 9);
-		drawLed(9, 7); drawLed(9, 8); drawLed(9, 10);
-		break;
-	case 2:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10); drawLed(4, 10);
-		drawLed(5, 10); drawLed(6, 7);
-		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
-		drawLed(9, 10);
-		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
-		drawLed(8, 7); drawLed(7, 7);
-		break;
-	case 3:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10);drawLed(4, 10);
-		drawLed(5, 10); drawLed(6, 7);
-		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
-		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
-		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);		
-		break;
-	case 4:
-		drawLed(3, 7); 
-		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
-		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
-		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
-		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
-		break;
-	case 5:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10); drawLed(4, 7); 
-		drawLed(5, 7); drawLed(6, 7);
-		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
-		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
-		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
-		
-		break;
-	case 6:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10); drawLed(4, 7); drawLed(5, 7);
-		drawLed(6, 7); drawLed(6, 8); drawLed(6, 9);
-		drawLed(6, 10);	drawLed(7, 10); drawLed(8, 10);
-		drawLed(9, 10);	drawLed(9, 9); drawLed(9, 8);
-		drawLed(9, 7); drawLed(8, 7); drawLed(7, 7);
-		break;
-	case 7:
-		drawLed(4, 7); drawLed(3, 7); drawLed(3, 8);
-		drawLed(3, 9); drawLed(3, 10); drawLed(4, 10);
-		drawLed(5, 10); drawLed(6, 10); drawLed(7, 10);
-		drawLed(8, 10); drawLed(9, 10); drawLed(6, 9);
-		drawLed(6, 11);
-		break;
-	case 8:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
-		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
-		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
-		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
-		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
-		drawLed(8, 7); drawLed(7, 7);
-		break;
-	case 9:
-		drawLed(3, 7); drawLed(3, 8); drawLed(3, 9);
-		drawLed(3, 10); drawLed(4, 7); drawLed(4, 10);
-		drawLed(5, 7); drawLed(5, 10); drawLed(6, 7);
-		drawLed(6, 8); drawLed(6, 9); drawLed(6, 10);
-		drawLed(7, 10); drawLed(8, 10); drawLed(9, 10);
-		drawLed(9, 9); drawLed(9, 8); drawLed(9, 7);
-
-		break;
-	case 10:
-		drawLed(5, 4); drawLed(4, 5); drawLed(3, 6);
-		drawLed(4, 6); drawLed(5, 6); drawLed(6, 6);
-		drawLed(7, 6); drawLed(8, 6); drawLed(9, 6);
-		drawLed(9, 4); drawLed(9, 5); drawLed(9, 7);
-
-		drawLed(3, 11); drawLed(3, 12); drawLed(3, 13);
-		drawLed(4, 10); drawLed(4, 14); drawLed(5, 10);
-		drawLed(5, 14); drawLed(6, 10); drawLed(6, 14);
-		drawLed(7, 10); drawLed(7, 14); drawLed(8, 10);
-		drawLed(8, 14);
-		drawLed(9, 11); drawLed(9, 12); drawLed(9, 13);
-		break;
+		number(_number % 10, 4 + _column, _row);
+		number(_number / 10, -4 + _column, _row);
+	}
+	else
+	{
+		switch (_number)
+		{
+		case 0:
+			rowData = 0;
+			setLedsInRow(6 + _column); setLedsInRow(9 + _column);
+			drawRow(3 + _row); drawRow(4 + _row); drawRow(5 + _row);
+			drawRow(6 + _row); drawRow(7 + _row);
+			setLedsInRow(7 + _column); setLedsInRow(8 + _column);
+			drawRow(2 + _row); drawRow(8 + _row);
+			break;
+		case 1:
+			rowData = 0;
+			setLedsInRow(8 + _column); drawRow(2 + _row);
+			setLedsInRow(7 + _column); drawRow(3 + _row);
+			rowData = 0;
+			setLedsInRow(6 + _column); setLedsInRow(8 + _column);
+			rowData = 0;
+			setLedsInRow(8 + _column);
+			drawRow(5 + _row); drawRow(6 + _row); drawRow(7 + _row);
+			setLedsInRow(6 + _column); setLedsInRow(7 + _column); setLedsInRow(9 + _column);
+			drawRow(8 + _row);
+			break;
+		case 2:
+			rowData = 0;
+			setLedsInRow(6 + _column); setLedsInRow(7 + _column);
+			setLedsInRow(8 + _column); setLedsInRow(9 + _column);
+			drawRow(2 + _row); drawRow(5 + _row); drawRow(8 + _row);
+			rowData = 0;
+			setLedsInRow(9 + _column); drawRow(3 + _row); drawRow(4 + _row);
+			rowData = 0;
+			setLedsInRow(6 + _column); drawRow(6 + _row); drawRow(7 + _row);
+			break;
+		case 3:
+			rowData = 0;
+			setLedsInRow(6 + _column); setLedsInRow(7 + _column);
+			setLedsInRow(8 + _column); setLedsInRow(9 + _column);
+			drawRow(2 + _row); drawRow(5 + _row); drawRow(8 + _row);
+			rowData = 0;
+			setLedsInRow(9 + _column);
+			drawRow(3 + _row); drawRow(4 + _row); drawRow(6 + _row); drawRow(7 + _row);
+			break;
+		case 4:
+			rowData = 0;
+			setLedsInRow(9 + _column);
+			drawRow(6 + _row); drawRow(7 + _row); drawRow(8 + _row);
+			setLedsInRow(6 + _column);
+			drawRow(2 + _row); drawRow(3 + _row); drawRow(4 + _row);
+			setLedsInRow(7 + _column); setLedsInRow(8 + _column);
+			drawRow(5 + _row);
+			break;
+		case 5:
+			rowData = 0;
+			setLedsInRow(6 + _column); setLedsInRow(7 + _column);
+			setLedsInRow(8 + _column); setLedsInRow(9 + _column);
+			drawRow(2 + _row); drawRow(5 + _row); drawRow(8 + _row);
+			rowData = 0;
+			setLedsInRow(6 + _column);
+			drawRow(3 + _row); drawRow(4 + _row);
+			rowData = 0;
+			setLedsInRow(9 + _column); drawRow(6 + _row); drawRow(7 + _row);
+			break;
+		case 6:
+			rowData = 0;
+			setLedsInRow(6 + _column);
+			drawRow(3 + _row); drawRow(4 + _row);
+			setLedsInRow(9 + _column);
+			drawRow(6 + _row); drawRow(7 + _row);
+			setLedsInRow(7 + _column); setLedsInRow(8 + _column);
+			drawRow(2 + _row); drawRow(5 + _row); drawRow(8 + _row);
+			break;
+		case 7:
+			rowData = 0;
+			setLedsInRow(9 + _column);
+			drawRow(3 + _row); drawRow(4 + _row); drawRow(6 + _row);
+			drawRow(7 + _row); drawRow(8 + _row);
+			setLedsInRow(8 + _column); setLedsInRow(10 + _column);
+			drawRow(5 + _row);
+			rowData = 0;
+			setLedsInRow(6 + _column);  setLedsInRow(9 + _column);
+			drawRow(3 + _row);
+			setLedsInRow(7 + _column); setLedsInRow(8 + _column);
+			drawRow(2 + _row);
+			break;
+		case 8:
+			rowData = 0;
+			setLedsInRow(6 + _column); setLedsInRow(9 + _column);
+			drawRow(3 + _row); drawRow(4 + _row); drawRow(6 + _row); drawRow(7 + _row);
+			setLedsInRow(7 + _column); setLedsInRow(8 + _column);
+			drawRow(2 + _row); drawRow(5 + _row); drawRow(8 + _row);
+			break;
+		case 9:
+			rowData = 0;
+			setLedsInRow(9 + _column);
+			drawRow(6 + _row); drawRow(7 + _row);
+			setLedsInRow(6 + _column);
+			drawRow(3 + _row); drawRow(4 + _row);
+			setLedsInRow(7 + _column); setLedsInRow(8 + _column);
+			drawRow(2 + _row); drawRow(5 + _row); drawRow(8 + _row);
+			break;
+		}
 	}
 }
+
+/* _number is real number 0 - 99
+_column is offset X, 0 = center
+_row is offset Y, 0 = center
+interval is time to be dispaled in MS*/
+void visualisation::number(int _number, int _column, int _row, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		number(_number, _row, _column);
+	}
+}
+
+
+
+
+
 
 void visualisation::showScore(int _number)
 {
@@ -188,16 +273,19 @@ void visualisation::row(int row)
 {
 	for (int i = 0; i <= PLUS; i++)
 	{
-		drawLed(row, i);
+		setLedsInRow(i);
 	}
+	drawRow(row);
 }
 
 void visualisation::rowInside(int row)
 {
+	rowData = 0;
 	for (int i = 1; i < PLUS; i++)
 	{
-		drawLed(row, i);
+		setLedsInRow(i);
 	}
+	drawRow(row);
 }
 
 void visualisation::row(int _row, int interval)
@@ -209,19 +297,14 @@ void visualisation::row(int _row, int interval)
 	}
 }
 
+
 void visualisation::column(int column)
 {
+	rowData = 0;
+	setLedsInRow(column);
 	for (int i = 0; i <= MIN; i++)
 	{
-		drawLed(i, column);
-	}
-}
-
-void visualisation::columnInside(int column)
-{
-	for (int i = 1; i < MIN - 1; i++)
-	{
-		drawLed(i, column);
+		drawRow(i);
 	}
 }
 
@@ -234,41 +317,92 @@ void visualisation::column(int _column, int interval)
 	}
 }
 
+void visualisation::column(int starColumn, int endColumn)
+{
+	rowData = 0;
+	for (int i = starColumn; i < endColumn; i++)
+	{
+		setLedsInRow(i);
+	}
+	for (int i = 0; i <= MIN; i++)
+	{
+		drawRow(i);
+	}
+}
+
+void visualisation::column(int startColumn, int endColumn, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		column(startColumn, endColumn);
+	}
+}
+
+void visualisation::columnInside(int column)
+{
+	rowData = 0;
+	setLedsInRow(column);
+	for (int i = 1; i < MIN - 1; i++)
+	{
+		drawRow(i);
+	}
+}
 
 
 //VISUALISATIONS
-void visualisation::upToDown(int timeBetweenSteps)
+
+//size is thickness of line, size 0 = 1 line thick
+void visualisation::upToDown(int size, int timeBetweenSteps)
 {
-	for (int i = 0; i < MIN; i++)
+	for (int i = 0; i <= MIN; i++)
 	{
-		row(i, timeBetweenSteps);
+		for (int x = 0; x < size; x++)
+		{
+			row(i - x, timeBetweenSteps);
+		}
 	}
 }
 
-void visualisation::downToUp(int timeBetweenSteps)
+//size is thickness of line, size 0 = 1 line thick
+void visualisation::downToUp(int size, int timeBetweenSteps)
 {
-	for (int i = MIN; i > 0; i--)
+	for (int i = MIN; i >= 0; i--)
 	{
-		row(i, timeBetweenSteps);
+		for (int x = 0; x < size; x++)
+		{
+			row(i + x, timeBetweenSteps);
+		}
 	}
 }
 
-void visualisation::leftToRight(int timeBetweenSteps)
+//size is thickness of line, size 0 = 1 line thick
+void visualisation::leftToRight(int size, int timeBetweenSteps)
 {
-	for (int i = 0; i < PLUS; i++)
+	for (int i = 0; i <= PLUS; i++)
 	{
-		column(i, timeBetweenSteps);
+		for (int x = 0; x < size; x++)
+		{
+			column(i + x, timeBetweenSteps);
+		}
 	}
 }
 
-void visualisation::rightToLeft(int timeBetweenSteps)
+//size is thickness of line, size 0 = 1 line thick
+void visualisation::rightToLeft(int size, int timeBetweenSteps)
 {
-	for (int i = PLUS; i > 0; i--)
+	for (int i = PLUS; i >= 0; i--)
 	{
-		column(i, timeBetweenSteps);
+		for (int x = 0; x < size; x++)
+		{
+			column(i - x, timeBetweenSteps);
+		}
 	}
 }
 
+//_column = verplaatsing links/rechts
+//_row = verplaatsing boven/benden
+//_column & _row == 0: pijl aan spelers kant
 void visualisation::arrow(int direction, int _column, int _row, int interval) //arrow method with interval
 {
 	elapsedMillis tempTimer;
@@ -278,6 +412,9 @@ void visualisation::arrow(int direction, int _column, int _row, int interval) //
 	}
 }
 
+//_column = verplaatsing links/rechts
+//_row = verplaatsing boven/benden
+//_column & _row == 0: pijl aan spelers kant
 void visualisation::arrow(int direction, int _column, int _row)
 {
 
@@ -351,20 +488,6 @@ void visualisation::insideOn(int interval)
 	}
 }
 
-void visualisation::scoreSquare()
-{
-	for (int i = 2; i < PLUS -1; i++)
-	{
-		drawLed(1, i);
-		drawLed(11, i);
-	}
-	for (int i = 2; i < MIN; i++)
-	{
-		drawLed(i, 2);
-		drawLed(i, 16);
-	}
-}
-
 void visualisation::allOff(int interval)
 {
 	elapsedMillis tempTimer;
@@ -388,17 +511,12 @@ void visualisation::allOff()
 	digitalWrite(latchPin, HIGH);
 }
 
-
-
 void visualisation::allOn(int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		for (int i = 0; i <= PLUS; i++)
-		{
-			column(i);
-		}
+		allOn();
 	}
 }
 
@@ -408,9 +526,9 @@ void visualisation::allOn()
 	{
 		for (int i = 0; i < PLUS; i++)
 		{
-			visual.setLedsInRow(i);
+			setLedsInRow(i);
 		}
-		visual.drawRow(m);
+		drawRow(m);
 	}
 }
 
@@ -430,15 +548,15 @@ int visualisation::drawLed(int _min, int _plus)
 		{
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 0 t/m 7
-			
-			
+
+
 		}
 		else
 		{
 			_min = _min - 8;
 			shiftOut(dataPin, clockPin, LSBFIRST, ~data[_min]); //min 8 t/m 12
 			shiftOut(dataPin, clockPin, LSBFIRST, ~0); //min 0 t/m 7
-			
+
 		}
 
 		shiftOut(dataPin, clockPin, LSBFIRST, 0); //plus 16 t/m 18
@@ -509,7 +627,7 @@ int visualisation::drawLed(int _min, int _plus)
 //rowData = _column -> welke kolommen moeten er aan?
 void visualisation::setLedsInRow(int _column)
 {
-	rowData |= (1 << _column);
+	rowData |= ((long)1 << (long)_column);
 }
 
 //_row = 0 t/m 12
@@ -518,13 +636,15 @@ void visualisation::drawRow(int _row)
 	//@to-do //0xFF = 255 
 	digitalWrite(latchPin, LOW);
 
-	shiftOut(dataPin, clockPin, LSBFIRST, (1 << _row) & 0xFF); //min 8 t/m 12
-	shiftOut(dataPin, clockPin, LSBFIRST, ((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+	shiftOut(dataPin, clockPin, LSBFIRST, ~((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+	shiftOut(dataPin, clockPin, LSBFIRST, ~(1 << _row) & 0xFF); //min 8 t/m 12
 
-	shiftOut(dataPin, clockPin, LSBFIRST, rowData & 0xFF); //plus 16 t/m 18
-	shiftOut(dataPin, clockPin, LSBFIRST, (rowData >> 8) & 0xFF); //plus 8 t/m 15
 	shiftOut(dataPin, clockPin, LSBFIRST, (rowData >> 16) & 0xFF); //plus 0 t/m 7
+	shiftOut(dataPin, clockPin, LSBFIRST, (rowData >> 8) & 0xFF); //plus 8 t/m 15
+	shiftOut(dataPin, clockPin, LSBFIRST, (rowData & 0xFF)); //plus 16 t/m 18
+
+
 
 	digitalWrite(latchPin, HIGH);
-	rowData = 0;
+
 }
