@@ -24,12 +24,72 @@
     <ClInclude Include="elapsedMillis.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Columns.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fields.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scores.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="visualisation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Images.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Smileys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Columns.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fields.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Characters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scores.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="visualisation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Images.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Smileys.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
