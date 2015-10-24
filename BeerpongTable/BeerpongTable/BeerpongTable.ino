@@ -21,19 +21,20 @@ void setup()
 
 void loop()
 {
+	movingArrow(0, 0, 0, 100);
 	for (int x = 0; x < 5; x++)
 	{
 
 		for (int i = 0; i <= 6; i++)
 		{
-		square_(0, 50);
+			square_(0, 50);
 		}
 		for (int i = 6; i >= 0; i--)
 		{
 			square_(i, 50);
 		}
 	}
-		number(0);
+	
 	upToDown(0, 20);
 	downToUp(0, 20);
 	leftToRight(0, 20);

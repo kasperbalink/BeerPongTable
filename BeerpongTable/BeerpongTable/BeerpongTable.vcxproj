@@ -91,9 +91,6 @@
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="Smileys.h" />
     <ClInclude Include="Visual Micro\.BeerpongTable.vsarduino.h" />
-    <ClInclude Include="visualisation.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animations.cpp" />
@@ -106,7 +103,6 @@
     <ClCompile Include="Scores.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="Smileys.cpp" />
-    <ClCompile Include="visualisation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

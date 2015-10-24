@@ -105,6 +105,4 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Smileys.cpp>
 #include <Smileys.h>
 #include <elapsedMillis.h>
-#include <visualisation.cpp>
-#include <visualisation.h>
 #endif

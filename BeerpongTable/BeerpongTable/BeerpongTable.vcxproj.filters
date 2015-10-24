@@ -48,9 +48,6 @@
     <ClInclude Include="Scores.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="visualisation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Images.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scores.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="visualisation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Images.cpp">
