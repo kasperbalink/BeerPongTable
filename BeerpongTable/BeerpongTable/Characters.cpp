@@ -185,3 +185,158 @@ void number(int _number, int _column, int _row, int interval)
 		number(_number, _row, _column);
 	}
 }
+
+
+//////////////////////////////////////////////////
+////////////////////WITH PLAYER///////////////////
+//////////////////////////////////////////////////
+
+
+/* _number is real number 0 - 99*/
+void number2(int _number, int player)
+{
+	number2(_number, 0, 0, player);
+}
+
+/* _number is real number 0 - 99
+interval is time to be dispaled in MS*/
+void number2(int _number, int interval, int player)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		number2(_number, 0, 0, player);
+	}
+}
+
+/* _number is real number 0 - 99
+_column is offset X, 0 = center
+_row is offset Y, 0 = center */
+void number2(int _number, int _column, int _row, int player)
+{
+	if (_number > 9 && _number < 100)
+	{
+		number2(_number % 10, 4 + _column, _row, player);
+		number2(_number / 10, -4 + _column, _row, player);
+	}
+	else if (_number < 0 || _number > 99)
+	{
+		number2(0, player);
+	}
+	else
+	{
+		switch (_number)
+		{
+		case 0:
+			clearData(player);
+			setRowData(7 + _column, player); setRowData(10 + _column, player);
+			drawRow(8 + _row, player); drawRow(4 + _row, player); drawRow(5 + _row, player);
+			drawRow(6 + _row, player); drawRow(7 + _row, player);
+			setRowData(9 + _column, player); setRowData(8 + _column, player);
+			drawRow(3 + _row, player); drawRow(9 + _row, player);
+			break;
+		case 1:
+			clearData(player);
+			setRowData(9 + _column, player); drawRow(2 + _row, player);
+			setRowData(8 + _column, player); drawRow(3 + _row, player);
+			clearData(player);
+			setRowData(7 + _column, player); setRowData(9 + _column, player);
+			clearData(player);
+			setRowData(9 + _column, player);
+			drawRow(5 + _row, player); drawRow(6 + _row, player); drawRow(7 + _row, player);
+			setRowData(7 + _column, player); setRowData(8 + _column, player); setRowData(10 + _column, player);
+			drawRow(8 + _row, player);
+			break;
+		case 2:
+			clearData(player);
+			setRowData(10 + _column, player); setRowData(7 + _column, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player); drawRow(5 + _row, player); drawRow(8 + _row, player);
+			clearData(player);
+			setRowData(10 + _column, player); drawRow(3 + _row, player); drawRow(4 + _row, player);
+			clearData(player);
+			setRowData(7 + _column, player); drawRow(6 + _row, player); drawRow(7 + _row, player);
+			break;
+		case 3:
+			clearData(player);
+			setRowData(10 + _column, player); setRowData(7 + _column, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player); drawRow(5 + _row, player); drawRow(8 + _row, player);
+			clearData(player);
+			setRowData(10 + _column, player);
+			drawRow(3 + _row, player); drawRow(4 + _row, player); drawRow(6 + _row, player); drawRow(7 + _row, player);
+			break;
+		case 4:
+			clearData(player);
+			setRowData(10 + _column, player);
+			drawRow(6 + _row, player); drawRow(7 + _row, player); drawRow(8 + _row, player);
+			setRowData(7 + _column, player);
+			drawRow(2 + _row, player); drawRow(3 + _row, player); drawRow(4 + _row, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(5 + _row, player);
+			break;
+		case 5:
+			clearData(player);
+			setRowData(10 + _column, player); setRowData(7 + _column, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player); drawRow(5 + _row, player); drawRow(8 + _row, player);
+			clearData(player);
+			setRowData(7 + _column, player);
+			drawRow(3 + _row, player); drawRow(4 + _row, player);
+			clearData(player);
+			setRowData(10 + _column, player); drawRow(7 + _row, player); drawRow(8 + _row, player);
+			break;
+		case 6:
+			clearData(player);
+			setRowData(7 + _column, player);
+			drawRow(3 + _row, player); drawRow(4 + _row, player);
+			setRowData(10 + _column, player);
+			drawRow(6 + _row, player); drawRow(7 + _row, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player); drawRow(5 + _row, player); drawRow(8 + _row, player);
+			break;
+		case 7:
+			clearData(player);
+			setRowData(10 + _column, player);
+			drawRow(3 + _row, player); drawRow(4 + _row, player); drawRow(6 + _row, player);
+			drawRow(7 + _row, player); drawRow(8 + _row, player);
+			setRowData(9 + _column, player); setRowData(11 + _column, player);
+			drawRow(5 + _row, player);
+			clearData(player);
+			setRowData(7 + _column, player);  setRowData(10 + _column, player);
+			drawRow(3 + _row, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player);
+			break;
+		case 8:
+			clearData(player);
+			setRowData(7 + _column, player); setRowData(10 + _column, player);
+			drawRow(3 + _row, player); drawRow(4 + _row, player); drawRow(6 + _row, player); drawRow(7 + _row, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player); drawRow(5 + _row, player); drawRow(8 + _row, player);
+			break;
+		case 9:
+			clearData(player);
+			setRowData(10 + _column, player);
+			drawRow(6 + _row, player); drawRow(7 + _row, player);
+			setRowData(7 + _column, player);
+			drawRow(3 + _row, player); drawRow(4 + _row, player);
+			setRowData(8 + _column, player); setRowData(9 + _column, player);
+			drawRow(2 + _row, player); drawRow(5 + _row, player); drawRow(8 + _row, player);
+			break;
+		}
+	}
+}
+
+/* _number is real number 0 - 99
+_column is offset X, 0 = center
+_row is offset Y, 0 = center
+interval is time to be dispaled in MS*/
+void number2(int _number, int _column, int _row, int interval, int player)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		number2(_number, _row, _column, player);
+	}
+}

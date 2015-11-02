@@ -44,16 +44,16 @@ void allOff(int interval)
 
 void allOff()
 {
-	digitalWrite(latchPin, LOW);
+	digitalWrite(latchPin_P1, LOW);
 	//minnen uit
-	shiftOut(dataPin, clockPin, LSBFIRST, ~0);
-	shiftOut(dataPin, clockPin, LSBFIRST, ~0);
+	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~0);
+	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~0);
 
 	//plussen uit
-	shiftOut(dataPin, clockPin, LSBFIRST, 0);
-	shiftOut(dataPin, clockPin, LSBFIRST, 0);
-	shiftOut(dataPin, clockPin, LSBFIRST, 0);
-	digitalWrite(latchPin, HIGH);
+	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
+	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
+	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
+	digitalWrite(latchPin_P1, HIGH);
 }
 
 void allOn(int interval)
