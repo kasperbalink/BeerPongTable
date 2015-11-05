@@ -12,28 +12,268 @@ void letter(char _letter, int _column, int _row, int interval)
 
 void letter(char _letter, int _column, int _row)
 {
-	switch (_letter)
+	switch (tolower(_letter))
 	{
+		clearData();
 	case 'a':
+		setRowData(9);
+		drawRow(3);
+		setRowData(7); setRowData(11);
+		drawRow(5); drawRow(7); drawRow(8); drawRow(9);
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(6);
+		clearData();
+		setRowData(8); setRowData(10);
+		drawRow(4);
 		break;
-
 	case 'b':
+		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(6); drawRow(9);
+		clearData();
+		setRowData(7); setRowData(11);
+		drawRow(4); drawRow(5); drawRow(7); drawRow(8);
 		break;
 
 	case 'c':
+		setRowData(7);
+		drawRow(5); drawRow(6); drawRow(7);
+		setRowData(11);
+		drawRow(4); drawRow(8);
+		clearData(); 
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(9);
 		break;
 
 	case 'd':
+		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(9);
+		clearData();
+		setRowData(7); setRowData(11);
+		drawRow(4); drawRow(5); drawRow(6); drawRow(7); drawRow(8);
 		break;
 
 	case 'e':
+		setRowData(7);
+		drawRow(4); drawRow(5); drawRow(7); drawRow(8);
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(6); drawRow(9);
 		break;
 
 	case 'f':
+		setRowData(7);
+		drawRow(4); drawRow(5); drawRow(7); drawRow(8); drawRow(9);
+		setRowData(8); drawRow(9);
+		drawRow(6);
+		setRowData(10);
+		drawRow(3);
 		break;
 
 	case 'g':
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(9);
+		clearData();
+		setRowData(7);
+		drawRow(4); drawRow(5);
+		setRowData(11);
+		drawRow(7); drawRow(8);
+		clearData();
+		setRowData(7); setRowData(9); setRowData(10);
+		drawRow(6);
 		break;
+
+	case 'h':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4); drawRow(5);
+		drawRow(7); drawRow(8); drawRow(9);
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(6);
+		break;
+	case 'i':
+		setRowData(9);
+		drawRow(4); drawRow(5); drawRow(6); 
+		drawRow(7); drawRow(8);
+		setRowData(8); setRowData(10);
+		drawRow(3); drawRow(9);
+		break;
+	case 'j':
+		setRowData(9);
+		drawRow(4); drawRow(5); drawRow(6);
+		setRowData(8);
+		drawRow(9);
+		setRowData(10);
+		drawRow(3);
+		clearData();
+		setRowData(9); setRowData(7);
+		drawRow(7); drawRow(8);
+		break;
+	case 'k':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(9);
+		clearData();
+		setRowData(7); setRowData(10);
+		drawRow(4); drawRow(8);
+		clearData();
+		setRowData(7); setRowData(9);
+		drawRow(5); drawRow(7);
+		clearData();
+		setRowData(7); setRowData(8);
+		drawRow(6);
+		break;
+	case 'l':
+		setRowData(7);
+		drawRow(3); drawRow(4); drawRow(5);
+		drawRow(6); drawRow(7); drawRow(8);
+		setRowData(8); setRowData(9); setRowData(10); setRowData(11);
+		drawRow(9);
+		break;
+	case 'm':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(6); drawRow(7); drawRow(8); drawRow(9);
+		setRowData(8); setRowData(10);
+		drawRow(4);
+		clearData();
+		setRowData(7); setRowData(9); setRowData(11);
+		drawRow(5);
+		break;
+	case 'n':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4); drawRow(8); drawRow(9);
+		setRowData(8); 
+		drawRow(5);
+		clearData();
+		setRowData(7); setRowData(11); setRowData(9);
+		drawRow(6);
+		clearData();
+		setRowData(7); setRowData(11); setRowData(10);
+		drawRow(7);
+		break;
+	case 'o':
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(9);
+		clearData();
+		setRowData(7); setRowData(11);
+		drawRow(4); drawRow(5); drawRow(6); drawRow(7); drawRow(8);
+		break;
+	case 'p':
+		setRowData(7);
+		drawRow(7); drawRow(8); drawRow(9);
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(6);
+		clearData();
+		setRowData(7); setRowData(11);
+		drawRow(4); drawRow(5);
+		break;
+	case 'q':
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3);
+		setRowData(11); 
+		drawRow(9);
+		clearData();
+		setRowData(4); setRowData(11);
+		drawRow(4); drawRow(5); drawRow(6);
+		clearData();
+		setRowData(4); setRowData(11); setRowData(9);
+		drawRow(7); 
+		clearData();
+		setRowData(4); setRowData(11); setRowData(10);
+		drawRow(8);
+		break;
+	case 'r':
+		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
+		drawRow(3); drawRow(6);
+		clearData();
+		setRowData(7); setRowData(11);
+		drawRow(4); drawRow(5); drawRow(9);
+		clearData();
+		setRowData(7); setRowData(9);
+		drawRow(7);
+		clearData();
+		setRowData(7); setRowData(10);
+		drawRow(8);
+		break;
+	case 's':
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(6);
+		setRowData(11);
+		drawRow(3);
+		clearData();
+		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
+		drawRow(9);
+		clearData();
+		setRowData(7);
+		drawRow(4); drawRow(5);
+		clearData();
+		setRowData(11);
+		drawRow(7); drawRow(8);
+		break;
+	case 't':
+		setRowData(9);
+		drawRow(4); drawRow(5); drawRow(6);
+		drawRow(7); drawRow(8); drawRow(9);
+		setRowData(7); setRowData(8); setRowData(10); setRowData(11);
+		drawRow(3);
+		break;
+	case 'u':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4); drawRow(5); 
+		drawRow(6); drawRow(7); drawRow(8);
+		clearData();
+		setRowData(8); setRowData(9); setRowData(10);
+		drawRow(9);
+		break;
+	case 'v':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4); drawRow(5);
+		drawRow(6); drawRow(7); 
+		clearData();
+		setRowData(8); setRowData(10); 
+		drawRow(8);
+		clearData();
+		setRowData(9); 
+		drawRow(9);
+		break;
+	case 'w':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4); drawRow(5);
+		drawRow(6); drawRow(9);
+		setRowData(8); setRowData(10);
+		drawRow(8);
+		clearData();
+		setRowData(7); setRowData(9); setRowData(11);
+		break;
+	case 'x':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4); drawRow(8);	drawRow(9);
+		clearData();
+		setRowData(8); setRowData(10);
+		drawRow(5); drawRow(7);
+		clearData(); 
+		setRowData(9);
+		drawRow(6);
+		break;
+	case 'y':
+		setRowData(7); setRowData(11);
+		drawRow(3); drawRow(4);
+		clearData();
+		setRowData(9);
+		drawRow(6); drawRow(7); drawRow(8); drawRow(9);
+		setRowData(8); setRowData(10);
+		drawRow(5);
+		break;
+	case 'z':
+		setRowData(7); setRowData(8); setRowData(9); 
+		setRowData(10); setRowData(11);
+		drawRow(3); drawRow(9);
+		clearData(); setRowData(11); drawRow(4);
+		clearData(); setRowData(10); drawRow(5);
+		clearData(); setRowData(9); drawRow(6);
+		clearData(); setRowData(8); drawRow(7);
+		clearData(); setRowData(7); drawRow(8);
+		break;
+
+
+
+
 	}
 }
 
