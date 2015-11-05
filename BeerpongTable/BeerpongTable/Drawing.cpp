@@ -28,7 +28,7 @@ void drawRow(int _row)
 
 void clearData()
 {
-	rowData = 0;
+	rowData = (long)0;
 }
 
 

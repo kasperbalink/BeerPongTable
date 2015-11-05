@@ -7,7 +7,7 @@ void column(int column)
 {
 	clearData();
 	setRowData(column);
-	for (int i = 0; i <= MIN; i++)
+	for (int i = 0; i < MIN; i++)
 	{
 		drawRow(i);
 	}
@@ -29,7 +29,7 @@ void columnBig(int starColumn, int endColumn)
 	{
 		setRowData(i);
 	}
-	for (int i = 0; i <= MIN; i++)
+	for (int i = 0; i < MIN; i++)
 	{
 		drawRow(i);
 	}

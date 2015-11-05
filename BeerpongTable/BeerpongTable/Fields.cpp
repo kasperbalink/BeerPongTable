@@ -67,12 +67,8 @@ void allOn(int interval)
 
 void allOn()
 {
-	for (int m = 0; m < MIN; m++)
+	for (int p = 0; p < MIN; p++)
 	{
-		for (int i = 0; i < PLUS; i++)
-		{
-			setRowData(i);
-		}
-		drawRow(m);
+		row(p);
 	}
 }

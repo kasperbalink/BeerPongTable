@@ -9,8 +9,8 @@
 #define clockPin_P2 11 //A1
 #define dataPin_P2  8// A2
 
-#define MIN 13
-#define PLUS 19
+#define MIN 12
+#define PLUS 18
 
 void setRowData(int _column);
 void drawRow(int _row);
