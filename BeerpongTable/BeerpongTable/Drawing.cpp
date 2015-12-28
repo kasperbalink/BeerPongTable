@@ -23,7 +23,7 @@ void drawRow(int _row)
 	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (rowData & 0xFF)); //plus 16 t/m 18
 
 	digitalWrite(latchPin_P1, HIGH);
-
+	//irRead();
 }
 
 void clearData()

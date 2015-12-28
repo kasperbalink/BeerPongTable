@@ -10,270 +10,388 @@ void letter(char _letter, int _column, int _row, int interval)
 	}
 }
 
+
+// @TODO: kolommen en rijen toevoegen aan de positie, speler toevoegen...
 void letter(char _letter, int _column, int _row)
 {
+	clearData();
+
 	switch (tolower(_letter))
 	{
-		clearData();
+	
 	case 'a':
-		setRowData(9);
-		drawRow(3);
-		setRowData(7); setRowData(11);
-		drawRow(5); drawRow(7); drawRow(8); drawRow(9);
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(6);
+		setRowData(9 + _column);
+		drawRow(_row + 3);
 		clearData();
-		setRowData(8); setRowData(10);
-		drawRow(4);
+		setRowData(_column + 8); setRowData(_column + 10);
+		drawRow(_row + 4);
+		clearData();
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 5); drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 6);
+		
+		
 		break;
 	case 'b':
-		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(6); drawRow(9);
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 6); drawRow(_row + 9);
 		clearData();
-		setRowData(7); setRowData(11);
-		drawRow(4); drawRow(5); drawRow(7); drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 7); drawRow(_row + 8);
 		break;
 
 	case 'c':
-		setRowData(7);
-		drawRow(5); drawRow(6); drawRow(7);
-		setRowData(11);
-		drawRow(4); drawRow(8);
+		setRowData(_column + 7);
+		drawRow(_row + 5); drawRow(_row + 6); drawRow(_row + 7);
+		setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 8);
 		clearData(); 
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 9);
 		break;
 
 	case 'd':
-		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(9);
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 9);
 		clearData();
-		setRowData(7); setRowData(11);
-		drawRow(4); drawRow(5); drawRow(6); drawRow(7); drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8);
 		break;
 
 	case 'e':
-		setRowData(7);
-		drawRow(4); drawRow(5); drawRow(7); drawRow(8);
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(6); drawRow(9);
+		setRowData(_column + 7);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 7); drawRow(_row + 8);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 6); drawRow(_row + 9);
 		break;
 
 	case 'f':
-		setRowData(7);
-		drawRow(4); drawRow(5); drawRow(7); drawRow(8); drawRow(9);
-		setRowData(8); drawRow(9);
-		drawRow(6);
-		setRowData(10);
-		drawRow(3);
+		setRowData(_column + 7);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); drawRow(_row + 9);
+		drawRow(_row + 6);
+		setRowData(_column + 10);
+		drawRow(_row + 3);
 		break;
 
 	case 'g':
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 9);
 		clearData();
-		setRowData(7);
-		drawRow(4); drawRow(5);
-		setRowData(11);
-		drawRow(7); drawRow(8);
+		setRowData(_column + 7);
+		drawRow(_row + 4); drawRow(_row + 5);
+		setRowData(_column + 11);
+		drawRow(_row + 7); drawRow(_row + 8);
 		clearData();
-		setRowData(7); setRowData(9); setRowData(10);
-		drawRow(6);
+		setRowData(_column + 7); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 6);
 		break;
 
 	case 'h':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4); drawRow(5);
-		drawRow(7); drawRow(8); drawRow(9);
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(6);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5);
+		drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 6);
 		break;
 	case 'i':
-		setRowData(9);
-		drawRow(4); drawRow(5); drawRow(6); 
-		drawRow(7); drawRow(8);
-		setRowData(8); setRowData(10);
-		drawRow(3); drawRow(9);
+		setRowData(_column + 9);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6); 
+		drawRow(_row + 7); drawRow(_row + 8);
+		setRowData(_column + 8); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 9);
 		break;
 	case 'j':
-		setRowData(9);
-		drawRow(4); drawRow(5); drawRow(6);
-		setRowData(8);
-		drawRow(9);
-		setRowData(10);
-		drawRow(3);
+		setRowData(_column + 9);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6);
+		setRowData(_column + 8);
+		drawRow(_row + 9);
+		setRowData(_column + 10);
+		drawRow(_row + 3);
 		clearData();
-		setRowData(9); setRowData(7);
-		drawRow(7); drawRow(8);
+		setRowData(_column + 9); setRowData(_column + 7);
+		drawRow(_row + 7); drawRow(_row + 8);
 		break;
 	case 'k':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(9);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 9);
 		clearData();
-		setRowData(7); setRowData(10);
-		drawRow(4); drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 10);
+		drawRow(_row + 4); drawRow(_row + 8);
 		clearData();
-		setRowData(7); setRowData(9);
-		drawRow(5); drawRow(7);
+		setRowData(_column + 7); setRowData(_column + 9);
+		drawRow(_row + 5); drawRow(_row + 7);
 		clearData();
-		setRowData(7); setRowData(8);
-		drawRow(6);
+		setRowData(_column + 7); setRowData(_column + 8);
+		drawRow(_row + 6);
 		break;
 	case 'l':
-		setRowData(7);
-		drawRow(3); drawRow(4); drawRow(5);
-		drawRow(6); drawRow(7); drawRow(8);
-		setRowData(8); setRowData(9); setRowData(10); setRowData(11);
-		drawRow(9);
+		setRowData(_column + 7);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5);
+		drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10); setRowData(_column + 11);
+		drawRow(_row + 9);
 		break;
 	case 'm':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(6); drawRow(7); drawRow(8); drawRow(9);
-		setRowData(8); setRowData(10);
-		drawRow(4);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); setRowData(_column + 10);
+		drawRow(_row + 4);
 		clearData();
-		setRowData(7); setRowData(9); setRowData(11);
-		drawRow(5);
+		setRowData(_column + 7); setRowData(_column + 9); setRowData(_column + 11);
+		drawRow(_row + 5);
 		break;
 	case 'n':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4); drawRow(8); drawRow(9);
-		setRowData(8); 
-		drawRow(5);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); 
+		drawRow(_row + 5);
 		clearData();
-		setRowData(7); setRowData(11); setRowData(9);
-		drawRow(6);
+		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 9);
+		drawRow(_row + 6);
 		clearData();
-		setRowData(7); setRowData(11); setRowData(10);
-		drawRow(7);
+		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 10);
+		drawRow(_row + 7);
 		break;
 	case 'o':
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 9);
 		clearData();
-		setRowData(7); setRowData(11);
-		drawRow(4); drawRow(5); drawRow(6); drawRow(7); drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8);
 		break;
 	case 'p':
-		setRowData(7);
-		drawRow(7); drawRow(8); drawRow(9);
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(6);
+		setRowData(_column + 7);
+		drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 6);
 		clearData();
-		setRowData(7); setRowData(11);
-		drawRow(4); drawRow(5);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 5);
 		break;
 	case 'q':
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3);
-		setRowData(11); 
-		drawRow(9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3);
+		setRowData(_column + 11); 
+		drawRow(_row + 9);
 		clearData();
-		setRowData(4); setRowData(11);
-		drawRow(4); drawRow(5); drawRow(6);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6);
 		clearData();
-		setRowData(4); setRowData(11); setRowData(9);
-		drawRow(7); 
+		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 9);
+		drawRow(_row + 7); 
 		clearData();
-		setRowData(4); setRowData(11); setRowData(10);
-		drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 10);
+		drawRow(_row + 8);
+		clearData();
+		setRowData(_column + 12);
+		drawRow(_row + 10);
 		break;
 	case 'r':
-		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
-		drawRow(3); drawRow(6);
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 3); drawRow(_row + 6);
 		clearData();
-		setRowData(7); setRowData(11);
-		drawRow(4); drawRow(5); drawRow(9);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 9);
 		clearData();
-		setRowData(7); setRowData(9);
-		drawRow(7);
+		setRowData(_column + 7); setRowData(_column + 9);
+		drawRow(_row + 7);
 		clearData();
-		setRowData(7); setRowData(10);
-		drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 10);
+		drawRow(_row + 8);
 		break;
 	case 's':
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(6);
-		setRowData(11);
-		drawRow(3);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 6);
+		setRowData(_column + 11);
+		drawRow(_row + 3);
 		clearData();
-		setRowData(7); setRowData(8); setRowData(9); setRowData(10);
-		drawRow(9);
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 9);
 		clearData();
-		setRowData(7);
-		drawRow(4); drawRow(5);
+		setRowData(_column + 7);
+		drawRow(_row + 4); drawRow(_row + 5);
 		clearData();
-		setRowData(11);
-		drawRow(7); drawRow(8);
+		setRowData(_column + 11);
+		drawRow(_row + 7); drawRow(_row + 8);
 		break;
 	case 't':
-		setRowData(9);
-		drawRow(4); drawRow(5); drawRow(6);
-		drawRow(7); drawRow(8); drawRow(9);
-		setRowData(7); setRowData(8); setRowData(10); setRowData(11);
-		drawRow(3);
+		setRowData(_column + 9);
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6);
+		drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 10); setRowData(_column + 11);
+		drawRow(_row + 3);
 		break;
 	case 'u':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4); drawRow(5); 
-		drawRow(6); drawRow(7); drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5); 
+		drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8);
 		clearData();
-		setRowData(8); setRowData(9); setRowData(10);
-		drawRow(9);
+		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
+		drawRow(_row + 9);
 		break;
 	case 'v':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4); drawRow(5);
-		drawRow(6); drawRow(7); 
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5);
+		drawRow(_row + 6); drawRow(_row + 7); 
 		clearData();
-		setRowData(8); setRowData(10); 
-		drawRow(8);
+		setRowData(_column + 8); setRowData(_column + 10); 
+		drawRow(_row + 8);
 		clearData();
-		setRowData(9); 
-		drawRow(9);
+		setRowData(_column + 9); 
+		drawRow(_row + 9);
 		break;
 	case 'w':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4); drawRow(5);
-		drawRow(6); drawRow(9);
-		setRowData(8); setRowData(10);
-		drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5);
+		drawRow(_row + 6); drawRow(_row + 9);
+		setRowData(_column + 8); setRowData(_column + 10);
+		drawRow(_row + 8);
 		clearData();
-		setRowData(7); setRowData(9); setRowData(11);
+		setRowData(_column + 7); setRowData(_column + 9); setRowData(_column + 11);
+		drawRow(_row + 7);
 		break;
 	case 'x':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4); drawRow(8);	drawRow(9);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 8);	drawRow(_row + 9);
 		clearData();
-		setRowData(8); setRowData(10);
-		drawRow(5); drawRow(7);
+		setRowData(_column + 8); setRowData(_column + 10);
+		drawRow(_row + 5); drawRow(_row + 7);
 		clearData(); 
-		setRowData(9);
-		drawRow(6);
+		setRowData(_column + 9);
+		drawRow(_row + 6);
 		break;
 	case 'y':
-		setRowData(7); setRowData(11);
-		drawRow(3); drawRow(4);
+		setRowData(_column + 7); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 4);
 		clearData();
-		setRowData(9);
-		drawRow(6); drawRow(7); drawRow(8); drawRow(9);
-		setRowData(8); setRowData(10);
-		drawRow(5);
+		setRowData(_column + 9);
+		drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
+		setRowData(_column + 8); setRowData(_column + 10);
+		drawRow(_row + 5);
 		break;
 	case 'z':
-		setRowData(7); setRowData(8); setRowData(9); 
-		setRowData(10); setRowData(11);
-		drawRow(3); drawRow(9);
-		clearData(); setRowData(11); drawRow(4);
-		clearData(); setRowData(10); drawRow(5);
-		clearData(); setRowData(9); drawRow(6);
-		clearData(); setRowData(8); drawRow(7);
-		clearData(); setRowData(7); drawRow(8);
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); 
+		setRowData(_column + 10); setRowData(_column + 11);
+		drawRow(_row + 3); drawRow(_row + 9);
+		clearData(); setRowData(_column + 11); drawRow(_row + 4);
+		clearData(); setRowData(_column + 10); drawRow(_row + 5);
+		clearData(); setRowData(_column + 9); drawRow(_row + 6);
+		clearData(); setRowData(_column + 8); drawRow(_row + 7);
+		clearData(); setRowData(_column + 7); drawRow(_row + 8);
+		break;
+	case ' ':
+		//SPATIE
+		break;
+	case '!':
+		setRowData(8 + _column); setRowData(9 + _column);
+		drawRow(3 + _row); drawRow(4 + _row); drawRow(5 + _row);
+		drawRow(6 + _row); drawRow(8 + _row); drawRow(9 + _row);
+		break;
+	case '?':
+		setRowData(9 + _column);
+		drawRow(9 + _row); drawRow(8 + _row); drawRow(7 + _row);
+		setRowData(8 + _column); setRowData(10 + _column);
+		drawRow(3 + _row);
+		clearData();
+		setRowData(7 + _column); setRowData(11 + _column);
+		drawRow(4 + _row); drawRow(5 + _row);
+		clearData();
+		setRowData(10 + _column);
+		drawRow(6 + _row);
+		break;
+	case '#':
+		setRowData(8 + _column); setRowData(10 + _column);
+		drawRow(3 + _row); drawRow(4 + _row); drawRow(6 + _row);
+		drawRow(8 + _row); drawRow(9 + _row);
+		setRowData(7 + _column); setRowData(9 + _column); setRowData(11 + _column);
+		drawRow(5 + _row); drawRow(7 + _row);
 		break;
 
+	case '+':
+		setRowData(9 + _column);
+		drawRow(4 + _row); 	drawRow(5 + _row); 
+		drawRow(7 + _row);	drawRow(8 + _row);
+		setRowData(7 + _column); setRowData(8 + _column);
+		setRowData(10 + _column); setRowData(11 + _column);
+		drawRow(6 + _row);
+		break;
+	case '-':
+		setRowData(7 + _column); setRowData(8 + _column); setRowData(9 + _column);
+		setRowData(10 + _column); setRowData(11 + _column);
+		drawRow(6 + _row);
+		break;
+	default:
+		break;
+	}
+}
+//A (size = 1)
+//ABC (size = 3)
 
+void text(char _text[999], int scrollTime)
+{
 
+	int size = 0;
+	for (int i = 0; i < 999; i++)
+	{
+		if (_text[i] == 0)
+		{
+			size = i;
+		}
+		break;
+	}
+	if (size == 3)
+	{
+		textOffThree(_text[0], _text[1], _text[2], scrollTime);
+	}
+	else if (size == 2)
+	{
+		textOffTwo(_text[0], _text[1], scrollTime);
+	}
+	else if (size == 1)
+	{
+		letter(_text[0], 0, 0, scrollTime);
+	}
+	else if (size > 3)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			if (i == size - 1)
+			{
+				textOffThree(_text[i], ' ', ' ', scrollTime);
+			}
+			else if (i == size - 2)
+			{
+				textOffThree(_text[i], _text[i + 1], ' ', scrollTime);
+			}
+			else
+			{
+				textOffThree(_text[i], _text[i + 1], _text[i + 2], scrollTime);
+			}
+		}
+	}
 
+}
+
+void textOffTwo(char a, char b, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		letter(a, -6, 0);
+		letter(b, 0, 0);
+	}
+}
+
+void textOffThree(char a, char b, char c, int interval)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+		letter(a, -6, 0);
+		letter(b, 0, 0);
+		letter(c, 6, 0);
 	}
 }
 

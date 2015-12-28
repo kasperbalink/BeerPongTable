@@ -6,17 +6,6 @@
 
 void row(int row)
 {
-	if (row == 0 || row == 18)
-	{
-		clearData();
-		for (int i = 0; i < PLUS; i++)
-		{
-			setRowData(i);
-		}
-		drawRow(row);
-	}
-	else
-	{
 		clearData();
 		for (int i = 1; i < PLUS; i++)
 		{
@@ -27,7 +16,7 @@ void row(int row)
 		setRowData(0);
 		setRowData(18);
 		drawRow(row);
-	}
+	
 }
 
 void row(int _row, int interval)
@@ -36,6 +25,7 @@ void row(int _row, int interval)
 	while (tempTimer < interval)
 	{
 		row(_row);
+
 	}
 }
 

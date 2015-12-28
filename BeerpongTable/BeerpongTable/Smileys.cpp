@@ -105,7 +105,7 @@ void smileyNeutraal()
 
 	//Mouth
 	clearData();
-	for (int i = 5; i < 13; i++)
+	for (int i = 5; i <= 13; i++)
 	{
 		setRowData(i);
 	}

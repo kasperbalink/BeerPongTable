@@ -1,9 +1,13 @@
 #pragma once
 #include "Images.h"
+#include "Rows.h"
+#include "Columns.h"
 
 void logo()
 {
-	outsideOn();
+	
+	row(0);
+	row(12);
 	clearData();
 	setRowData(6); setRowData(7); setRowData(10); setRowData(11);
 	setRowData(12); setRowData(13); setRowData(14); setRowData(15);
@@ -27,8 +31,11 @@ void logo()
 	drawRow(8);
 	clearData();
 	setRowData(6); setRowData(7);
-	setRowData(11); setRowData(12); setRowData(13); setRowData(14);
+	setRowData(11); setRowData(13); setRowData(14);
 	drawRow(8);
+	clearData();
+	setRowData(6); setRowData(7); setRowData(11);  setRowData(12); setRowData(13); setRowData(14);
+	drawRow(9);
 }
 
 void logo(int interval)

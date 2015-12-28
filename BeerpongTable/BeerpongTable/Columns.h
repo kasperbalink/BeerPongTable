@@ -8,4 +8,3 @@
 	void columnBig(int starColumn, int endColumn);
 	void columnInside(int column);
 
-	//Drawing* draw;
