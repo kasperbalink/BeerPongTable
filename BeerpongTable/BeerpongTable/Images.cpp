@@ -6,8 +6,8 @@
 void logo()
 {
 	
-	row(0);
-	row(12);
+	//row(0);
+	//row(12);
 	clearData();
 	setRowData(6); setRowData(7); setRowData(10); setRowData(11);
 	setRowData(12); setRowData(13); setRowData(14); setRowData(15);

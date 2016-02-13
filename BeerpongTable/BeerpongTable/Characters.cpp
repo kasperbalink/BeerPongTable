@@ -12,13 +12,17 @@ void letter(char _letter, int _column, int _row, int interval)
 
 
 // @TODO: kolommen en rijen toevoegen aan de positie, speler toevoegen...
-void letter(char _letter, int _column, int _row)
+int letter(char _letter, int _column, int _row)
 {
+	if (_column <= -11 || _row <= -10 || _column >= 11 || _row >= 10)
+	{
+		return -1;
+	}
 	clearData();
 
 	switch (tolower(_letter))
 	{
-	
+
 	case 'a':
 		setRowData(9 + _column);
 		drawRow(_row + 3);
@@ -30,8 +34,6 @@ void letter(char _letter, int _column, int _row)
 		drawRow(_row + 5); drawRow(_row + 7); drawRow(_row + 8); drawRow(_row + 9);
 		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
 		drawRow(_row + 6);
-		
-		
 		break;
 	case 'b':
 		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
@@ -46,7 +48,7 @@ void letter(char _letter, int _column, int _row)
 		drawRow(_row + 5); drawRow(_row + 6); drawRow(_row + 7);
 		setRowData(_column + 11);
 		drawRow(_row + 4); drawRow(_row + 8);
-		clearData(); 
+		clearData();
 		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
 		drawRow(_row + 3); drawRow(_row + 9);
 		break;
@@ -97,7 +99,7 @@ void letter(char _letter, int _column, int _row)
 		break;
 	case 'i':
 		setRowData(_column + 9);
-		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6); 
+		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6);
 		drawRow(_row + 7); drawRow(_row + 8);
 		setRowData(_column + 8); setRowData(_column + 10);
 		drawRow(_row + 3); drawRow(_row + 9);
@@ -145,7 +147,7 @@ void letter(char _letter, int _column, int _row)
 	case 'n':
 		setRowData(_column + 7); setRowData(_column + 11);
 		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 8); drawRow(_row + 9);
-		setRowData(_column + 8); 
+		setRowData(_column + 8);
 		drawRow(_row + 5);
 		clearData();
 		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 9);
@@ -173,14 +175,14 @@ void letter(char _letter, int _column, int _row)
 	case 'q':
 		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
 		drawRow(_row + 3);
-		setRowData(_column + 11); 
+		setRowData(_column + 11);
 		drawRow(_row + 9);
 		clearData();
 		setRowData(_column + 7); setRowData(_column + 11);
 		drawRow(_row + 4); drawRow(_row + 5); drawRow(_row + 6);
 		clearData();
 		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 9);
-		drawRow(_row + 7); 
+		drawRow(_row + 7);
 		clearData();
 		setRowData(_column + 7); setRowData(_column + 11); setRowData(_column + 10);
 		drawRow(_row + 8);
@@ -225,7 +227,7 @@ void letter(char _letter, int _column, int _row)
 		break;
 	case 'u':
 		setRowData(_column + 7); setRowData(_column + 11);
-		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5); 
+		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5);
 		drawRow(_row + 6); drawRow(_row + 7); drawRow(_row + 8);
 		clearData();
 		setRowData(_column + 8); setRowData(_column + 9); setRowData(_column + 10);
@@ -234,12 +236,12 @@ void letter(char _letter, int _column, int _row)
 	case 'v':
 		setRowData(_column + 7); setRowData(_column + 11);
 		drawRow(_row + 3); drawRow(_row + 4); drawRow(_row + 5);
-		drawRow(_row + 6); drawRow(_row + 7); 
+		drawRow(_row + 6); drawRow(_row + 7);
 		clearData();
-		setRowData(_column + 8); setRowData(_column + 10); 
+		setRowData(_column + 8); setRowData(_column + 10);
 		drawRow(_row + 8);
 		clearData();
-		setRowData(_column + 9); 
+		setRowData(_column + 9);
 		drawRow(_row + 9);
 		break;
 	case 'w':
@@ -258,7 +260,7 @@ void letter(char _letter, int _column, int _row)
 		clearData();
 		setRowData(_column + 8); setRowData(_column + 10);
 		drawRow(_row + 5); drawRow(_row + 7);
-		clearData(); 
+		clearData();
 		setRowData(_column + 9);
 		drawRow(_row + 6);
 		break;
@@ -272,7 +274,7 @@ void letter(char _letter, int _column, int _row)
 		drawRow(_row + 5);
 		break;
 	case 'z':
-		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9); 
+		setRowData(_column + 7); setRowData(_column + 8); setRowData(_column + 9);
 		setRowData(_column + 10); setRowData(_column + 11);
 		drawRow(_row + 3); drawRow(_row + 9);
 		clearData(); setRowData(_column + 11); drawRow(_row + 4);
@@ -285,7 +287,7 @@ void letter(char _letter, int _column, int _row)
 		//SPATIE
 		break;
 	case '!':
-		setRowData(8 + _column); setRowData(9 + _column);
+		setRowData(9 + _column);
 		drawRow(3 + _row); drawRow(4 + _row); drawRow(5 + _row);
 		drawRow(6 + _row); drawRow(8 + _row); drawRow(9 + _row);
 		break;
@@ -303,15 +305,14 @@ void letter(char _letter, int _column, int _row)
 		break;
 	case '#':
 		setRowData(8 + _column); setRowData(10 + _column);
-		drawRow(3 + _row); drawRow(4 + _row); drawRow(6 + _row);
-		drawRow(8 + _row); drawRow(9 + _row);
+		drawRow(4 + _row); drawRow(6 + _row); drawRow(8 + _row); 
 		setRowData(7 + _column); setRowData(9 + _column); setRowData(11 + _column);
 		drawRow(5 + _row); drawRow(7 + _row);
 		break;
 
 	case '+':
 		setRowData(9 + _column);
-		drawRow(4 + _row); 	drawRow(5 + _row); 
+		drawRow(4 + _row); 	drawRow(5 + _row);
 		drawRow(7 + _row);	drawRow(8 + _row);
 		setRowData(7 + _column); setRowData(8 + _column);
 		setRowData(10 + _column); setRowData(11 + _column);
@@ -325,6 +326,7 @@ void letter(char _letter, int _column, int _row)
 	default:
 		break;
 	}
+	return 0;
 }
 //A (size = 1)
 //ABC (size = 3)
@@ -332,14 +334,15 @@ void letter(char _letter, int _column, int _row)
 void text(char _text[999], int scrollTime)
 {
 
+	int firstTime = 0;
 	int size = 0;
 	for (int i = 0; i < 999; i++)
 	{
-		if (_text[i] == 0)
+		if (_text[i] == 0 && firstTime == 0)
 		{
 			size = i;
+			firstTime = 1;
 		}
-		break;
 	}
 	if (size == 3)
 	{
@@ -347,7 +350,7 @@ void text(char _text[999], int scrollTime)
 	}
 	else if (size == 2)
 	{
-		textOffTwo(_text[0], _text[1], scrollTime);
+		textOffThree(_text[0], _text[1], ' ', scrollTime);
 	}
 	else if (size == 1)
 	{
@@ -359,15 +362,23 @@ void text(char _text[999], int scrollTime)
 		{
 			if (i == size - 1)
 			{
-				textOffThree(_text[i], ' ', ' ', scrollTime);
+				textOffFour(_text[i], ' ', ' ', ' ', scrollTime);
+				allOff();
 			}
 			else if (i == size - 2)
 			{
-				textOffThree(_text[i], _text[i + 1], ' ', scrollTime);
+				textOffFour(_text[i], _text[i + 1], ' ', ' ', scrollTime);
 			}
-			else
+			else 
 			{
-				textOffThree(_text[i], _text[i + 1], _text[i + 2], scrollTime);
+				if (firstTime == 1)
+				{
+					textOffFour(' ', ' ', ' ', _text[i], scrollTime);
+					textOffFour(' ', ' ', _text[i], _text[i + 1], scrollTime);
+					textOffFour(' ', _text[i], _text[i + 1], _text[i + 2], scrollTime);
+					firstTime = 2;
+				}
+				textOffFour(_text[i], _text[i + 1], _text[i + 2], _text[i + 3], scrollTime);
 			}
 		}
 	}
@@ -386,13 +397,48 @@ void textOffTwo(char a, char b, int interval)
 
 void textOffThree(char a, char b, char c, int interval)
 {
-	elapsedMillis tempTimer;
+	for (int i = 0; i >= -5; i--)
+	{
+		elapsedMillis tempTimer;
+		while (tempTimer < interval)
+		{
+			letter(a, i + -6, 0);
+			letter(b, i + 0, 0);
+			letter(c, i + 6, 0);
+		}
+
+	}
+
+	/*elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		letter(a, -6, 0);
-		letter(b, 0, 0);
-		letter(c, 6, 0);
+	letter(a, -6, 0);
+	letter(b, 0, 0);
+	letter(c, 6, 0);
+	}*/
+}
+void textOffFour(char a, char b, char c, char d, int interval)
+{
+	for (int i = 0; i >= -5; i--)
+	{
+		elapsedMillis tempTimer;
+		while (tempTimer < interval)
+		{
+			letter(a, i + -6, 0);
+			letter(b, i + 0, 0);
+			letter(c, i + 6, 0);
+			letter(d, i + 12, 0);
+		}
+
 	}
+
+	/*elapsedMillis tempTimer;
+	while (tempTimer < interval)
+	{
+	letter(a, -6, 0);
+	letter(b, 0, 0);
+	letter(c, 6, 0);
+	}*/
 }
 
 /* _number is real number 0 - 99*/

@@ -14,7 +14,7 @@
 #define PLUS 18
 
 
-void setRowData(int _column);
+int setRowData(int _column);
 void drawRow(int _row);
 void clearData();
 

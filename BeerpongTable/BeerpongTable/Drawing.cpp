@@ -4,9 +4,14 @@
 long rowData = 0;
 long rowDataP2 = 0;
 
-void setRowData(int _column)
+int setRowData(int _column)
 {
+	if (_column > 18 || _column < 0)
+	{
+		return -1;
+	}
 	rowData |= ((long)1 << (long)_column);
+	return 0;
 }
 
 //_row = 0 t/m 12

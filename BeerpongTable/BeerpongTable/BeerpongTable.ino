@@ -10,7 +10,6 @@
 #include "Animations.h"
 
 
-//pin connections- the #define tag will replace all instances of "latchPin_P1" in your code with A1 (and so on)
 
 
 void setup()
@@ -31,9 +30,15 @@ int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
 void loop()
 {
-	//logo(500);
-	text("bierpong", 200);
-	smileyBoosToBlij(500);
+	
+
+
+	//letter('a', 0, 0);
+	
+//	text("kasper en tim", 100);
+	/*textOffThree('a', 'b', 'c', 800);
+	textOffTwo('a', 'b', 800);*/
+	//smileyBoosToBlij(500);
 
 }
 
