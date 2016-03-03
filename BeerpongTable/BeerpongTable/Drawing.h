@@ -15,6 +15,7 @@
 
 
 int setRowData(int _column);
+void setRealRowData(long value);
 void drawRow(int _row);
 void clearData();
 

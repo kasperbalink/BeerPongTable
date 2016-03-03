@@ -1,6 +1,8 @@
 #pragma once
 #include "Drawing.h"
 
+
+
 long rowData = 0;
 long rowDataP2 = 0;
 
@@ -12,6 +14,11 @@ int setRowData(int _column)
 	}
 	rowData |= ((long)1 << (long)_column);
 	return 0;
+}
+
+void setRealRowData(long value)
+{
+	rowData = value;
 }
 
 //_row = 0 t/m 12
@@ -40,7 +47,7 @@ void clearData()
 //om 2 borden aan te kunnen sturen player meegeven. 1 = BLAUW, 2 = ROOD, 3 = beide
 void setRowData(int _column, int player)
 {
-	if (player == 1)
+	if (player == 0)
 	{
 		rowData |= ((long)1 << (long)_column);
 	}
@@ -54,13 +61,13 @@ void setRowData(int _column, int player)
 //_row = 0 t/m 12
 void drawRow(int _row, int player)
 {
-	if (player == 3)
+	if (player == 2)
 	{
+		drawRow(_row, 0);
 		drawRow(_row, 1);
-		drawRow(_row, 2);
 	}
 
-	else if (player == 1)
+	else if (player == 0)
 	{
 		//@to-do //0xFF = 255 
 		digitalWrite(latchPin_P1, LOW);
@@ -74,7 +81,7 @@ void drawRow(int _row, int player)
 
 		digitalWrite(latchPin_P1, HIGH);
 	}
-	else if (player == 2)
+	else if (player == 1)
 	{
 		digitalWrite(latchPin_P2, LOW);
 
@@ -92,15 +99,15 @@ void drawRow(int _row, int player)
 
 void clearData(int player)
 {
-	if (player == 1)
+	if (player == 0)
 	{
 		rowData = 0;
 	}
-	else if (player == 2)
+	else if (player == 1)
 	{
 		rowDataP2 = 0;
 	}
-	else if (player == 3)
+	else if (player == 2)
 	{
 		rowData = 0;
 		rowDataP2 = 0;

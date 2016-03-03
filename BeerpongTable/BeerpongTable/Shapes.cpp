@@ -11,7 +11,7 @@ int square_(int size, int interval)
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		square(size);
+		square_(size);
 	}
 }
 
