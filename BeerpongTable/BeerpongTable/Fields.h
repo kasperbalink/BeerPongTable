@@ -3,10 +3,10 @@
 
 
 //FIELDS
-void allOff(int interval);
-void allOff();
-void allOn(int interval);
-void allOn();
-void outsideOn(int interval);
-void outsideOn();
-void insideOn(int interval);
+void allOff(int player, int interval);
+void allOff(int player);
+void allOn(int player, int interval);
+void allOn(int player);
+void outsideOn(int player, int interval);
+void outsideOn(int player);
+void insideOn(int player, int interval);

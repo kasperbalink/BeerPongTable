@@ -4,55 +4,55 @@
 
 
 
-void row(int row)
+void row(int player, int row)
 {
-		clearData();
+		clearData(player);
 		for (int i = 1; i < PLUS; i++)
 		{
-			setRowData(i);
+			setRowData(player, i);
 		}
-		drawRow(row);
-		clearData();
-		setRowData(0);
-		setRowData(18);
-		drawRow(row);
+		drawRow(player,row);
+		clearData(player);
+		setRowData(player, 0);
+		setRowData(player, 18);
+		drawRow(player,row);
 	
 }
 
-void row(int _row, int interval)
+void row(int player, int _row, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		row(_row);
+		row(player, _row);
 
 	}
 }
 
-void rowBig(int startRow, int endRow)
+void rowBig(int player, int startRow, int endRow)
 {
-	clearData();
+	clearData(player);
 	for (int i = startRow; i < endRow; i++)
 	{
-		row(i);
+		row(player, i);
 	}
 }
 
-void rowBig(int startRow, int endRow, int interval)
+void rowBig(int player, int startRow, int endRow, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		rowBig(startRow, endRow);
+		rowBig(player, startRow, endRow);
 	}
 }
 
-void rowInside(int row)
+void rowInside(int player, int row)
 {
-	clearData();
+	clearData(player);
 	for (int i = 1; i < PLUS -1; i++)
 	{
-		setRowData(i);
+		setRowData(player, i);
 	}
-	drawRow(row);
+	drawRow(player,row);
 }

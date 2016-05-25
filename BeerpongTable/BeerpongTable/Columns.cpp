@@ -3,53 +3,53 @@
 
 
 
-void column(int column)
+void column(int player, int column)
 {
-	clearData();
-	setRowData(column);
+	clearData(player);
+	setRowData(player, column);
 	for (int i = 0; i <= MIN; i++)
 	{
-		drawRow(i);
+		drawRow(player, i);
 	}
 }
 
-void column(int _column, int interval)
+void column(int player, int _column, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		column(_column);
+		column(player, _column);
 	}
 }
 
-void columnBig(int starColumn, int endColumn)
+void columnBig(int player, int starColumn, int endColumn)
 {
-	clearData();
+	clearData(player);
 	for (int i = starColumn; i < endColumn; i++)
 	{
-		setRowData(i);
+		setRowData(player, i);
 	}
 	for (int i = 0; i < MIN; i++)
 	{
-		drawRow(i);
+		drawRow(player, i);
 	}
 }
 
-void columnBig(int startColumn, int endColumn, int interval)
+void columnBig(int player, int startColumn, int endColumn, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		columnBig(startColumn, endColumn);
+		columnBig(player, startColumn, endColumn);
 	}
 }
 
-void columnInside(int column)
+void columnInside(int player, int column)
 {
-	clearData();
-	setRowData(column);
+	clearData(player);
+	setRowData(player, column);
 	for (int i = 1; i < MIN; i++)
 	{
-		drawRow(i);
+		drawRow(player, i);
 	}
 }

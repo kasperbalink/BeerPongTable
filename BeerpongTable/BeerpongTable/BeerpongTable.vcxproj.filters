@@ -51,13 +51,13 @@
     <ClInclude Include="Smileys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IR.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="__vm\.BeerpongTable.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="dataRead.h">
+    <ClInclude Include="Read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,7 +92,7 @@
     <ClCompile Include="Smileys.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IR.cpp">
+    <ClCompile Include="Read.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

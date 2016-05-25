@@ -8,18 +8,11 @@
 //this code will display the values of ledData across a 4x4 led matrix
 #pragma once
 #include "Animations.h"
+#include <Scheduler.h>
+#include "Read.h"
 
-
-String inputString = "";         // a string to hold incoming data
-boolean stringComplete = false;  // whether the string is complete
-
-long dataReceived;
-int rowReceived;
-int playerReceived;
 
 long rowDataArray[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-long player1Cups = 0;
-long player2Cups = 0;
 
 void setup()
 {
@@ -35,8 +28,6 @@ void setup()
 	pinMode(dataPin_P2, OUTPUT);
 
 
-	inputString.reserve(200);
-
 	//rowDataArray = ;
 	// rowData = new List<long>();
 	for (int i = 0; i < 13; i++)
@@ -44,73 +35,104 @@ void setup()
 		rowDataArray[i] = 0;
 	}
 
+	//start threads 2 en 3
+	//Scheduler.startLoop(loop2);
+	//Scheduler.startLoop(loop3);
+
 }
 char letters[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
+int player = 3;
+
+int cup = 2;
 void loop()
 {
-	if (stringComplete) {
-		String tempData;
-		String tempRow;
-		String tempPlayer;
-		Serial.println(inputString);
-		tempData = inputString.substring(0, 22); //length of 22
-		char charArray[256];
-		tempData.toCharArray(charArray, 256);
-		dataReceived = atol(charArray);
-		Serial.println(dataReceived);
+	readCup(1, 0);
 
-		tempRow = inputString.substring(23, 25); //length of 2
-		rowReceived = tempRow.toInt();
-		Serial.println(rowReceived);
-		tempPlayer = inputString.substring(26, 27); //length of 1
-		playerReceived = tempPlayer.toInt();
-		Serial.println(playerReceived);
-		// clear the string:
-		inputString = "";
-		stringComplete = false;
-	}
+	
 
-	////////EXAMPLE FOR RECEIVED DATA VIA COM///////
-	/*if (rowDataArray[5] == 1025)
-	{
-		digitalWrite(13, HIGH);
-	}
-	else
-	{
-		digitalWrite(13, LOW);
-	}*/
 
-	//for (int i = 0; i < 13; i++) //drawing data received from COM in loop.
-	//{setRealRowData(rowDataArray[i]);
-	//	drawRow(i);
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	disableCup(1, i);
 	//}
-	/////////////END OF EXAMPLE///////////
-	smileyBlijToBoos(250);
-	smileyNeutraal(250);
-	smileyBlij(500);
+	//setCup(1, 1);
+	//drawLedCups(1);
+	//Serial.println("start");
+	//calculateArea(1);
+	//readCup(1, 4);
+	//drawLedCups(1);
+	//4, 5
+	//calculateArea(1);
+	////readCups();
+	//for (int i = 2; i <= 12; i++)
+	//{
+	//	isCup(1, 5);
+	//	delay(100);
+	//	calculateArea(1);
+	//	delay(100);
+	//}
+	//drawLedCups(1);
+	//readCup(1, 7);
+	//drawLedCups(1);
+
+	
+	
+	//readCups();
+
+	//letter(1, 'b', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'e', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'e', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'r', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'p', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'o', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'n', 0, 0, 200);
+	//allOff(1, 200);
+	//letter(1, 'g', 0, 0, 200);
+	//allOff(1, 400);
+	//smileyBlij(1, 400);
+
+}
+void loop2() {
+	for (int i = 0; i < 5; i++)
+	{
+		leftToRight(2, 1, 50);
+		rightToLeft(2, 1, 50);
+		upToDown(2, 1, 50);
+		downToUp(2, 1, 50);
+	}
+	//logo(2);
+	int SPEED = 50;
 	for (int x = 0; x < 5; x++)
 	{
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 6; i++)
 		{
-			square_(i, 50);
+			square_(2, i, SPEED);
 		}
-		for (int i = 7; i >= 0; i--)
+		for (int i = 6; i > 0; i--)
 		{
-			square_(i, 50);
+			square_(2, i, SPEED);
 		}
 	}
-	for (int z = 0; z < 5; z++)
+	for (int x = 0; x < 10; x++)
 	{
-		outsideOn(50);
-		insideOn(50);
+		insideOn(2, 50);
+		outsideOn(2, 50);
 	}
-	logo(2000);
-	//drawRow(rowIncomingData, playerIncomingData); //als players zijn geimplementeerd.
+	smileyBoosToBlij(2, 200);
 
-	//test();
-	//row(0);
+}
+void loop3()
+{
+	readCups();
+	delay(200); //switch naar andere threads.
 }
 void test()
 {
@@ -127,24 +149,6 @@ void test()
 
 		digitalWrite(latchPin_P1, HIGH);
 		delay(1000);
-	}
-}
-
-
-void serialEvent() {
-	while (Serial.available()) 
-	{
-		// get the new byte:
-		char inChar = (char)Serial.read();
-		// add it to the inputString:
-		inputString += inChar;
-		// if the incoming character is a newline, set a flag
-		// so the main loop can do something about it:
-		if (inChar == '\n' || inChar == ';') {
-			stringComplete = true;
-		}
-
-
 	}
 }
 

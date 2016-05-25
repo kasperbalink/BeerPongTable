@@ -1,37 +1,37 @@
 #pragma once
 #include "Scores.h"
 
-void scoreSquare()
+void scoreSquare(int player)
 {
-	clearData();
+	clearData(player);
 	for (int i = 2; i < PLUS - 1; i++)
 	{
-		setRowData(i);
+		setRowData(player, i);
 	}
-	drawRow(1);
-	drawRow(11);
+	drawRow(player, 1);
+	drawRow(player, 11);
 
-	clearData();
+	clearData(player);
 
-	setRowData(2);
-	setRowData(16);
+	setRowData(player, 2);
+	setRowData(player, 16);
 	for (int x = 2; x < MIN - 1; x++)
 	{
-		drawRow(x);
+		drawRow(player, x);
 	}
 }
 //number between 0 - 99 with square around it
-void showScore(int _number)
+void showScore(int player, int _number)
 {
-	scoreSquare();
-	number(_number);
+	//scoreSquare(player);
+	//number(player, _number);
 }
 
-void showScore(int _number, int interval)
+void showScore(int player, int _number, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		showScore(_number);
+		showScore(player, _number);
 	}
 }

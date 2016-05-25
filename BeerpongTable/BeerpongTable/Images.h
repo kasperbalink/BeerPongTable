@@ -2,5 +2,5 @@
 #include "Drawing.h"
 #include "Fields.h"
 
-void logo();
-void logo(int interval);
+void logo(int player);
+void logo(int player, int interval);

@@ -3,67 +3,67 @@
 
 
 //size is thickness of line, size 0 = 1 line thick
-void upToDown(int size, int timeBetweenSteps)
+void upToDown(int player, int size, int timeBetweenSteps)
 {
 	for (int i = 0; i <= MIN; i++)
 	{
 		for (int x = 0; x < size; x++)
 		{
-			row(i - x, timeBetweenSteps);
+			row(player, i - x, timeBetweenSteps);
 		}
 	}
 }
 
 //size is thickness of line, size 0 = 1 line thick
-void downToUp(int size, int timeBetweenSteps)
+void downToUp(int player, int size, int timeBetweenSteps)
 {
 	for (int i = MIN; i >= 0; i--)
 	{
 		for (int x = 0; x < size; x++)
 		{
-			row(i + x, timeBetweenSteps);
+			row(player, i + x, timeBetweenSteps);
 		}
 	}
 }
 
 //size is thickness of line, size 0 = 1 line thick
-void leftToRight(int size, int timeBetweenSteps)
+void leftToRight(int player, int size, int timeBetweenSteps)
 {
 	for (int i = 0; i <= PLUS; i++)
 	{
 		for (int x = 0; x < size; x++)
 		{
-			column(i + x, timeBetweenSteps);
+			column(player, i + x, timeBetweenSteps);
 		}
 	}
 }
 
 //size is thickness of line, size 0 = 1 line thick
-void rightToLeft(int size, int timeBetweenSteps)
+void rightToLeft(int player, int size, int timeBetweenSteps)
 {
 	for (int i = PLUS; i >= 0; i--)
 	{
 		for (int x = 0; x < size; x++)
 		{
-			column(i - x, timeBetweenSteps);
+			column(player, i - x, timeBetweenSteps);
 		}
 	}
 }
 
 //timeBetweenSteps is time between simleys
-void smileyBlijToBoos(int timeBetweenSteps)
+void smileyBlijToBoos(int player, int timeBetweenSteps)
 {
-	smileyBlij(timeBetweenSteps);
-	smileyNeutraal(timeBetweenSteps);
-	smileyBoos(timeBetweenSteps);
+	smileyBlij(player, timeBetweenSteps);
+	smileyNeutraal(player, timeBetweenSteps);
+	smileyBoos(player, timeBetweenSteps);
 }
 
 //timeBetweenSteps is time between simleys
-void smileyBoosToBlij(int timeBetweenSteps)
+void smileyBoosToBlij(int player, int timeBetweenSteps)
 {
-	smileyBoos(timeBetweenSteps);
-	smileyNeutraal(timeBetweenSteps);
-	smileyBlij(timeBetweenSteps);	
+	smileyBoos(player, timeBetweenSteps);
+	smileyNeutraal(player, timeBetweenSteps);
+	smileyBlij(player, timeBetweenSteps);
 }
 
 
@@ -73,7 +73,7 @@ void smileyBoosToBlij(int timeBetweenSteps)
 /// <param name="timeBetweenSteps">  Time between moving</param>
 
 
-void movingArrow(int direction, int _column, int _row, int timeBetweenSteps)
+void movingArrow(int player, int direction, int _column, int _row, int timeBetweenSteps)
 {
 	elapsedMillis tempTimer;
 
@@ -85,7 +85,7 @@ void movingArrow(int direction, int _column, int _row, int timeBetweenSteps)
 			tempTimer = 0;
 			while (tempTimer < timeBetweenSteps)
 			{
-				arrow(direction, _column + i, _row);
+				arrow(player, direction, _column + i, _row);
 			}
 		}
 	}
@@ -97,7 +97,7 @@ void movingArrow(int direction, int _column, int _row, int timeBetweenSteps)
 			tempTimer = 0;
 			while (tempTimer < timeBetweenSteps)
 			{
-				arrow(direction, _column + i, _row);
+				arrow(player, direction, _column + i, _row);
 			}
 		}
 	}
@@ -109,7 +109,7 @@ void movingArrow(int direction, int _column, int _row, int timeBetweenSteps)
 			tempTimer = 0;
 			while (tempTimer < timeBetweenSteps)
 			{
-				arrow(direction, _column, _row + i);
+				arrow(player, direction, _column, _row + i);
 			}
 		}
 	}
@@ -121,7 +121,7 @@ void movingArrow(int direction, int _column, int _row, int timeBetweenSteps)
 			tempTimer = 0;
 			while (tempTimer < timeBetweenSteps)
 			{
-				arrow(direction, _column, _row + i);
+				arrow(player, direction, _column, _row + i);
 			}
 		}
 	}

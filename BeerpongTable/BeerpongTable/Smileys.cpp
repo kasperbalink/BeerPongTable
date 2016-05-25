@@ -1,122 +1,122 @@
 #pragma once
 #include "Smileys.h"
 
-void smileyBlij()
+void smileyBlij(int player)
 {
 	//Eyes and nose
-	clearData();
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
-	drawRow(1);
-	setRowData(9);
-	drawRow(2);
-	clearData();
-	setRowData(9);
-	drawRow(3);
-	setRowData(8); setRowData(10);
-	drawRow(4); drawRow(5);
-	clearData();
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
+	drawRow(player, 1);
+	setRowData(player, 9);
+	drawRow(player, 2);
+	clearData(player);
+	setRowData(player, 9);
+	drawRow(player, 3);
+	setRowData(player, 8); setRowData(player, 10);
+	drawRow(player, 4); drawRow(player, 5);
+	clearData(player);
 
 	//Mouth
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
-	drawRow(7);
-	setRowData(6); setRowData(12);
-	drawRow(8);
-	clearData();
-	setRowData(5); setRowData(6); setRowData(7);
-	setRowData(11); setRowData(12); setRowData(13);
-	drawRow(9);
-	clearData();
-	setRowData(6); setRowData(7); setRowData(8); setRowData(9); 
-	setRowData(10); setRowData(11); setRowData(12);
-	drawRow(10);
-	clearData();
-	setRowData(7); setRowData(8); setRowData(9);
-	setRowData(10); setRowData(11);
-	drawRow(11);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
+	drawRow(player, 7);
+	setRowData(player, 6); setRowData(player, 12);
+	drawRow(player, 8);
+	clearData(player);
+	setRowData(player, 5); setRowData(player, 6); setRowData(player, 7);
+	setRowData(player, 11); setRowData(player, 12); setRowData(player, 13);
+	drawRow(player, 9);
+	clearData(player);
+	setRowData(player, 6); setRowData(player, 7); setRowData(player, 8); setRowData(player, 9); 
+	setRowData(player, 10); setRowData(player, 11); setRowData(player, 12);
+	drawRow(player, 10);
+	clearData(player);
+	setRowData(player, 7); setRowData(player, 8); setRowData(player, 9);
+	setRowData(player, 10); setRowData(player, 11);
+	drawRow(player, 11);
 }
 
-void smileyBlij(int interval)
+void smileyBlij(int player, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		smileyBlij();
+		smileyBlij(player);
 	}
 }
-void smileyBoos()
+void smileyBoos(int player)
 {
 	//Eyes and nose
-	clearData();
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
-	drawRow(1);
-	setRowData(9);
-	drawRow(2);
-	clearData();
-	setRowData(9);
-	drawRow(3);
-	setRowData(8); setRowData(10);
-	drawRow(4); drawRow(5);
-	clearData();
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
+	drawRow(player, 1);
+	setRowData(player, 9);
+	drawRow(player, 2);
+	clearData(player);
+	setRowData(player, 9);
+	drawRow(player, 3);
+	setRowData(player, 8); setRowData(player, 10);
+	drawRow(player, 4); drawRow(player, 5);
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
 
 	//Mouth
-	clearData();
-	setRowData(7); setRowData(8); setRowData(9);
-	setRowData(10); setRowData(11);
-	drawRow(7);
-	setRowData(6); setRowData(12);
-	drawRow(8);
-	clearData();
-	setRowData(5); setRowData(6); setRowData(7);
-	setRowData(11); setRowData(12); setRowData(13);
-	drawRow(9);
-	clearData();
-	setRowData(4); setRowData(5); setRowData(6);
-	setRowData(12); setRowData(13); setRowData(14);
-	drawRow(10);
-	clearData();
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
-	drawRow(11);
+	clearData(player);
+	setRowData(player, 7); setRowData(player, 8); setRowData(player, 9);
+	setRowData(player, 10); setRowData(player, 11);
+	drawRow(player, 7);
+	setRowData(player, 6); setRowData(player, 12);
+	drawRow(player, 8);
+	clearData(player);
+	setRowData(player, 5); setRowData(player, 6); setRowData(player, 7);
+	setRowData(player, 11); setRowData(player, 12); setRowData(player, 13);
+	drawRow(player, 9);
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 6);
+	setRowData(player, 12); setRowData(player, 13); setRowData(player, 14);
+	drawRow(player, 10);
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
+	drawRow(player, 11);
 }
 
-void smileyBoos(int interval)
+void smileyBoos(int player, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		smileyBoos();
+		smileyBoos(player);
 	}
 }
-void smileyNeutraal()
+void smileyNeutraal(int player)
 {
 	//Eyes and nose
-	clearData();
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
-	drawRow(1);
-	setRowData(9);
-	drawRow(2);
-	clearData();
-	setRowData(9);
-	drawRow(3);
-	setRowData(8); setRowData(10);
-	drawRow(4); drawRow(5);
-	clearData();
-	setRowData(4); setRowData(5); setRowData(13); setRowData(14);
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
+	drawRow(player, 1);
+	setRowData(player, 9);
+	drawRow(player, 2);
+	clearData(player);
+	setRowData(player, 9);
+	drawRow(player, 3);
+	setRowData(player, 8); setRowData(player, 10);
+	drawRow(player, 4); drawRow(player, 5);
+	clearData(player);
+	setRowData(player, 4); setRowData(player, 5); setRowData(player, 13); setRowData(player, 14);
 
 	//Mouth
-	clearData();
+	clearData(player);
 	for (int i = 5; i <= 13; i++)
 	{
-		setRowData(i);
+		setRowData(player, i);
 	}
-	drawRow(8); drawRow(9);
+	drawRow(player, 8); drawRow(player, 9);
 }
 
-void smileyNeutraal(int interval)
+void smileyNeutraal(int player, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		smileyNeutraal();
+		smileyNeutraal(player);
 	}
 }

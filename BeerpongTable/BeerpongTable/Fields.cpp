@@ -3,72 +3,89 @@
 #include "Rows.h"
 #include "Columns.h"
 //FIELDS: INSIDE, OUTSIDE, BOTH, NOTHING
-void outsideOn()
+void outsideOn(int player)
 {
-	row(0);
-	row(MIN);
-	column(0);
-	column(PLUS);
+	row(player, 0);
+	row(player, MIN);
+	column(player, 0);
+	column(player, PLUS);
 }
-void outsideOn(int interval)
+void outsideOn(int player, int interval)
 {
-	allOff();
+	allOff(player);
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		outsideOn();
+		outsideOn(player);
 	}
 }
 
-void insideOn(int interval)
+void insideOn(int player, int interval)
 {
-	allOff();
+	allOff(player);
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
 		for (int i = 1; i < MIN; i++)
 		{
-			rowInside(i);
+			rowInside(player, i);
 		}
 	}
 }
 
-void allOff(int interval)
+void allOff(int player, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		allOff();
+		allOff(player);
 	}
 }
 
-void allOff()
+void allOff(int player)
 {
-	digitalWrite(latchPin_P1, LOW);
-	//minnen uit
-	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~0);
-	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~0);
+	if (player == 1)
+	{
+		digitalWrite(latchPin_P1, LOW);
+		//minnen uit
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~0);
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~0);
 
-	//plussen uit
-	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
-	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
-	shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
-	digitalWrite(latchPin_P1, HIGH);
+		//plussen uit
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, 0);
+		digitalWrite(latchPin_P1, HIGH);
+	}
+	else if (player == 2)
+	{
+		digitalWrite(latchPin_P2, LOW);
+		//minnen uit
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, ~0);
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, ~0);
+
+		//plussen uit
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, 0);
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, 0);
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, 0);
+		digitalWrite(latchPin_P2, HIGH);
+	}
+	yield();
 }
 
-void allOn(int interval)
+void allOn(int player, int interval)
 {
 	elapsedMillis tempTimer;
 	while (tempTimer < interval)
 	{
-		allOn();
+		allOn(player);
 	}
 }
 
-void allOn()
+void allOn(int player)
 {
-	for (int p = 0; p < MIN; p++)
+	for (int p = 0; p <= MIN; p++)
 	{
-		row(p);
+		row(player, p);
 	}
 }
