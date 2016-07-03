@@ -1,12 +1,10 @@
 #pragma once
 #include "Characters.h"
 #include "CharacterData.h"
-//#include <math.h>
-//#include <stdio.h>
 #define SIZE(x)  (sizeof(x) / sizeof((x)[0]))
 
 
-int text(int player, char textArray[])
+int* text(char textArray[])
 {
 	int finalData[13];
 	int length = SIZE(textArray);
@@ -17,44 +15,30 @@ int text(int player, char textArray[])
 		case 1:
 			for (int i = 0; i < 13; i++)
 			{
-				finalData[i] += getArray(textArray[0])[i];
+				finalData[i] += getCharArray(textArray[0])[i];
 			}
 			break;
 		case 2:
 			for (int i = 0; i < 13; i++)
 			{
-				finalData[i] += (getArray(textArray[0])[i] << 3);
-				finalData[i] += (getArray(textArray[1])[i] << -3);
+				finalData[i] += (getCharArray(textArray[0])[i] << 3);
+				finalData[i] += (getCharArray(textArray[1])[i] << -3);
 			}
 			break;
 		case 3:
 			for (int i = 0; i < 13; i++)
 			{
-				finalData[i] += (getArray(textArray[0])[i] << 5);
-				finalData[i] += (getArray(textArray[1])[i] << 0);
-				finalData[i] += (getArray(textArray[2])[i] << -5);
+				finalData[i] += (getCharArray(textArray[0])[i] << 5);
+				finalData[i] += (getCharArray(textArray[1])[i] << 0);
+				finalData[i] += (getCharArray(textArray[2])[i] << -5);
 			}
 			break;
 		}
 	}
-	else //Scroll text
-	{
-		scrollingText(player, textArray, 100);
-	}
-	drawTable(player, finalData);
-	return 0;
+	return finalData;
 }
 
-int text(int player, char textArray[], int interval)
-{
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
-	{
-		text(player, textArray);
-	}
-}
-
-int scrollingText(int player, char textArray[], int timeBetweenSteps)
+void scrollingText(int player, char textArray[], int timeBetweenSteps)
 {
 	int finalData[13];
 	int length = SIZE(textArray);
@@ -66,13 +50,13 @@ int scrollingText(int player, char textArray[], int timeBetweenSteps)
 			elapsedMillis tempTimer;
 			while (tempTimer < timeBetweenSteps)
 			{
-				text(player, tmptext);
+				drawTable(player, text(tmptext));
 			}
 		}
 	}
 }
 
-int* getArray(char letter)
+int* getCharArray(char letter)
 {
 	switch (letter)
 	{

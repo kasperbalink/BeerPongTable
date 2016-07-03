@@ -7,12 +7,6 @@ long cupDataP2 = 0;
 long rowData = 0;
 long rowDataP2 = 0;
 
-elapsedMillis cupTimerP1[10];
-elapsedMillis cupTimerP2[10];
-
-elapsedMillis cupTimerOffP1[10];
-elapsedMillis cupTimerOffP2[10];
-
 
 void drawLedCups(int player)
 {
@@ -30,6 +24,39 @@ void drawLedCups(int player)
 		shiftOut(dataPinCup_P2, clockPinCup_P2, LSBFIRST, (cupDataP2 & 0xFF)); //plus 8 t/m 15
 		digitalWrite(latchPinCup_P2, HIGH);
 	}
+	yield();
+}
+int addCup(int player, int cup)
+{
+	if (cup > 10 || cup < 0)
+	{
+		return -1;
+	}
+	if (player == 1)
+	{	
+		cupData |= ((long)1 << (long)cup);
+	}
+	else if (player == 2)
+	{
+		cupDataP2 |= ((long)1 << (long)cup);
+	}
+	return 0;
+}
+int removeCup(int player, int cup)
+{
+	if (cup > 10 || cup < 0)
+	{
+		return -1;
+	}
+	if (player == 1)
+	{		
+		cupData &= ~((long)1 << (long)cup);
+	}
+	else if (player == 2)
+	{
+		cupDataP2 &= ~((long)1 << (long)cup);
+	}
+	return 0;
 }
 void clearCupData(int player)
 {
@@ -37,54 +64,24 @@ void clearCupData(int player)
 	{
 		cupData = (long)0;
 	}
-	else if(player == 2)
+	else if (player == 2)
 	{
 		cupDataP2 = (long)0;
 	}
 }
-void setCup(int player, int cup)
+
+
+void setRawRowData(int player, int data)
 {
 	if (player == 1)
-	{	
-		//if (cupTimerOffP1[cup] > 1000)
-		{
-			cupTimerOffP1[cup] = 1001;
-			cupTimerP1[cup] = 0;
-			cupData |= ((long)1 << (long)cup);
-		}
-	}
-	else if (player == 2)
 	{
-		//if (cupTimerOffP2[cup] > 1000)
-		{
-			cupTimerOffP2[cup] = 1001;
-			cupTimerP2[cup] = 0;
-			cupDataP2 |= ((long)1 << (long)cup);
-		}
+		rowData = (long)data;
+	}
+	else
+	{
+		rowDataP2 = (long)data;
 	}
 }
-void disableCup(int player, int cup)
-{	
-	if (player == 1)
-	{
-		//if (cupTimerP1[cup] > 1000)
-		{
-			cupTimerOffP1[cup] = 0;
-			cupTimerP1[cup] = 1001;
-			cupData &= ~((long)1 << (long)cup);
-		}
-	}
-	else if (player == 2)
-	{
-		//if (cupTimerP2[cup] > 1000)
-		{
-			cupTimerP2[cup] = 1001;
-			cupDataP2 &= ~((long)1 << (long)cup);
-		}
-	}
-}
-
-
 void setRowData(int player, int _column)
 {
 	if (player == 1)
@@ -104,10 +101,9 @@ void shiftRowData(int player, int shiftLeft)
 }
 void drawRow(int player, int _row)
 {
-
 	if (player == 1)
 	{
-		//@to-do //0xFF = 255 
+		//0xFF = 255 
 		digitalWrite(latchPin_P1, LOW);
 
 		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
@@ -135,6 +131,38 @@ void drawRow(int player, int _row)
 	yield();
 
 }
+
+void drawRow(int player, int _row, long inputdata)
+{
+	if (player == 1)
+	{
+		//0xFF = 255 
+		digitalWrite(latchPin_P1, LOW);
+
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~(1 << _row) & 0xFF); //min 8 t/m 12
+
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (inputdata >> 16) & 0xFF); //plus 0 t/m 7
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (inputdata >> 8) & 0xFF); //plus 8 t/m 15
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (inputdata & 0xFF)); //plus 16 t/m 18
+
+		digitalWrite(latchPin_P1, HIGH);
+	}
+	else if (player == 2)
+	{
+		digitalWrite(latchPin_P2, LOW);
+
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, ~((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, ~(1 << _row) & 0xFF); //min 8 t/m 12
+
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, (inputdata >> 16) & 0xFF); //plus 0 t/m 7
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, (inputdata >> 8) & 0xFF); //plus 8 t/m 15
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, (inputdata & 0xFF)); //plus 16 t/m 18
+
+		digitalWrite(latchPin_P2, HIGH);
+	}
+
+}
 void clearData(int player)
 {
 	if (player == 1)
@@ -152,10 +180,29 @@ void clearData(int player)
 	}
 }
 
-void drawTable(int player, int data[])
+void drawTable(int player, int inputData[])
 {
-	for (int i = 0; i < 13; i++)
+	//while (true) {
+	long tmpData = 0;
+	if (player == 1)
 	{
-		drawRow(player, data[i]);
+		for (int i = 0; i < 13; i++)
+		{
+			if (inputData[i] != 0)
+			{
+				if(inputData[i] != 0)
+				drawRow(1, i, inputData[i]);
+			}
+		}
 	}
+	else if (player == 2)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			//rowDataP2 = inputData[i];
+			drawRow(2, i, inputData[i]);
+
+		}
+	}
+	//}
 }

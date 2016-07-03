@@ -4,7 +4,6 @@
 #include "Fields.h"
 
 
-int text(int player, char tekst[]);
-int text(int player, char tekstArray[], int interval);
-int scrollingText(int player, char tekstArray[], int timeBetweenSteps);
-int* getArray(char letter);
+int* text(char tekst[]);
+void scrollingText(int player, char tekstArray[], int timeBetweenSteps);
+int* getCharArray(char letter);

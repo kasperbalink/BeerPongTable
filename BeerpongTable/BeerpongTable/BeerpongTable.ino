@@ -19,14 +19,29 @@ void setup()
 
 	Serial.begin(9600);
 	//set pins as output
-	pinMode(13, OUTPUT);
 	pinMode(latchPin_P1, OUTPUT);
 	pinMode(clockPin_P1, OUTPUT);
 	pinMode(dataPin_P1, OUTPUT);
+
+	pinMode(dataPinCup_P1, OUTPUT);
+	pinMode(clockPinCup_P1, OUTPUT);
+	pinMode(latchPinCup_P1, OUTPUT);
+
 	pinMode(latchPin_P2, OUTPUT);
 	pinMode(clockPin_P2, OUTPUT);
 	pinMode(dataPin_P2, OUTPUT);
 
+	pinMode(dataPinCup_P2, OUTPUT);
+	pinMode(clockPinCup_P2, OUTPUT);
+	pinMode(latchPinCup_P2, OUTPUT);
+
+	pinMode(s0, OUTPUT);
+	pinMode(s1, OUTPUT);
+	pinMode(s2, OUTPUT);
+	pinMode(s3, OUTPUT);
+
+	pinMode(A0, INPUT);
+	pinMode(A1, INPUT);
 
 	//rowDataArray = ;
 	// rowData = new List<long>();
@@ -36,103 +51,73 @@ void setup()
 	}
 
 	//start threads 2 en 3
-	//Scheduler.startLoop(loop2);
+	Scheduler.startLoop(loop2);
 	//Scheduler.startLoop(loop3);
 
 }
 char letters[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
-int player = 3;
-
 int cup = 2;
+
+/*
+PIN CONFIGURATION:
+BLUE SIDE:
+Data: 22
+Clock:24
+Latch: 26
+
+Data Cups: 28
+Clock Cups: 30
+Latch Cups: 32
+
+AnalogRead A0
+
+RED SIDE:
+Data: 23
+Clock:25
+Latch: 27
+
+Data Cups: 29
+Clock Cups: 31
+Latch Cups: 33
+
+AnalogRead A1
+
+S0: 34
+S1: 36
+S2: 38
+S3: 40
+
+*/
 void loop()
 {
-	readCup(1, 0);
-
-	
-
-
+	for (int i = 0; i < 10; i++)
+	{
+		addCup(2, i);
+	}
+	drawLedCups(2);
 	//for (int i = 0; i < 10; i++)
 	//{
-	//	disableCup(1, i);
+	//	Serial.println(readMux(1,3 + 2));
 	//}
-	//setCup(1, 1);
-	//drawLedCups(1);
-	//Serial.println("start");
-	//calculateArea(1);
-	//readCup(1, 4);
-	//drawLedCups(1);
-	//4, 5
-	//calculateArea(1);
-	////readCups();
-	//for (int i = 2; i <= 12; i++)
-	//{
-	//	isCup(1, 5);
-	//	delay(100);
-	//	calculateArea(1);
-	//	delay(100);
-	//}
-	//drawLedCups(1);
-	//readCup(1, 7);
-	//drawLedCups(1);
-
-	
-	
-	//readCups();
-
-	//letter(1, 'b', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'e', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'e', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'r', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'p', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'o', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'n', 0, 0, 200);
-	//allOff(1, 200);
-	//letter(1, 'g', 0, 0, 200);
-	//allOff(1, 400);
-	//smileyBlij(1, 400);
-
+	//checkCups();
+	//testAnimation();
+	//column(1, 5);
+	//testAnimation();
+	//drawTable(1, getSquareArray(5));
+	//readCup(1, 0);
+	//test();
+	//testAnimation();
+	//drawTable(1, getSquareArray(5));
+	//ballAnimation();
 }
 void loop2() {
-	for (int i = 0; i < 5; i++)
-	{
-		leftToRight(2, 1, 50);
-		rightToLeft(2, 1, 50);
-		upToDown(2, 1, 50);
-		downToUp(2, 1, 50);
-	}
-	//logo(2);
-	int SPEED = 50;
-	for (int x = 0; x < 5; x++)
-	{
-		for (int i = 0; i < 6; i++)
-		{
-			square_(2, i, SPEED);
-		}
-		for (int i = 6; i > 0; i--)
-		{
-			square_(2, i, SPEED);
-		}
-	}
-	for (int x = 0; x < 10; x++)
-	{
-		insideOn(2, 50);
-		outsideOn(2, 50);
-	}
-	smileyBoosToBlij(2, 200);
-
+	logo(2);
 }
 void loop3()
 {
-	readCups();
-	delay(200); //switch naar andere threads.
+
 }
 void test()
 {
@@ -148,6 +133,17 @@ void test()
 		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, data[i]); //plus 16 t/m 18
 
 		digitalWrite(latchPin_P1, HIGH);
+
+		digitalWrite(latchPin_P2, LOW);
+
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, data[i]); //min 0 t/m 7
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, data[i]); //min 8 t/m 12
+
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, data[i]); //plus 0 t/m 7
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, data[i]); //plus 8 t/m 15
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, data[i]); //plus 16 t/m 18
+
+		digitalWrite(latchPin_P2, HIGH);
 		delay(1000);
 	}
 }
