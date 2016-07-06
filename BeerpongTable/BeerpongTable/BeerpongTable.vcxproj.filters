@@ -63,6 +63,18 @@
     <ClInclude Include="ShapeData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SmileyData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RowData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColumnData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImagesData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Columns.cpp">

@@ -31,4 +31,8 @@ void drawRow(int player, int _row, long inputdata);
 void setRowData(int player, int _column);
 void drawRow(int player, int _row);
 void clearData(int player);
-void drawTable(int player, int data[]);
+void drawTable(int player, long data[]);
+
+
+long shiftRight(long input, int bits);
+long shiftUp(long input[13], int current, int bits);

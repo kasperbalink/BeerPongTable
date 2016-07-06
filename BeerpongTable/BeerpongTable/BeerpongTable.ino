@@ -2,10 +2,8 @@
 *	Title: Beerpong Table
 *	Author: Kasper Balink
 *	Date: 08-July-2015
-*
 */
 
-//this code will display the values of ledData across a 4x4 led matrix
 #pragma once
 #include "Animations.h"
 #include <Scheduler.h>
@@ -42,23 +40,16 @@ void setup()
 
 	pinMode(A0, INPUT);
 	pinMode(A1, INPUT);
-
-	//rowDataArray = ;
-	// rowData = new List<long>();
-	for (int i = 0; i < 13; i++)
-	{
-		rowDataArray[i] = 0;
-	}
-
-	//start threads 2 en 3
-	Scheduler.startLoop(loop2);
-	//Scheduler.startLoop(loop3);
-
+	
+	//start threads
+	Scheduler.startLoop(drawTablePlayerBlue);
+	Scheduler.startLoop(drawTablePlayerRed);
+	Scheduler.startLoop(drawLedCupsPlayerBlue);
+	Scheduler.startLoop(drawLedCupsPlayerRed);
 }
 char letters[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
-int cup = 2;
 
 /*
 PIN CONFIGURATION:
@@ -84,41 +75,43 @@ Latch Cups: 33
 
 AnalogRead A1
 
-S0: 34
-S1: 36
-S2: 38
-S3: 40
+S0: 36
+S1: 38
+S2: 40
+S3: 42
 
 */
 void loop()
 {
+	yield(); //switch to other threads.
+}
+
+void drawTablePlayerBlue() { //in loop
+	insideOn(1, 1000000);
+}
+
+void drawTablePlayerRed() { //in loop
+	//ballAnimation(2, 30, 1000000);
+	insideOn(2, 100000);
+}
+
+void drawLedCupsPlayerBlue() {//in loop
+	//randomLedCups(1, 4, 200, 10000);
+	for (int i = 0; i < 10; i++)
+	{
+		addCup(1, i);
+	}
+	drawLedCups(1);
+}
+
+void drawLedCupsPlayerRed() { //in loop
 	for (int i = 0; i < 10; i++)
 	{
 		addCup(2, i);
 	}
 	drawLedCups(2);
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	Serial.println(readMux(1,3 + 2));
-	//}
-	//checkCups();
-	//testAnimation();
-	//column(1, 5);
-	//testAnimation();
-	//drawTable(1, getSquareArray(5));
-	//readCup(1, 0);
-	//test();
-	//testAnimation();
-	//drawTable(1, getSquareArray(5));
-	//ballAnimation();
 }
-void loop2() {
-	logo(2);
-}
-void loop3()
-{
 
-}
 void test()
 {
 	for (int i = 0; i < 8; i++)

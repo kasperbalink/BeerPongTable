@@ -1,58 +1,116 @@
 #pragma once
 #include "Rows.h"
-
-
-
+#include "RowData.h"
 
 void row(int player, int row)
 {
-		clearData(player);
-		for (int i = 1; i < PLUS; i++)
-		{
-			setRowData(player, i);
-		}
-		drawRow(player,row);
-		clearData(player);
-		setRowData(player, 0);
-		setRowData(player, 18);
-		drawRow(player,row);
-	
-}
-
-void row(int player, int _row, int interval)
-{
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
 	{
-		row(player, _row);
-
+		animation[i] |= shiftUp(getRowArray(),i , row);
+	}	
+	drawTable(player, animation);
+}
+void row(int player, int row, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= shiftUp(getRowArray(), i, row);
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
 	}
 }
-
 void rowBig(int player, int startRow, int endRow)
 {
-	clearData(player);
-	for (int i = startRow; i < endRow; i++)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int r = startRow; r < endRow; r++)
 	{
-		row(player, i);
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftUp(getRowArray(), i, -r);
+		}
 	}
+	drawTable(player, animation);
 }
-
-void rowBig(int player, int startRow, int endRow, int interval)
+void rowBig(int player, int startRow, int endRow, int totalTime)
 {
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int r = startRow; r < endRow; r++)
 	{
-		rowBig(player, startRow, endRow);
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftUp(getRowArray(), i, -r);
+		}
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
 	}
 }
 
 void rowInside(int player, int row)
 {
-	clearData(player);
-	for (int i = 1; i < PLUS -1; i++)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
 	{
-		setRowData(player, i);
+		animation[i] |= shiftUp(getInsideRowArray(), i, row);
 	}
-	drawRow(player,row);
+	drawTable(player, animation);
+}
+void rowInside(int player, int _row, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= shiftUp(getInsideRowArray(), i, _row);
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+void rowBigInside(int player, int startRow, int endRow)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int r = startRow; r < endRow; r++)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftUp(getInsideRowArray(), i, -r);
+		}
+	}
+	drawTable(player, animation);
+
+}
+void rowBigInside(int player, int startRow, int endRow, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int r = startRow; r < endRow; r++)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftUp(getInsideRowArray(), i, -r);
+		}
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+
+
+long* getInsideRowArray()
+{
+	return insideRow;
+}
+long* getRowArray()
+{
+	return topRow;
 }

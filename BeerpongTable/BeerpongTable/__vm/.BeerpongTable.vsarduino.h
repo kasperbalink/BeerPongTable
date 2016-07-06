@@ -10,6 +10,7 @@
 
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
+#define _VMDEBUG 1
 #define printf iprintf
 #define F_CPU 84000000L
 #define ARDUINO 10609
@@ -232,6 +233,7 @@ __attribute__((always_inline)) static __INLINE void __set_PRIMASK(uint32_t priMa
 #include <CharacterData.h>
 #include <Characters.cpp>
 #include <Characters.h>
+#include <ColumnData.h>
 #include <Columns.cpp>
 #include <Columns.h>
 #include <Drawing.cpp>
@@ -242,6 +244,7 @@ __attribute__((always_inline)) static __INLINE void __set_PRIMASK(uint32_t priMa
 #include <Images.h>
 #include <Read.cpp>
 #include <Read.h>
+#include <RowData.h>
 #include <Rows.cpp>
 #include <Rows.h>
 #include <Scores.cpp>
@@ -249,6 +252,7 @@ __attribute__((always_inline)) static __INLINE void __set_PRIMASK(uint32_t priMa
 #include <ShapeData.h>
 #include <Shapes.cpp>
 #include <Shapes.h>
+#include <SmileyData.h>
 #include <Smileys.cpp>
 #include <Smileys.h>
 #include <elapsedMillis.h>

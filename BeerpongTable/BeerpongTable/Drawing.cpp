@@ -70,18 +70,6 @@ void clearCupData(int player)
 	}
 }
 
-
-void setRawRowData(int player, int data)
-{
-	if (player == 1)
-	{
-		rowData = (long)data;
-	}
-	else
-	{
-		rowDataP2 = (long)data;
-	}
-}
 void setRowData(int player, int _column)
 {
 	if (player == 1)
@@ -95,10 +83,6 @@ void setRowData(int player, int _column)
 
 }
 
-void shiftRowData(int player, int shiftLeft)
-{
-	//rowData = rowData << shiftLeft
-}
 void drawRow(int player, int _row)
 {
 	if (player == 1)
@@ -161,7 +145,7 @@ void drawRow(int player, int _row, long inputdata)
 
 		digitalWrite(latchPin_P2, HIGH);
 	}
-
+	yield();
 }
 void clearData(int player)
 {
@@ -180,29 +164,71 @@ void clearData(int player)
 	}
 }
 
-void drawTable(int player, int inputData[])
+
+void drawTable(int player, long inputData[])
 {
-	//while (true) {
-	long tmpData = 0;
 	if (player == 1)
 	{
 		for (int i = 0; i < 13; i++)
 		{
-			if (inputData[i] != 0)
-			{
-				if(inputData[i] != 0)
+			//if (inputData[i] != 0)
+			//{
 				drawRow(1, i, inputData[i]);
-			}
+			//}
 		}
 	}
 	else if (player == 2)
 	{
 		for (int i = 0; i < 13; i++)
 		{
-			//rowDataP2 = inputData[i];
-			drawRow(2, i, inputData[i]);
-
+			//if (inputData[i] != 0)
+			//{
+				drawRow(2, i, inputData[i]);
+			//}
 		}
 	}
-	//}
+}
+
+
+long shiftRight(long input, int bits)
+{
+	long tmp = 0;
+	if (bits > 0)
+	{
+		tmp = input >> bits;
+	}
+	else if (bits == 0)
+	{
+		tmp = input;
+	}
+	else
+	{
+		tmp = input << (bits * -1);
+	}
+	if (tmp > 0b1111111111111111111)
+	{
+		//tmp = 0b1111111111111111111;
+		tmp = 0; //valt buiten matrix
+	}
+	else if (tmp <= 0)
+	{
+		tmp = 0; //valt buiten matrix
+	}
+	return tmp;
+}
+
+long shiftUp(long input[13], int current, int bits)
+{
+	int tmp = current + bits; //Misschien optellen?
+	if (tmp < 0)
+	{
+		return 0; //leds moeten van tafel verdwijnen
+		//tmp = 12; 
+	}
+	else if (tmp > 12)
+	{
+		return 0;
+		//tmp = 0;
+	}
+	return input[tmp];
 }

@@ -11,8 +11,8 @@
 
 
 
-void testAnimation();
-void ballAnimation();
+void testAnimation(int player);
+void ballAnimation(int player, int timeBetweenSteps, int totalTime);
 
 void upToDown(int player, int size, int timeBetweenSteps);
 void downToUp(int player, int size, int timeBetweenSteps);
@@ -20,9 +20,6 @@ void leftToRight(int player, int size, int timeBetweenSteps);
 void rightToLeft(int player, int size, int timeBetweenSteps);
 void smileyBlijToBoos(int player, int timeBetweenSteps);
 void smileyBoosToBlij(int player, int timeBetweenSteps);
-void movingArrow(int player, int direction, int _column, int _row, int timeBetweenSteps);
 
 
-int shiftRight(int input, int bits);
-void shiftUp(int input[13], int bits);
 void clearArray(int inputArray[13]);

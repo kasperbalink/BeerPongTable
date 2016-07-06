@@ -2,43 +2,57 @@
 #include "Fields.h"
 #include "Rows.h"
 #include "Columns.h"
-//FIELDS: INSIDE, OUTSIDE, BOTH, NOTHING
+
+
 void outsideOn(int player)
 {
-	row(player, 0);
-	row(player, MIN);
-	column(player, 0);
-	column(player, PLUS);
-}
-void outsideOn(int player, int interval)
-{
-	allOff(player);
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
 	{
-		outsideOn(player);
+		animation[i] |= shiftRight(getRowArray()[i], 0);
+		animation[i] |= shiftRight(getRowArray()[i], 18);
+		animation[i] |= shiftUp(getColumnArray(), i, 0);
+		animation[i] |= shiftUp(getColumnArray(), i, -12);
+	}
+	drawTable(player, animation);
+}
+void outsideOn(int player, int totalTime)
+{
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= shiftRight(getRowArray()[i], 0);
+		animation[i] |= shiftRight(getRowArray()[i], 18);
+		animation[i] |= shiftUp(getColumnArray(), i, 0);
+		animation[i] |= shiftUp(getColumnArray(), i, -12);
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
 	}
 }
 
-void insideOn(int player, int interval)
+void insideOn(int player)
 {
-	allOff(player);
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 1; i < 12; i++)
 	{
-		for (int i = 1; i < MIN; i++)
-		{
-			rowInside(player, i);
-		}
+		animation[i] |= getInsideRowArray()[1];
 	}
+	drawTable(player, animation);
 }
-
-void allOff(int player, int interval)
+void insideOn(int player, int totalTime)
 {
-	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 1; i < 12; i++)
 	{
-		allOff(player);
+		animation[i] |= getInsideRowArray()[1];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
 	}
 }
 
@@ -72,20 +86,35 @@ void allOff(int player)
 	}
 	yield();
 }
-
-void allOn(int player, int interval)
+void allOff(int player, int totalTime)
 {
 	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	while (tempTimer < totalTime)
 	{
-		allOn(player);
+		allOff(player);
 	}
 }
 
-void allOn(int player)
+void allOn(int player, int totalTime)
 {
-	for (int p = 0; p <= MIN; p++)
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
 	{
-		row(player, p);
+		animation[i] |= getRowArray()[0];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
 	}
 }
+void allOn(int player)
+{
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getRowArray()[0];
+	}
+	drawTable(player, animation);
+}
+

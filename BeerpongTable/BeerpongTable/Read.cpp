@@ -1,23 +1,41 @@
 #pragma once
 #include "Read.h"
+#include "elapsedMillis.h"
 #include <Arduino.h>
 
-void checkCups()
+
+
+void checkCups(int player)
 {
-	int p = 2;
-	{
+	Serial.println(readMux(player, 0 + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2));
 		for (int i = 0; i < 10; i++)
 		{
-			Serial.println(readMux(p, 2) - ((readMux(p, 0) + readMux(p, 1)) / 2));
-			if ((readMux(p, i + 2) - ((readMux(p, 0) + readMux(p, 1)) / 2)) < -90)
+			if ((readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) <= -99 || (readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
 			{
-				addCup(p, i);
+				addCup(player, i);
 			}
 			else
 			{
-				removeCup(p, i);
+				removeCup(player, i);
 			}
-			drawLedCups(2);
+			drawLedCups(player);
+		}
+}
+
+void randomLedCups(int player, int count, int interval, int timer)
+{
+	elapsedMillis tempTimer;
+	while (tempTimer < timer)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			addCup(player, (int)random(0, 10));
+		}
+		drawLedCups(player);
+		delay(interval);
+		for (int i = 0; i <= 9; i++)
+		{
+			removeCup(player, i);
 		}
 	}
 }
@@ -49,21 +67,22 @@ int readMux(int player, int channel) {
 		digitalWrite(controlPin[i], muxChannel[channel][i]);
 	}
 	int temp = 0;
+	int avg = 5;
 	if (player == 1)
 	{
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < avg; i++)
 		{
 			temp += analogRead(SIG_pin_1);
 		}
-		return (temp / 5);
+		return (temp / avg);
 	}
 	else
 	{
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < avg; i++)
 		{
 			temp += analogRead(SIG_pin_2);
 		}
-		return (temp / 5);
+		return (temp / avg);
 	}
 	yield();
 }

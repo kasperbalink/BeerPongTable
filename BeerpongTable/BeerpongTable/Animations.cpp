@@ -3,106 +3,85 @@
 
 
 
-void testAnimation()
+void testAnimation(int player)
 {
-	int animation[13];
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 	//char charArray[3] = { 'h', 'o', 'i' };
 	for (int i = 0; i < 13; i++)
 	{
-		animation[i] = getSquareArray(5)[i];
-		//setRawRowData(1, getSquareArray(5)[i]);
-		//drawRow(1, i);
-		//delay(1000);
+		animation[i] |= getSquareArray(7)[i];
 	}
+	drawTable(player, animation);
 
-	//while loop of in apart thread
-	while (true)
-	{
-		drawTable(1, animation);
-	}
 }
 
-void ballAnimation()
+void ballAnimation(int player, int timeBetweenSteps, int totalTime)
 {
-	int animation[13];
-	int vertical = 0; //huidige y positie; -0 <= -7
-	int vShift = 0; //0 = omhoog, 1 = omlaag
-	int horizontal = 0; //huidige x positie 0 <= 13
-	int hShift = 0;//0 rechts, 1 links
-	
-	if (vShift == 0) //omhoog
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+	int vertical = 1; 
+	int vShift = 0; 
+	int horizontal = 1; 
+	int hShift = 0;
+
+	elapsedMillis timer = 0;
+	while (timer < totalTime)
 	{
-		vertical++;
+	//	testAnimation(player);
+		if (animation[10] > 0 && animation[11] > 0)
+		{
+			vShift = 1;
+		}
+		else if (animation[1] > 0 && animation[2] > 0)
+		{
+			vShift = 0;
+		}
+		for (int i = 0; i < 13; i++)
+		{
+			if (animation[i] == (long)0b000000000000000110)
+			{
+				hShift = 1;
+			}
+			else if (animation[i] > (long)0b0100000000000000000)
+			{
+				hShift = 0;
+			}
+		}
+
+		if (vShift == 0) //omlaag
+		{
+			vertical++;
+		}
+		else if (vShift == 1) //omhoog
+		{
+			vertical--;
+		}
+		if (hShift == 0) //links
+		{
+			horizontal++;
+		}
+		if (hShift == 1) //rechts
+		{
+			horizontal--;
+		}
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] = shiftRight(shiftUp(getBallArray(1), i, vertical), horizontal);
+		}
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
 	}
-	else if (vShift == 1) //omlaag
-	{
-		vertical--;
-	}
-	if (hShift == 0) //recht
-	{
-		horizontal++;
-	}
-	else if (hShift == 1) //links
-	{
-		horizontal--;
-	}
-	for (int i = 0; i < 13; i++)
-	{
-		animation[i] |= shiftRight(getBallArray(1)[i], 4);
-		animation[i] |= shiftRight(getBallArray(1)[i], 6);
-		//animation[i] = &shiftRight(&getBallArray(1)[i], 4);
-	}
-	drawTable(1, animation);
 
 }
 
-void clearArray(int inputArray[13])
-{
-	for (int i = 0; i < 13; i++)
-	{
-		inputArray[i] = 0;
-	}
-}
-
-int shiftRight(int input, int bits)
-{	/*
-	Use like this:
-	for (int i = 0; i < 13; i++)
-	{
-		animation[i] |= shiftRight(getBallArray()[i], 10);
-		animation[i] |= 1;
-	}
-	*/
-	return input >> bits;
-}
-
-void shiftUp(int input[13], int bits)
-{
-	/*
-	Use after shifRight
-	Like this: shiftUp(animation, 2);
-	*/
-	int tmp[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	for (int i = 0; i < 13; i++)
-	{
-		tmp[i] = input[i];
-	}
-	for (int i = 0; i < 13; i++)
-	{
-		int y = i + bits;
-		if (y <= 0)
-			input[i] = 0;
-		else if (y >= 13)
-			input[i] = 0;
-		else
-			input[i] = tmp[y];
-	}
-}
 
 //size is thickness of line, size 0 = 1 line thick
 
 void upToDown(int player, int size, int timeBetweenSteps)
-{;
+{
 	for (int i = 0; i <= MIN; i++)
 	{
 		for (int x = 0; x < size; x++)

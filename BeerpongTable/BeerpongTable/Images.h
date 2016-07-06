@@ -4,3 +4,5 @@
 
 void logo(int player);
 void logo(int player, int interval);
+
+long* getLogo();

@@ -48,11 +48,15 @@
       <AdditionalIncludeDirectories>d:\Users\Kasper\Documents\Arduino\libraries\Scheduler\src;d:\Users\Kasper\Documents\Arduino\libraries\Scheduler\src\utility;C:\Program Files (x86)\Arduino\libraries;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\lmgetfz0.0z5\Micro Platforms\default\debuggers;d:\Users\Kasper\Documents\Arduino\libraries;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\cores\arduino;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\cores\arduino\avr;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\cores\arduino\USB;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\variants\arduino_due_x;d:\Users\Kasper\Source\Repos\BeerPongTable\BeerpongTable\BeerpongTable;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system/libsam;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system/CMSIS/CMSIS/Include/;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system/CMSIS/Device/ATMEL/;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1/arm-none-eabi\include\c++\4.8.3;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1/arm-none-eabi/include/c++/4.8.3/arm-none-eabi/;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1/arm-none-eabi/include/;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\tools\arm-none-eabi-gcc\4.8.3-2014q1\lib\gcc\arm-none-eabi\4.8.3\include;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\CMSIS\Device\ATMEL\;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\libsam;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\libsam\include;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\CMSIS\CMSIS\Include\;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\CMSIS\CMSIS\Include\;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\CMSIS\CMSIS\Include\;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\CMSIS\Device\ATMEL\;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\libsam;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system\libsam\include;C:\Program Files (x86)\Arduino/hardware/tools/g++_arm_none_eabi\arm-none-eabi\include;C:\Program Files (x86)\Arduino/hardware/tools/g++_arm_none_eabi\arm_none_eabi\include\;C:\Program Files (x86)\Arduino/hardware/tools/g++_arm_none_eabi\lib\gcc\arm-none-eabi\4.4.1\include;C:\Program Files (x86)\Arduino/hardware/tools/g++_arm_none_eabi\lib\gcc\arm-none-eabi\4.4.1\include\;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8/system/CMSIS/Device/ATMEL/sam3xa/include/pio;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8/system/libsam/include;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8/CMSIS/CMSIS/Include/;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8/system/CMSIS/Device/ATMEL/sam3xa/include;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system/libsam;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system/CMSIS/Device/ATMEL;d:\Users\Kasper\AppData\Local\arduino15\packages\arduino\hardware\sam\1.6.8\system/CMSIS/Device/ATMEL/sam3xa/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>d:\Users\Kasper\Source\Repos\BeerPongTable\BeerpongTable\BeerpongTable\__vm\.BeerpongTable.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>printf=iprintf;F_CPU=84000000L;ARDUINO=10609;ARDUINO_SAM_DUE;ARDUINO_ARCH_SAM;__SAM3X8E__;USB_VID=0x2341;USB_PID=0x003e;USBCON;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_VMDEBUG=1;printf=iprintf;F_CPU=84000000L;ARDUINO=10609;ARDUINO_SAM_DUE;ARDUINO_ARCH_SAM;__SAM3X8E__;USB_VID=0x2341;USB_PID=0x003e;USBCON;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -82,16 +86,20 @@
     <ClInclude Include="Animations.h" />
     <ClInclude Include="CharacterData.h" />
     <ClInclude Include="Characters.h" />
+    <ClInclude Include="ColumnData.h" />
     <ClInclude Include="Columns.h" />
     <ClInclude Include="Drawing.h" />
     <ClInclude Include="elapsedMillis.h" />
     <ClInclude Include="Fields.h" />
     <ClInclude Include="Images.h" />
+    <ClInclude Include="ImagesData.h" />
     <ClInclude Include="Read.h" />
+    <ClInclude Include="RowData.h" />
     <ClInclude Include="Rows.h" />
     <ClInclude Include="Scores.h" />
     <ClInclude Include="ShapeData.h" />
     <ClInclude Include="Shapes.h" />
+    <ClInclude Include="SmileyData.h" />
     <ClInclude Include="Smileys.h" />
     <ClInclude Include="__vm\.BeerpongTable.vsarduino.h" />
   </ItemGroup>

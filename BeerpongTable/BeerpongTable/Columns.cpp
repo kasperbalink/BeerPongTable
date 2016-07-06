@@ -1,55 +1,117 @@
 #pragma once
 #include "Columns.h"
-
+#include "ColumnData.h"
 
 
 void column(int player, int column)
 {
-	clearData(player);
-	setRowData(player, column);
-	for (int i = 0; i <= MIN; i++)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
 	{
-		drawRow(player, i);
+		animation[i] |= shiftRight(getColumnArray()[i], column);
 	}
+	drawTable(player, animation);
 }
-
-void column(int player, int _column, int interval)
+void column(int player, int column, int totalTime)
 {
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= shiftRight(getColumnArray()[i], column);
+	}
 	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	while (tempTimer < totalTime)
 	{
-		column(player, _column);
+		drawTable(player, animation);
 	}
 }
-
-void columnBig(int player, int starColumn, int endColumn)
+void columnBig(int player, int startColumn, int endColumn)
 {
-	clearData(player);
-	for (int i = starColumn; i < endColumn; i++)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int c = startColumn; c < endColumn; c++)
 	{
-		setRowData(player, i);
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftRight(getColumnArray()[i], c);
+		}
 	}
-	for (int i = 0; i < MIN; i++)
-	{
-		drawRow(player, i);
-	}
+	drawTable(player, animation);
 }
-
-void columnBig(int player, int startColumn, int endColumn, int interval)
+void columnBig(int player, int startColumn, int endColumn, int totalTime)
 {
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int c = startColumn; c < endColumn; c++)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftRight(getColumnArray()[i], c);
+		}
+	}
 	elapsedMillis tempTimer;
-	while (tempTimer < interval)
+	while (tempTimer < totalTime)
 	{
-		columnBig(player, startColumn, endColumn);
+		drawTable(player, animation);
 	}
 }
 
 void columnInside(int player, int column)
 {
-	clearData(player);
-	setRowData(player, column);
-	for (int i = 1; i < MIN; i++)
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
 	{
-		drawRow(player, i);
+		animation[i] |= shiftRight(getInsideColumnArray()[i], column);
 	}
+	drawTable(player, animation);
+}
+void columnInside(int player, int column, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= shiftRight(getInsideColumnArray()[i], column);
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+void columnBigInside(int player, int startColumn, int endColumn)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int c = startColumn; c < endColumn; c++)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftRight(getInsideColumnArray()[i], c);
+
+		}
+	}
+	drawTable(player, animation);
+}
+void columnBigInside(int player, int startColumn, int endColumn, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int c = startColumn; c < endColumn; c++)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= shiftRight(getInsideColumnArray()[i], c);
+
+		}
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+
+long* getColumnArray()
+{
+	return leftColumn;
+}
+long* getInsideColumnArray()
+{
+	return insideColumn;
 }

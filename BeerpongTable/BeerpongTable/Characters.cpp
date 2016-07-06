@@ -4,9 +4,9 @@
 #define SIZE(x)  (sizeof(x) / sizeof((x)[0]))
 
 
-int* text(char textArray[])
+void text(int player, char textArray[], int totalTime)
 {
-	int finalData[13];
+	long finalData[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 	int length = SIZE(textArray);
 	if (length < 4 && length > 0) //Max 3 elements
 	{
@@ -15,48 +15,68 @@ int* text(char textArray[])
 		case 1:
 			for (int i = 0; i < 13; i++)
 			{
-				finalData[i] += getCharArray(textArray[0])[i];
+				finalData[i] |= getCharArray(textArray[0])[i];
 			}
 			break;
 		case 2:
 			for (int i = 0; i < 13; i++)
 			{
-				finalData[i] += (getCharArray(textArray[0])[i] << 3);
-				finalData[i] += (getCharArray(textArray[1])[i] << -3);
+				finalData[i] |= (getCharArray(textArray[0])[i] << 3);
+				finalData[i] |= (getCharArray(textArray[1])[i] << -3);
 			}
 			break;
 		case 3:
 			for (int i = 0; i < 13; i++)
 			{
-				finalData[i] += (getCharArray(textArray[0])[i] << 5);
-				finalData[i] += (getCharArray(textArray[1])[i] << 0);
-				finalData[i] += (getCharArray(textArray[2])[i] << -5);
+				finalData[i] |= (getCharArray(textArray[0])[i] << 5);
+				finalData[i] |= (getCharArray(textArray[1])[i] << 0);
+				finalData[i] |= (getCharArray(textArray[2])[i] << -5);
 			}
 			break;
 		}
 	}
-	return finalData;
+	else if (length >= 4)
+	{
+		scrollingText(player, textArray, 200);
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, finalData);
+	}
 }
 
 void scrollingText(int player, char textArray[], int timeBetweenSteps)
 {
-	int finalData[13];
 	int length = SIZE(textArray);
-	while (length > 3)
+	int shiftOriginal = 0;
+	while (shiftOriginal > length * -6)
 	{
-		for (int i = 0; i < length - 3; i++)
+		int shift = shiftOriginal;
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		for (int c = 0; c < length; c++) //characters (length)
 		{
-			char tmptext[3] = { textArray[i], textArray[i + 1], textArray[i + 2] };
-			elapsedMillis tempTimer;
-			while (tempTimer < timeBetweenSteps)
+			for (int i = 0; i < 13; i++) //data (13)
 			{
-				drawTable(player, text(tmptext));
+				animation[i] |= shiftRight(getCharArray(textArray[c])[i], shift);
 			}
+			//shift caracter >> 6 
+			shift += 6;
 		}
+
+		//draw table
+		elapsedMillis tempTimer;
+		while (tempTimer < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+
+		//scroll
+		shiftOriginal -= 1;
 	}
 }
 
-int* getCharArray(char letter)
+long* getCharArray(char letter)
 {
 	switch (letter)
 	{
