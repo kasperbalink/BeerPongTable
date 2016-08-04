@@ -1,13 +1,18 @@
 #pragma once
+#include <Arduino.h>
 #include "Characters.h"
 #include "CharacterData.h"
-#define SIZE(x)  (sizeof(x) / sizeof((x)[0]))
+//#define SIZE(x)  (sizeof(x) / sizeof((x)[0]))
 
 
 void text(int player, char textArray[], int totalTime)
 {
 	long finalData[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	int length = SIZE(textArray);
+	int length = strlen(textArray);
+	if (player == 2)
+	{
+		Serial.println(length);
+	}
 	if (length < 4 && length > 0) //Max 3 elements
 	{
 		switch (length)
@@ -22,7 +27,7 @@ void text(int player, char textArray[], int totalTime)
 			for (int i = 0; i < 13; i++)
 			{
 				finalData[i] |= (getCharArray(textArray[0])[i] << 3);
-				finalData[i] |= (getCharArray(textArray[1])[i] << -3);
+				finalData[i] |= (getCharArray(textArray[1])[i] >> 3);
 			}
 			break;
 		case 3:
@@ -30,14 +35,14 @@ void text(int player, char textArray[], int totalTime)
 			{
 				finalData[i] |= (getCharArray(textArray[0])[i] << 5);
 				finalData[i] |= (getCharArray(textArray[1])[i] << 0);
-				finalData[i] |= (getCharArray(textArray[2])[i] << -5);
+				finalData[i] |= (getCharArray(textArray[2])[i] >> 5);
 			}
 			break;
 		}
 	}
 	else if (length >= 4)
 	{
-		scrollingText(player, textArray, 200);
+		scrollingText(player, textArray, 100);
 	}
 	elapsedMillis tempTimer;
 	while (tempTimer < totalTime)
@@ -48,9 +53,9 @@ void text(int player, char textArray[], int totalTime)
 
 void scrollingText(int player, char textArray[], int timeBetweenSteps)
 {
-	int length = SIZE(textArray);
+	int length = strlen(textArray);
 	int shiftOriginal = 0;
-	while (shiftOriginal > length * -6)
+	while (shiftOriginal > (length+1) * -6)
 	{
 		int shift = shiftOriginal;
 		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };

@@ -7,19 +7,59 @@
 
 void checkCups(int player)
 {
-	Serial.println(readMux(player, 0 + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2));
+	if (player == 2)
+	{
+		Serial.println(readMux(player, 2 + 1) - ((readMux(player, 0) + readMux(player, 1)) / 2));
+	}
 		for (int i = 0; i < 10; i++)
 		{
-			if ((readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) <= -99 || (readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
+			switch (i)
+			{
+			case 0:
+				addRemoveCup(1, i, -82);
+				addRemoveCup(2, i, -110);
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8: 
+				break;
+			case 9:
+				break;
+			case 10:
+				break;
+			}
+			/*if ((readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) <= -20| (readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
 			{
 				addCup(player, i);
 			}
 			else
 			{
 				removeCup(player, i);
-			}
+			}*/
 			drawLedCups(player);
 		}
+}
+
+void addRemoveCup(int player, int cup, int value)
+{
+	if ((readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) <= value | (readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
+	{
+		addCup(player, cup);
+	}
+	else
+	{
+		removeCup(player, cup);
+	}
 }
 
 void randomLedCups(int player, int count, int interval, int timer)

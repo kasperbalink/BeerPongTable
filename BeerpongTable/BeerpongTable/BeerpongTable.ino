@@ -8,6 +8,8 @@
 #include "Animations.h"
 #include <Scheduler.h>
 #include "Read.h"
+#include <stdio.h>
+#include <string>
 
 
 long rowDataArray[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -86,30 +88,66 @@ void loop()
 	yield(); //switch to other threads.
 }
 
-void drawTablePlayerBlue() { //in loop
-	insideOn(1, 1000000);
+int count = 3;
+
+	void drawTablePlayerBlue() { //in loop
+		char charArray2[] = "hoi";
+
+	//bracketRight(1, 1, 50, 5000);
+	//arrowLeft(1, 50, count * 50 * 18);
+	//arrowUp(1, 50, count * 50 * 12);
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	insideOn(1, 50);
+	//	outsideOn(1, 50);
+	//}
+
+	//smileyBoosToBlij(1, 200);
+	ballAnimation(1, 50, 5000);
+	diagonalLeftUpRight(1, 3, 29, 75, 10000);
+	//text(1, charArray2, 1000);
 }
 
 void drawTablePlayerRed() { //in loop
-	//ballAnimation(2, 30, 1000000);
-	insideOn(2, 100000);
+	char charArray[] = "beerpong!";
+	bracketLeft(2, 19, 50, 5000);
+	arrowRight(2, 50, 1 * 50 * 18);
+	arrowUp(2, 50, count * 50 * 12);
+
+	for (int i = 0; i < 10; i++)
+	{
+		insideOn(2, 100);
+		outsideOn(2, 100);
+	}
+	
+	text(2, charArray, 1000);
+	smileyBoosToBlij(2, 200);
+
+	//text(2, charArray, 10000);
 }
 
 void drawLedCupsPlayerBlue() {//in loop
-	//randomLedCups(1, 4, 200, 10000);
+
+	//randomLedCups(1, 4, 200, 2000);
 	for (int i = 0; i < 10; i++)
 	{
 		addCup(1, i);
 	}
 	drawLedCups(1);
+	//checkCups(1);
 }
 
 void drawLedCupsPlayerRed() { //in loop
-	for (int i = 0; i < 10; i++)
+	/*for (int i = 0; i < 10; i++)
 	{
 		addCup(2, i);
 	}
-	drawLedCups(2);
+	drawLedCups(2);*/
+	randomLedCups(2, 4, 200, 2000);
+
+	//checkCups(2);
+
+	
 }
 
 void test()

@@ -6,26 +6,38 @@
 
 void outsideOn(int player)
 {
-	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	for (int i = 0; i < 13; i++)
-	{
-		animation[i] |= shiftRight(getRowArray()[i], 0);
-		animation[i] |= shiftRight(getRowArray()[i], 18);
-		animation[i] |= shiftUp(getColumnArray(), i, 0);
-		animation[i] |= shiftUp(getColumnArray(), i, -12);
-	}
+	long animation[13] = { 
+		0b1111111111111111111,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1111111111111111111 };
 	drawTable(player, animation);
 }
 void outsideOn(int player, int totalTime)
 {
-	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	for (int i = 0; i < 13; i++)
-	{
-		animation[i] |= shiftRight(getRowArray()[i], 0);
-		animation[i] |= shiftRight(getRowArray()[i], 18);
-		animation[i] |= shiftUp(getColumnArray(), i, 0);
-		animation[i] |= shiftUp(getColumnArray(), i, -12);
-	}
+	long animation[13] = {
+		0b1111111111111111111,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1000000000000000001,
+		0b1111111111111111111 };
 	elapsedMillis tempTimer;
 	while (tempTimer < totalTime)
 	{

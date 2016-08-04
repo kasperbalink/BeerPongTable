@@ -13,6 +13,8 @@
 
 void testAnimation(int player);
 void ballAnimation(int player, int timeBetweenSteps, int totalTime);
+void randomLeds(int player, int timeBetweenSteps, int totalTime);
+
 
 void upToDown(int player, int size, int timeBetweenSteps);
 void downToUp(int player, int size, int timeBetweenSteps);

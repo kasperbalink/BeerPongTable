@@ -171,20 +171,14 @@ void drawTable(int player, long inputData[])
 	{
 		for (int i = 0; i < 13; i++)
 		{
-			//if (inputData[i] != 0)
-			//{
 				drawRow(1, i, inputData[i]);
-			//}
 		}
 	}
 	else if (player == 2)
 	{
 		for (int i = 0; i < 13; i++)
 		{
-			//if (inputData[i] != 0)
-			//{
 				drawRow(2, i, inputData[i]);
-			//}
 		}
 	}
 }
@@ -208,18 +202,18 @@ long shiftRight(long input, int bits)
 	if (tmp > 0b1111111111111111111)
 	{
 		//tmp = 0b1111111111111111111;
-		tmp = 0; //valt buiten matrix
+		//tmp = 0; //valt buiten matrix
 	}
 	else if (tmp <= 0)
 	{
-		tmp = 0; //valt buiten matrix
+		//tmp = 0; //valt buiten matrix
 	}
 	return tmp;
 }
 
 long shiftUp(long input[13], int current, int bits)
 {
-	int tmp = current + bits; //Misschien optellen?
+	int tmp = current + bits;
 	if (tmp < 0)
 	{
 		return 0; //leds moeten van tafel verdwijnen
@@ -230,5 +224,8 @@ long shiftUp(long input[13], int current, int bits)
 		return 0;
 		//tmp = 0;
 	}
-	return input[tmp];
+	else
+	{
+		return input[tmp];
+	}
 }
