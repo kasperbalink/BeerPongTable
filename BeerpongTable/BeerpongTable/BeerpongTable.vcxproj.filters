@@ -75,6 +75,9 @@
     <ClInclude Include="ImagesData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CupAnimations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Columns.cpp">
@@ -108,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Read.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CupAnimations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

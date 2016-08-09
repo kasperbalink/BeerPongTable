@@ -14,7 +14,7 @@ long* getArrowDown();
 long* getArrowLeft();
 long* getArrowRight();
 long* getCircle(int size);
-long* getDiagonalRighUp();
+long* getDiagonalRightUp();
 long* getDiagonalLeftUp();
 
 void circleInOut(int player, int timeBetweenSteps, int totalTime);
@@ -29,7 +29,10 @@ void arrowDown(int player, int timeBetweenSteps, int totalTime);
 void bracketLeft(int player, int count, int timeBetweenSteps, int totalTime);
 void bracketRight(int player, int count, int timeBetweenSteps, int totalTime);
 
-void diagonalLeftUpRight(int player, int size, int count, int timeBetweenSteps, int totalTime);
+void diagonalLeftUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime);
+void diagonalLeftUpToLeft(int player, int size, int count, int timeBetweenSteps, int totalTime);
+void diagonalRightUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime);
+void diagonalRightUpToLeft(int player, int size, int count, int timeBetweenSteps, int totalTime);
 
 
 void square_(int player, int size, int totalTime);

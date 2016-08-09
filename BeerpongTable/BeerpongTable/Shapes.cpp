@@ -208,11 +208,9 @@ void circleInOut(int player, int timeBetweenSteps, int totalTime)
 	}
 }
 
-void diagonalLeftUpRight(int player, int size, int count, int timeBetweenSteps, int totalTime)
+void diagonalLeftUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime)
 {
-
-	int vertical = -12;
-
+	int vertical = -12-size;
 	elapsedMillis timer1;
 	while (timer1 < totalTime)
 	{
@@ -224,11 +222,10 @@ void diagonalLeftUpRight(int player, int size, int count, int timeBetweenSteps, 
 			{
 				for (int c = 0; c < count; c++)
 				{
-					animation[i] |= shiftRight(getDiagonalLeftUp()[i], (vertical + s) + (c*(-size*2)));
+					animation[i] |= shiftRight(getDiagonalLeftUp()[i], (vertical + s) + (c*(-size * 2)));
 				}
 			}
 		}
-
 
 		elapsedMillis timer2 = 0;
 		while (timer2 < timeBetweenSteps)
@@ -236,12 +233,109 @@ void diagonalLeftUpRight(int player, int size, int count, int timeBetweenSteps, 
 			drawTable(player, animation);
 		}
 		vertical++;
-		if (vertical > 18*count)
+		if (vertical > 18 + (count * size * 2))
 		{
-			vertical = -12;
+			vertical = -12-size;
 		}
 	}
 }
+
+void diagonalRightUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime)
+{
+	int vertical = -12-size;
+	elapsedMillis timer1;
+	while (timer1 < totalTime)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for (int s = 0; s < size; s++)
+		{
+			for (int i = 0; i < 13; i++)
+			{
+				for (int c = 0; c < count; c++)
+				{
+					animation[i] |= shiftRight(getDiagonalRightUp()[i], (vertical + s) + (c*(-size * 2)));
+				}
+			}
+		}
+
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+		vertical++;
+		if (vertical > 18 + (count * size * 2))
+		{
+			vertical = -12-size;
+		}
+	}
+}
+
+void diagonalLeftUpToLeft(int player, int size, int count, int timeBetweenSteps, int totalTime)
+{
+	int vertical = 18;
+	elapsedMillis timer1;
+	while (timer1 < totalTime)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for (int s = 0; s < size; s++)
+		{
+			for (int i = 0; i < 13; i++)
+			{
+				for (int c = 0; c < count; c++)
+				{
+					animation[i] |= shiftRight(getDiagonalLeftUp()[i], (vertical + s) + (c*(size * 2)));
+				}
+			}
+		}
+
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+		vertical--;
+		if (vertical < (-12 - (count * size * 2)))
+		{
+			vertical = 18;
+		}
+	}
+}
+
+void diagonalRightUpToLeft(int player, int size, int count, int timeBetweenSteps, int totalTime)
+{
+	int vertical = 18;
+	elapsedMillis timer1;
+	while (timer1 < totalTime)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for (int s = 0; s < size; s++)
+		{
+			for (int i = 0; i < 13; i++)
+			{
+				for (int c = 0; c < count; c++)
+				{
+					animation[i] |= shiftRight(getDiagonalRightUp()[i], (vertical + s) + (c*(size * 2)));
+				}
+			}
+		}
+
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+		vertical--;
+		if (vertical < (-12 - (count * size * 2)))
+		{
+			vertical = 18;
+		}
+	}
+}
+
 long* getSquareArray(int size)
 {
 	switch (size)
@@ -338,7 +432,7 @@ long* getArrowRight()
 {
 	return arrowRightArray;
 }
-long* getDiagonalRighUp()
+long* getDiagonalRightUp()
 {
 	return diagonalRightUp;
 }

@@ -10,7 +10,7 @@
 #define SIG_pin_1 A0
 #define SIG_pin_2 A1
 
-void randomLedCups(int player, int count, int interval, int timer);
+//void randomLedCups(int player, int count, int interval, int timer);
 void addRemoveCup(int player, int cup, int value);
 void checkCups(int player);
 int readMux(int player, int channel);

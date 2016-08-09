@@ -6,6 +6,7 @@
 
 #pragma once
 #include "Animations.h"
+#include "CupAnimations.h"
 #include <Scheduler.h>
 #include "Read.h"
 #include <stdio.h>
@@ -93,7 +94,8 @@ int count = 3;
 	void drawTablePlayerBlue() { //in loop
 		char charArray2[] = "hoi";
 
-	//bracketRight(1, 1, 50, 5000);
+	bracketRight(1, 20, 50, 5000);
+	bracketLeft(1, 20, 50, 5000);
 	//arrowLeft(1, 50, count * 50 * 18);
 	//arrowUp(1, 50, count * 50 * 12);
 	//for (int i = 0; i < 10; i++)
@@ -102,9 +104,12 @@ int count = 3;
 	//	outsideOn(1, 50);
 	//}
 
-	//smileyBoosToBlij(1, 200);
+	smileyBoosToBlij(1, 200);
 	ballAnimation(1, 50, 5000);
-	diagonalLeftUpRight(1, 3, 29, 75, 10000);
+	diagonalRightUpToRight(1, 3, 25, 75, 10000);
+	diagonalLeftUpToRight(1, 3, 25, 75, 10000);
+	diagonalRightUpToLeft(1, 3, 25, 75, 10000);
+	diagonalLeftUpToLeft(1, 3, 25, 75, 10000);
 	//text(1, charArray2, 1000);
 }
 
@@ -119,33 +124,25 @@ void drawTablePlayerRed() { //in loop
 		insideOn(2, 100);
 		outsideOn(2, 100);
 	}
-	
+	circleOutIn(2, 100, 3000);
 	text(2, charArray, 1000);
 	smileyBoosToBlij(2, 200);
-
+	circleInOut(2, 100, 3000);
 	//text(2, charArray, 10000);
 }
 
 void drawLedCupsPlayerBlue() {//in loop
 
-	//randomLedCups(1, 4, 200, 2000);
-	for (int i = 0; i < 10; i++)
-	{
-		addCup(1, i);
-	}
-	drawLedCups(1);
-	//checkCups(1);
+	
+	triangle(1, 400, 2000);
+	fourToOne(1, 200, 5000);
+	randomCups(1, 4, 400, 3000);
+	oneToFour(1, 200, 5000);
 }
 
 void drawLedCupsPlayerRed() { //in loop
-	/*for (int i = 0; i < 10; i++)
-	{
-		addCup(2, i);
-	}
-	drawLedCups(2);*/
-	randomLedCups(2, 4, 200, 2000);
-
-	//checkCups(2);
+	
+	randomCups(2, 4, 400, 2000);
 
 	
 }

@@ -235,6 +235,8 @@ __attribute__((always_inline)) static __INLINE void __set_PRIMASK(uint32_t priMa
 #include <ColumnData.h>
 #include <Columns.cpp>
 #include <Columns.h>
+#include <CupAnimations.cpp>
+#include <CupAnimations.h>
 #include <Drawing.cpp>
 #include <Drawing.h>
 #include <Fields.cpp>

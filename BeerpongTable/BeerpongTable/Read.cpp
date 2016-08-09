@@ -62,6 +62,7 @@ void addRemoveCup(int player, int cup, int value)
 	}
 }
 
+/* verplaatst naar CupAnimations.cpp
 void randomLedCups(int player, int count, int interval, int timer)
 {
 	elapsedMillis tempTimer;
@@ -79,6 +80,7 @@ void randomLedCups(int player, int count, int interval, int timer)
 		}
 	}
 }
+*/
 
 int muxChannel[16][4] = {
 	{ 0, 0, 0, 0 }, //channel 0
