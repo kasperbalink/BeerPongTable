@@ -17,6 +17,8 @@ long* getCircle(int size);
 long* getDiagonalRightUp();
 long* getDiagonalLeftUp();
 
+void circleInOut(int player, int timeBetweenSteps);
+void circleOutIn(int player, int timeBetweenSteps);
 void circleInOut(int player, int timeBetweenSteps, int totalTime);
 void circleOutIn(int player, int timeBetweenSteps, int totalTime);
 

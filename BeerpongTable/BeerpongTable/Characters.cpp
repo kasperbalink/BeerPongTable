@@ -42,7 +42,7 @@ void text(int player, char textArray[], int totalTime)
 	}
 	else if (length >= 4)
 	{
-		scrollingText(player, textArray, 100);
+		scrollingText(player, textArray, 75);
 	}
 	elapsedMillis tempTimer;
 	while (tempTimer < totalTime)

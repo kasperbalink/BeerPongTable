@@ -92,7 +92,7 @@ void loop()
 int count = 3;
 
 	void drawTablePlayerBlue() { //in loop
-		char charArray2[] = "hoi";
+		char charArray2[] = "beerpong!";
 
 	bracketRight(1, 20, 50, 5000);
 	bracketLeft(1, 20, 50, 5000);
@@ -114,35 +114,48 @@ int count = 3;
 }
 
 void drawTablePlayerRed() { //in loop
-	char charArray[] = "beerpong!";
+	char charArray[] = "0";
+	sprintf(charArray, "%ld", getScore(2));
+	text(2, charArray, 2000);
 	bracketLeft(2, 19, 50, 5000);
 	arrowRight(2, 50, 1 * 50 * 18);
 	arrowUp(2, 50, count * 50 * 12);
-
+	sprintf(charArray, "%ld", getScore(2));
+	text(2, charArray, 2000);
 	for (int i = 0; i < 10; i++)
 	{
 		insideOn(2, 100);
 		outsideOn(2, 100);
 	}
-	circleOutIn(2, 100, 3000);
-	text(2, charArray, 1000);
-	smileyBoosToBlij(2, 200);
-	circleInOut(2, 100, 3000);
+	for (int i = 0; i < 5; i++)
+	{
+		circleOutIn(2, 50);
+		circleInOut(2, 50);
+	}
+	//smileyBoosToBlij(2, 200);
+
 	//text(2, charArray, 10000);
 }
 
 void drawLedCupsPlayerBlue() {//in loop
+	yield();
+	//checkCups(1);
+	//triangle(1, 400, 2000);
+	//fourToOne(1, 200, 5000);
+	//randomCups(1, 4, 400, 3000);
+	//oneToFour(1, 200, 5000);
 
-	
-	triangle(1, 400, 2000);
-	fourToOne(1, 200, 5000);
-	randomCups(1, 4, 400, 3000);
-	oneToFour(1, 200, 5000);
 }
 
 void drawLedCupsPlayerRed() { //in loop
 	
+	drawLedScore(2,5000);
 	randomCups(2, 4, 400, 2000);
+	triangle(2, 400, 2000);
+	fourToOne(2, 200, 5000);
+	drawLedScore(2, 5000);
+	randomCups(2, 4, 400, 3000);
+	oneToFour(2, 200, 5000);
 
 	
 }

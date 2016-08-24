@@ -166,6 +166,39 @@ void bracketRight(int player, int count, int timeBetweenSteps, int totalTime)
 	}
 }
 
+void circleOutIn(int player, int timeBetweenSteps)
+{
+	for (int c = 1; c <= 7; c++)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= getCircle(c)[i];
+			}
+			drawTable(player, animation);
+		}
+	}
+}
+
+void circleInOut(int player, int timeBetweenSteps)
+{
+	for (int c = 7; c >= 1; c--)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= getCircle(c)[i];
+			}
+			drawTable(player, animation);
+		}
+	}
+}
 void circleOutIn(int player, int timeBetweenSteps, int totalTime)
 {
 	elapsedMillis timer1;
@@ -196,7 +229,7 @@ void circleInOut(int player, int timeBetweenSteps, int totalTime)
 		{
 			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 			elapsedMillis timer2 = 0;
-			while (timer2 < timeBetweenSteps)
+			while (timer2 < timeBetweenSteps && timer1 < totalTime)
 			{
 				for (int i = 0; i < 13; i++)
 				{

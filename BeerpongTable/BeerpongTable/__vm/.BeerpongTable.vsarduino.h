@@ -226,36 +226,5 @@ __attribute__((always_inline)) static __INLINE void __set_PRIMASK(uint32_t priMa
 }
 
 
-#include <BeerpongTable.ino>
-#include <Animations.cpp>
-#include <Animations.h>
-#include <CharacterData.h>
-#include <Characters.cpp>
-#include <Characters.h>
-#include <ColumnData.h>
-#include <Columns.cpp>
-#include <Columns.h>
-#include <CupAnimations.cpp>
-#include <CupAnimations.h>
-#include <Drawing.cpp>
-#include <Drawing.h>
-#include <Fields.cpp>
-#include <Fields.h>
-#include <Images.cpp>
-#include <Images.h>
-#include <ImagesData.h>
-#include <Read.cpp>
-#include <Read.h>
-#include <RowData.h>
-#include <Rows.cpp>
-#include <Rows.h>
-#include <Scores.cpp>
-#include <Scores.h>
-#include <ShapeData.h>
-#include <Shapes.cpp>
-#include <Shapes.h>
-#include <SmileyData.h>
-#include <Smileys.cpp>
-#include <Smileys.h>
-#include <elapsedMillis.h>
+#include "BeerpongTable.ino"
 #endif

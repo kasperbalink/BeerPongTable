@@ -3,63 +3,94 @@
 #include "elapsedMillis.h"
 #include <Arduino.h>
 
-
-
+int cupsOnP1[10] = { 0,0,0,0,0,0,0,0,0,0 };
+int cupsOnP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
 void checkCups(int player)
 {
-	if (player == 2)
+	if (player == 1)
 	{
-		Serial.println(readMux(player, 2 + 1) - ((readMux(player, 0) + readMux(player, 1)) / 2));
-	}
-		for (int i = 0; i < 10; i++)
-		{
-			switch (i)
-			{
-			case 0:
-				addRemoveCup(1, i, -82);
-				addRemoveCup(2, i, -110);
-				break;
-			case 1:
-				break;
-			case 2:
-				break;
-			case 4:
-				break;
-			case 5:
-				break;
-			case 6:
-				break;
-			case 7:
-				break;
-			case 8: 
-				break;
-			case 9:
-				break;
-			case 10:
-				break;
-			}
-			/*if ((readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) <= -20| (readMux(player, i + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
-			{
-				addCup(player, i);
-			}
-			else
-			{
-				removeCup(player, i);
-			}*/
-			drawLedCups(player);
-		}
-}
 
+	}
+	else if (player == 2)
+	{
+		addRemoveCup(player, 0, -74);
+		addRemoveCup(player, 1, -59);
+		addRemoveCup(player, 2, -68);
+		addRemoveCup(player, 3, -62);
+		addRemoveCup(player, 4, -66);
+		addRemoveCup(player, 5, -54);
+		addRemoveCup(player, 6, -42);
+		addRemoveCup(player, 7, -47);
+		addRemoveCup(player, 8, -53);
+		addRemoveCup(player, 9, -50);
+	}
+	yield();
+}
 void addRemoveCup(int player, int cup, int value)
 {
-	if ((readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) <= value | (readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
+	int avg = 0;
+	for (int i = 0; i < 4; i++)
 	{
-		addCup(player, cup);
+		avg += readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2);
+	}
+	if (avg / 4 <= value)// | (readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
+	{
+		cupsOnP2[cup] = 1;
 	}
 	else
 	{
-		removeCup(player, cup);
+		cupsOnP2[cup] = 0;
 	}
+	yield();
+
+}
+
+void drawLedScore(int player, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		checkCups(player);
+		for (int i = 0; i < 10; i++)
+		{
+			if (player == 1)
+			{
+
+			}
+			else if (player == 2)
+			{
+				if (cupsOnP2[i] == 1)
+				{
+					addCup(player, i);
+				}
+				else
+				{
+					removeCup(player, i);
+				}
+			}
+		}
+		drawLedCups(player);
+	}
+}
+
+//nodig om score op led paneel te weergeven
+int getScore(int player)
+{
+	checkCups(player);
+	int score = 0;
+	int scoreCount = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		if (player == 1)
+		{
+			scoreCount += cupsOnP2[i];
+		}
+		else if (player == 2)
+		{
+			scoreCount += cupsOnP2[i];
+		}
+	}
+	return scoreCount;
 }
 
 /* verplaatst naar CupAnimations.cpp
