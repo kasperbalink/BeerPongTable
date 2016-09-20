@@ -12,3 +12,5 @@ void allOff(int player, int totalTime);
 
 void outsideOn(int player);
 void outsideOn(int player, int totalTime);
+
+void randomLeds(int player, int timeBetweenSteps, int totalTime);

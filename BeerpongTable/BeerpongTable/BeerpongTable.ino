@@ -13,6 +13,9 @@
 #include <string>
 
 
+#define blue 1
+#define red 2
+
 long rowDataArray[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 void setup()
@@ -43,14 +46,15 @@ void setup()
 
 	pinMode(A0, INPUT);
 	pinMode(A1, INPUT);
-	
+
 	//start threads
 	Scheduler.startLoop(drawTablePlayerBlue);
 	Scheduler.startLoop(drawTablePlayerRed);
 	Scheduler.startLoop(drawLedCupsPlayerBlue);
 	Scheduler.startLoop(drawLedCupsPlayerRed);
+
+	calibrateSensors();
 }
-char letters[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 
 
@@ -89,75 +93,178 @@ void loop()
 	yield(); //switch to other threads.
 }
 
-int count = 3;
 
-	void drawTablePlayerBlue() { //in loop
-		char charArray2[] = "beerpong!";
+void drawTablePlayerBlue() { //in loop
+	//allOn(blue, 1000);
 
-	bracketRight(1, 20, 50, 5000);
-	bracketLeft(1, 20, 50, 5000);
-	//arrowLeft(1, 50, count * 50 * 18);
-	//arrowUp(1, 50, count * 50 * 12);
+		//char charArray2[] = "beerpong!";
+	randomAnimations(blue);
+	//bracketRight(blue, 20, 50, 5000);
+	//bracketLeft(blue, 20, 50, 5000);
+	//arrowLeft(blue, 50, count * 50 * 18);
+	//arrowUp(blue, 50, count * 50 * 12);
 	//for (int i = 0; i < 10; i++)
 	//{
-	//	insideOn(1, 50);
-	//	outsideOn(1, 50);
+	//	insideOn(blue, 50);
+	//	outsideOn(blue, 50);
 	//}
 
-	smileyBoosToBlij(1, 200);
-	ballAnimation(1, 50, 5000);
-	diagonalRightUpToRight(1, 3, 25, 75, 10000);
-	diagonalLeftUpToRight(1, 3, 25, 75, 10000);
-	diagonalRightUpToLeft(1, 3, 25, 75, 10000);
-	diagonalLeftUpToLeft(1, 3, 25, 75, 10000);
-	//text(1, charArray2, 1000);
+	//smileyBoosToBlij(blue, 200);
+	//ballAnimation(blue, 50, 5000);
+	//diagonalRightUpToRight(blue, 3, 25, 75, 10000);
+	//diagonalLeftUpToRight(blue, 3, 25, 75, 10000);
+	//diagonalRightUpToLeft(blue, 3, 25, 75, 10000);
+	//diagonalLeftUpToLeft(blue, 3, 25, 75, 10000);
+
+	//text(blue, charArray2, 1000);
 }
 
 void drawTablePlayerRed() { //in loop
-	char charArray[] = "0";
-	sprintf(charArray, "%ld", getScore(2));
-	text(2, charArray, 2000);
-	bracketLeft(2, 19, 50, 5000);
-	arrowRight(2, 50, 1 * 50 * 18);
-	arrowUp(2, 50, count * 50 * 12);
-	sprintf(charArray, "%ld", getScore(2));
-	text(2, charArray, 2000);
+
+
+	/*char charArray[] = "0";
+	sprintf(charArray, "%ld", 10-getScore(blue));
+	text(red, charArray, 2000);*/
+
+	/*showScoreFromPlayer(red, getScore(1), 2000);
+	bracketLeft(red, 19, 50, 5000);
+	arrowRight(red, 50, 1 * 50 * 18);
+	arrowUp(red, 50, 9 * 50 * 12);
+
+	showScoreFromPlayer(red, getScore(1), 2000);
+
 	for (int i = 0; i < 10; i++)
 	{
-		insideOn(2, 100);
-		outsideOn(2, 100);
+		insideOn(red, 100);
+		outsideOn(red, 100);
 	}
 	for (int i = 0; i < 5; i++)
 	{
-		circleOutIn(2, 50);
-		circleInOut(2, 50);
-	}
-	//smileyBoosToBlij(2, 200);
+		circleOutIn(red, 50);
+		circleInOut(red, 50);
+	}*/
+	randomAnimations(red);
 
-	//text(2, charArray, 10000);
 }
 
 void drawLedCupsPlayerBlue() {//in loop
-	yield();
-	//checkCups(1);
-	//triangle(1, 400, 2000);
-	//fourToOne(1, 200, 5000);
-	//randomCups(1, 4, 400, 3000);
-	//oneToFour(1, 200, 5000);
-
+	//yield();
+	//checkCups(blue);
+	//triangle(blue, 400, 2000);
+	//fourToOne(blue, 200, 5000);
+	//rallandomCups(blue, 4, 400, 3000);
+	//oneToFour(blue, 200, 5000);
+	allCupsOn(blue, 1000);
 }
 
 void drawLedCupsPlayerRed() { //in loop
-	
-	drawLedScore(2,5000);
-	randomCups(2, 4, 400, 2000);
-	triangle(2, 400, 2000);
-	fourToOne(2, 200, 5000);
-	drawLedScore(2, 5000);
-	randomCups(2, 4, 400, 3000);
-	oneToFour(2, 200, 5000);
 
-	
+	checkCups(red);
+
+	//drawLedScore(red, 5000);
+	/*
+	randomCups(red, 4, 400, 2000);
+	triangle(red, 400, 2000);
+	fourToOne(red, 200, 5000);
+	drawLedScore(red, 5000);
+	randomCups(red, 4, 400, 3000);
+	oneToFour(red, 200, 5000);
+	*/
+	//allCupsOn(red, 1000);
+
+
+}
+
+void randomAnimations(int player)
+{
+	int numberOfAnimation =  random(0, 20);
+
+	switch (numberOfAnimation)
+	{
+	case 0:
+		diagonalRightUpToRight(player, random(1, 4), 25, 75, random(5000, 10000));
+		break;
+	case 1:
+		diagonalLeftUpToRight(player, random(1, 4), 25, 75, random(5000, 10000));
+		break;
+	case 2:
+		diagonalRightUpToLeft(player, random(1, 4), 25, 75, random(5000, 10000));
+		break;
+	case 3:
+		diagonalLeftUpToLeft(player, random(1, 4), 25, 75, random(5000, 10000));
+		break;
+	case 4:
+		ballAnimation(player, random(30, 80), random(5000, 10000));
+		break;
+	case 5:
+		if (player == 1)
+		{
+			showScoreFromPlayer(1, getScore(2), random(2000, 8000));
+		}
+		else
+		{
+			showScoreFromPlayer(2, getScore(1), random(2000, 8000));
+		}
+		break;
+	case 6:
+		bracketLeft(player, 19, random(30, 100), random(2000, 10000));
+		break;
+	case 7:
+		bracketRight(player, 19, random(30, 100), random(2000, 10000));
+		break;
+	case 8:
+		arrowDown(player, random(30, 100), random(2000, 10000));
+		break;
+	case 9:
+		arrowUp(player, random(30, 100), random(2000, 10000));
+		break;
+	case 10:
+		arrowLeft(player, random(30, 100), random(2000, 10000));
+		break;
+	case 11:
+		arrowRight(player, random(30, 100), random(2000, 10000));
+		break;
+	case 12:
+		for (int i = 0; i < random(5, 15); i++)
+		{
+			insideOn(player, 50);
+			outsideOn(player, 50);
+		}
+		break;
+	case 13:
+		text(player, "beerpong", 100);
+		break;
+	case 14:
+		circleInOut(player, random(10, 100), random(2000, 10000));
+		break;
+	case 15:
+		circleInOutFilled(player, random(10, 100), random(2000, 10000));
+		break;
+	case 16:
+		circleOutIn(player, random(10, 100), random(2000, 10000));
+		break;
+	case 17:
+		circleOutInFilled(player, random(10, 100), random(2000, 10000));
+		break;
+	case 18:
+		logo(player, random(2000, 75000));
+		break;
+	case 19:
+		pacMan(player, 50, random(2000, 10000));
+		break;
+	case 20:
+
+		break;
+	case 21:
+		break;
+
+
+	default:
+		text(player, "beerpong", 100);
+
+
+
+	}
 }
 
 void test()

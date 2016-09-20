@@ -139,7 +139,6 @@ void bracketLeft(int player, int count, int timeBetweenSteps, int totalTime)
 	}
 
 }
-
 void bracketRight(int player, int count, int timeBetweenSteps, int totalTime)
 {
 	elapsedMillis timer1;
@@ -182,23 +181,64 @@ void circleOutIn(int player, int timeBetweenSteps)
 		}
 	}
 }
-
 void circleInOut(int player, int timeBetweenSteps)
 {
 	for (int c = 7; c >= 1; c--)
 	{
 		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for (int i = 0; i < 13; i++)
+		{
+			animation[i] |= getCircle(c)[i];
+		}
 		elapsedMillis timer2 = 0;
 		while (timer2 < timeBetweenSteps)
 		{
-			for (int i = 0; i < 13; i++)
-			{
-				animation[i] |= getCircle(c)[i];
-			}
 			drawTable(player, animation);
 		}
 	}
 }
+void circleOutInFilled(int player, int timeBetweenSteps)
+{
+	for (int c = 1; c <= 7; c++)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for (int i = 0; i < 13; i++)
+		{
+			for (int s = 1; s < c; s++)
+			{
+				animation[i] |= getCircle(s)[i];
+			}
+		}
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+	}
+}
+void circleInOutFilled(int player, int timeBetweenSteps)
+{
+	for (int c = 7; c >= 1; c--)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+		for (int i = 0; i < 13; i++)
+		{
+			for (int s = 7; s > c; s--)
+			{
+				animation[i] |= getCircle(s)[i];
+			}
+		}
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+	}
+}
+
 void circleOutIn(int player, int timeBetweenSteps, int totalTime)
 {
 	elapsedMillis timer1;
@@ -219,7 +259,6 @@ void circleOutIn(int player, int timeBetweenSteps, int totalTime)
 		}
 	}
 }
-
 void circleInOut(int player, int timeBetweenSteps, int totalTime)
 {
 	elapsedMillis timer1;
@@ -240,10 +279,59 @@ void circleInOut(int player, int timeBetweenSteps, int totalTime)
 		}
 	}
 }
+void circleOutInFilled(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		for (int c = 1; c <= 7; c++)
+		{
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+			for (int i = 0; i < 13; i++)
+			{
+				for (int s = 1; s < c; s++)
+				{
+					animation[i] |= getCircle(s)[i];
+				}
+			}
+			elapsedMillis timer2 = 0;
+			while (timer2 < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+		}
+	}
+}
+void circleInOutFilled(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		for (int c = 7; c >= 1; c--)
+		{
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+			for (int i = 0; i < 13; i++)
+			{
+				for (int s = 7; s > c; s--)
+				{
+					animation[i] |= getCircle(s)[i];
+				}
+			}
+			elapsedMillis timer2 = 0;
+			while (timer2 < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+		}
+	}
+}
+
 
 void diagonalLeftUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime)
 {
-	int vertical = -12-size;
+	int vertical = -12 - size;
 	elapsedMillis timer1;
 	while (timer1 < totalTime)
 	{
@@ -268,14 +356,14 @@ void diagonalLeftUpToRight(int player, int size, int count, int timeBetweenSteps
 		vertical++;
 		if (vertical > 18 + (count * size * 2))
 		{
-			vertical = -12-size;
+			vertical = -12 - size;
 		}
 	}
 }
 
 void diagonalRightUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime)
 {
-	int vertical = -12-size;
+	int vertical = -12 - size;
 	elapsedMillis timer1;
 	while (timer1 < totalTime)
 	{
@@ -300,7 +388,7 @@ void diagonalRightUpToRight(int player, int size, int count, int timeBetweenStep
 		vertical++;
 		if (vertical > 18 + (count * size * 2))
 		{
-			vertical = -12-size;
+			vertical = -12 - size;
 		}
 	}
 }
@@ -336,7 +424,6 @@ void diagonalLeftUpToLeft(int player, int size, int count, int timeBetweenSteps,
 		}
 	}
 }
-
 void diagonalRightUpToLeft(int player, int size, int count, int timeBetweenSteps, int totalTime)
 {
 	int vertical = 18;

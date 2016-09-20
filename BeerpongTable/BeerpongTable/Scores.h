@@ -2,5 +2,4 @@
 #include "Drawing.h"
 #include "Characters.h"
 
-void showScore(int player, int _number);
-void showScore(int player, int _number, int totalTime);
+void showScoreFromPlayer(int player, int count, int totalTime);

@@ -5,27 +5,75 @@
 
 int cupsOnP1[10] = { 0,0,0,0,0,0,0,0,0,0 };
 int cupsOnP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
+
+int sensorValueP1[10] = { 0,0,0,0,0,0,0,0,0,0 };
+int sensorValueP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
+
+/*Deze methode berekent de infrarood waarde van alle sensoren zonder beker.*/
+void calibrateSensors()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		int valueP1 = 0;
+		int valueP2 = 0;
+		for (int count = 0; count < 10; count++)
+		{
+			valueP1 += (readMux(1, i + 2) - ((readMux(1, 0) + readMux(1, 1)) / 2));
+			valueP2 += (readMux(2, i + 2) - ((readMux(2, 0) + readMux(2, 1)) / 2));
+		}
+
+		sensorValueP1[i] = valueP1 / 10;
+		sensorValueP2[i] = valueP2 / 10;
+		valueP1 = 0;
+		valueP2 = 0;
+	}
+}
+
+/*Deze methode berekent of er een beker op staat. Voor speler 1 of speler 2: Standaard waarde - 4.*/
 void checkCups(int player)
 {
 	if (player == 1)
 	{
+		//Printen naar console
+		//Serial.println(readMux(player, 0 + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2));
 
+		for (int i = 0; i < 9; i++)
+		{
+			addRemoveCup(player, i, sensorValueP1[i] - 4); //4 is verschil
+		}
 	}
 	else if (player == 2)
 	{
-		addRemoveCup(player, 0, -74);
-		addRemoveCup(player, 1, -59);
-		addRemoveCup(player, 2, -68);
-		addRemoveCup(player, 3, -62);
-		addRemoveCup(player, 4, -66);
-		addRemoveCup(player, 5, -54);
-		addRemoveCup(player, 6, -42);
-		addRemoveCup(player, 7, -47);
-		addRemoveCup(player, 8, -53);
-		addRemoveCup(player, 9, -50);
+		//Printen naar console. 
+		//Serial.println(readMux(player, 0 + 2) -((readMux(player, 0) + readMux(player, 1)) / 2));
+		Serial.println(readMux(player, 0 + 6));
+
+
+
+		for (int i = 0; i < 9; i++)
+		{
+			addRemoveCup(player, i, sensorValueP2[i] - 4); //4 is verschil
+		}
+
+		/*De oude manier*/
+		/*addRemoveCup(player, 0, -55);
+		addRemoveCup(player, 1, -42);
+		addRemoveCup(player, 2, -50);
+		addRemoveCup(player, 3, -50);
+		addRemoveCup(player, 4, -50);
+		addRemoveCup(player, 5, -42);
+		addRemoveCup(player, 6, -32);
+		addRemoveCup(player, 7, -38);
+		addRemoveCup(player, 8, -40);
+		addRemoveCup(player, 9, -37);*/
 	}
+
+
 	yield();
 }
+
+/*Deze methode zet in een array of de beker aan of uit staat
+int value = verschil in standaard waarde*/
 void addRemoveCup(int player, int cup, int value)
 {
 	int avg = 0;
@@ -45,8 +93,10 @@ void addRemoveCup(int player, int cup, int value)
 
 }
 
+/*Deze methode zet de leds aan als er een beker staat*/
 void drawLedScore(int player, int totalTime)
 {
+	checkCups(player);
 	elapsedMillis timer;
 	while (timer < totalTime)
 	{
@@ -55,7 +105,14 @@ void drawLedScore(int player, int totalTime)
 		{
 			if (player == 1)
 			{
-
+				if (cupsOnP1[i] == 1)
+				{
+					addCup(player, i);
+				}
+				else
+				{
+					removeCup(player, i);
+				}
 			}
 			else if (player == 2)
 			{
@@ -71,9 +128,10 @@ void drawLedScore(int player, int totalTime)
 		}
 		drawLedCups(player);
 	}
+	//yield();
 }
 
-//nodig om score op led paneel te weergeven
+/*returnt de score van gegeven speler.*/
 int getScore(int player)
 {
 	checkCups(player);
@@ -93,26 +151,19 @@ int getScore(int player)
 	return scoreCount;
 }
 
-/* verplaatst naar CupAnimations.cpp
-void randomLedCups(int player, int count, int interval, int timer)
+int* getScoreArray(int player)
 {
-	elapsedMillis tempTimer;
-	while (tempTimer < timer)
+	if (player == 1)
 	{
-		for (int i = 0; i < count; i++)
-		{
-			addCup(player, (int)random(0, 10));
-		}
-		drawLedCups(player);
-		delay(interval);
-		for (int i = 0; i <= 9; i++)
-		{
-			removeCup(player, i);
-		}
+		return cupsOnP1;
+	}
+	else if (player == 2)
+	{
+		return cupsOnP2;
 	}
 }
-*/
 
+//info voor de multiplexer
 int muxChannel[16][4] = {
 	{ 0, 0, 0, 0 }, //channel 0
 	{ 1, 0, 0, 0 }, //channel 1
@@ -133,6 +184,8 @@ int muxChannel[16][4] = {
 };
 int controlPin[] = { s0,s1,s2,s3 };
 
+
+/*Deze methode wordt gebruikt om de sensoren uit te lezen*/
 int readMux(int player, int channel) {
 
 	//loop through the 4 sig

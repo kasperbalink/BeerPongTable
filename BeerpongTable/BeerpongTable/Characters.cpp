@@ -39,16 +39,17 @@ void text(int player, char textArray[], int totalTime)
 			}
 			break;
 		}
+		elapsedMillis tempTimer;
+		while (tempTimer < totalTime)
+		{
+			drawTable(player, finalData);
+		}
 	}
 	else if (length >= 4)
 	{
 		scrollingText(player, textArray, 75);
 	}
-	elapsedMillis tempTimer;
-	while (tempTimer < totalTime)
-	{
-		drawTable(player, finalData);
-	}
+	
 }
 
 void scrollingText(int player, char textArray[], int timeBetweenSteps)

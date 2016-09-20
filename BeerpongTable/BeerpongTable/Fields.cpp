@@ -109,24 +109,33 @@ void allOff(int player, int totalTime)
 
 void allOn(int player, int totalTime)
 {
-	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	for (int i = 0; i < 13; i++)
-	{
-		animation[i] |= getRowArray()[0];
-	}
 	elapsedMillis tempTimer;
 	while (tempTimer < totalTime)
 	{
-		drawTable(player, animation);
+		insideOn(player);
+		outsideOn(player);
 	}
 }
 void allOn(int player)
 {
-	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-	for (int i = 0; i < 13; i++)
-	{
-		animation[i] |= getRowArray()[0];
-	}
-	drawTable(player, animation);
+	insideOn(player);
+	outsideOn(player);
 }
 
+void randomLeds(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		for (int i = 1; i < 12; i++)
+		{
+			animation[i] |= (long) random(0b1000000000000000000, 0b1111111111111111111);
+		}
+		elapsedMillis timer2 = 0;
+		while (timer2 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+	}
+}

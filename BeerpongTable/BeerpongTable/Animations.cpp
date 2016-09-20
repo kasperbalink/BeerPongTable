@@ -76,24 +76,6 @@ void ballAnimation(int player, int timeBetweenSteps, int totalTime)
 
 }
 
-void randomLeds(int player, int timeBetweenSteps, int totalTime)
-{
-	elapsedMillis timer1;
-	while (timer1 < totalTime)
-	{
-		elapsedMillis timer2 = 0;
-		while (timer2 < timeBetweenSteps)
-		{
-			long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
-			for (int i = 0; i < 13; i++)
-			{
-				animation[i] |= random(0, 0b1111111111111111111);
-			}
-			drawTable(player, animation);
-		}
-	}
-}
-
 void upToDown(int player, int size, int timeBetweenSteps)
 {
 	for (int i = 0; i <= MIN; i++)

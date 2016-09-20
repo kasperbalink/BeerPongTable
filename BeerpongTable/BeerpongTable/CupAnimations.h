@@ -8,3 +8,4 @@ void randomCups(int player, int count, int timeBetweenSteps, int totalTime);
 void allCupsOn(int player, int totalTime);
 void allCupsOff(int player, int totalTime);
 void allCupsOff(int player);
+void drawLedCupScore(int player, int cupArray[10], int totalTime);

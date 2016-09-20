@@ -17,10 +17,15 @@ long* getCircle(int size);
 long* getDiagonalRightUp();
 long* getDiagonalLeftUp();
 
-void circleInOut(int player, int timeBetweenSteps);
 void circleOutIn(int player, int timeBetweenSteps);
-void circleInOut(int player, int timeBetweenSteps, int totalTime);
+void circleInOut(int player, int timeBetweenSteps);
+void circleOutInFilled(int player, int timeBetweenSteps);
+void circleInOutFilled(int player, int timeBetweenSteps);
+
 void circleOutIn(int player, int timeBetweenSteps, int totalTime);
+void circleInOut(int player, int timeBetweenSteps, int totalTime);
+void circleOutInFilled(int player, int timeBetweenSteps, int totalTime);
+void circleInOutFilled(int player, int timeBetweenSteps, int totalTime);
 
 void arrowLeft(int player, int timeBetweenSteps, int totalTime);
 void arrowRight(int player, int timeBetweenSteps, int totalTime);

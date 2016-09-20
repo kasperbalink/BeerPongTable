@@ -16,3 +16,7 @@ void checkCups(int player);
 int getScore(int player);
 void drawLedScore(int player, int totalTime);
 int readMux(int player, int channel);
+
+int* getScoreArray(int player);
+
+void calibrateSensors();
