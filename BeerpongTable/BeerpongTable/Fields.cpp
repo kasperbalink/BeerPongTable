@@ -130,7 +130,12 @@ void randomLeds(int player, int timeBetweenSteps, int totalTime)
 		long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 		for (int i = 1; i < 12; i++)
 		{
-			animation[i] |= (long) random(0b1000000000000000000, 0b1111111111111111111);
+			long tmp = random(0b000000000000000000, 0b0111111111111111110);
+			if (tmp % 2 != 0)
+			{
+				tmp = tmp - 1;
+			}
+			animation[i] |= tmp;
 		}
 		elapsedMillis timer2 = 0;
 		while (timer2 < timeBetweenSteps)

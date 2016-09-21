@@ -52,7 +52,7 @@ void setup()
 	Scheduler.startLoop(drawTablePlayerRed);
 	Scheduler.startLoop(drawLedCupsPlayerBlue);
 	Scheduler.startLoop(drawLedCupsPlayerRed);
-
+	delay(1000);
 	calibrateSensors();
 }
 int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
@@ -95,81 +95,44 @@ void loop()
 
 
 void drawTablePlayerBlue() { //in loop
-	//allOn(blue, 1000);
+	randomLeds(blue, 200, 10000);
 
-		//char charArray2[] = "beerpong!";
-	randomAnimations(blue);
-	//bracketRight(blue, 20, 50, 5000);
-	//bracketLeft(blue, 20, 50, 5000);
-	//arrowLeft(blue, 50, count * 50 * 18);
-	//arrowUp(blue, 50, count * 50 * 12);
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	insideOn(blue, 50);
-	//	outsideOn(blue, 50);
-	//}
-
-	//smileyBoosToBlij(blue, 200);
-	//ballAnimation(blue, 50, 5000);
-	//diagonalRightUpToRight(blue, 3, 25, 75, 10000);
-	//diagonalLeftUpToRight(blue, 3, 25, 75, 10000);
-	//diagonalRightUpToLeft(blue, 3, 25, 75, 10000);
-	//diagonalLeftUpToLeft(blue, 3, 25, 75, 10000);
-
-	//text(blue, charArray2, 1000);
 }
 
 void drawTablePlayerRed() { //in loop
 
-
-	/*char charArray[] = "0";
-	sprintf(charArray, "%ld", 10-getScore(blue));
-	text(red, charArray, 2000);*/
-
-	/*showScoreFromPlayer(red, getScore(1), 2000);
-	bracketLeft(red, 19, 50, 5000);
-	arrowRight(red, 50, 1 * 50 * 18);
-	arrowUp(red, 50, 9 * 50 * 12);
-
-	showScoreFromPlayer(red, getScore(1), 2000);
-
-	for (int i = 0; i < 10; i++)
-	{
-		insideOn(red, 100);
-		outsideOn(red, 100);
-	}
-	for (int i = 0; i < 5; i++)
-	{
-		circleOutIn(red, 50);
-		circleInOut(red, 50);
-	}*/
-	randomAnimations(red);
+	randomLeds(red, 200, 10000);
 
 }
 
 void drawLedCupsPlayerBlue() {//in loop
 	//yield();
+	//drawLedScore(blue, 5000);
 	//checkCups(blue);
-	//triangle(blue, 400, 2000);
-	//fourToOne(blue, 200, 5000);
-	//rallandomCups(blue, 4, 400, 3000);
-	//oneToFour(blue, 200, 5000);
-	allCupsOn(blue, 1000);
+
+
+	randomCups(blue, random(1, 5), random(100, 300), random(1000, 5000));
+	triangle(blue, random(100, 300), random(1000, 5000));
+	fourToOne(blue, random(100, 300), random(1000, 7000));
+	randomCups(blue, random(1, 5), random(100, 300), random(500, 5000));
+	oneToFour(blue, random(100, 300), random(1000, 5000));
+	//checkCups(blue);
+
+	//allCupsOn(blue, 1000);
 }
 
 void drawLedCupsPlayerRed() { //in loop
 
-	checkCups(red);
-
 	//drawLedScore(red, 5000);
-	/*
-	randomCups(red, 4, 400, 2000);
-	triangle(red, 400, 2000);
-	fourToOne(red, 200, 5000);
-	drawLedScore(red, 5000);
-	randomCups(red, 4, 400, 3000);
-	oneToFour(red, 200, 5000);
-	*/
+	//checkCups(red);
+
+
+	randomCups(red, random(1, 5), random(100, 300), random(1000, 5000));
+	triangle(red, random(100, 300), random(1000, 5000));
+	fourToOne(red, random(100, 300), random(1000, 7000));
+	randomCups(red, random(1, 5), random(100, 300), random(500, 5000));
+	oneToFour(red, random(100, 300), random(1000, 5000));
+	
 	//allCupsOn(red, 1000);
 
 
@@ -177,7 +140,7 @@ void drawLedCupsPlayerRed() { //in loop
 
 void randomAnimations(int player)
 {
-	int numberOfAnimation =  random(0, 20);
+	int numberOfAnimation =  random(0, 21);
 
 	switch (numberOfAnimation)
 	{
@@ -185,7 +148,6 @@ void randomAnimations(int player)
 		diagonalRightUpToRight(player, random(1, 4), 25, 75, random(5000, 10000));
 		break;
 	case 1:
-		diagonalLeftUpToRight(player, random(1, 4), 25, 75, random(5000, 10000));
 		break;
 	case 2:
 		diagonalRightUpToLeft(player, random(1, 4), 25, 75, random(5000, 10000));
@@ -253,14 +215,26 @@ void randomAnimations(int player)
 		pacMan(player, 50, random(2000, 10000));
 		break;
 	case 20:
-
+		smileyBlijToBoos(player, random(100, 400), random(1000, 5000));
 		break;
 	case 21:
+		smileyBoosToBlij(player, random(100, 400), random(1000, 5000));
 		break;
-
+	case 22:
+		//leftToRight(player, random(1, 5), random(50, 200));
+		break;
+	case 23:
+		break;
+	case 24:
+		break;
+	case 25:
+		break;
+	case 26:
+		break;
 
 	default:
 		text(player, "beerpong", 100);
+		break;
 
 
 

@@ -19,15 +19,15 @@ void ballAnimation(int player, int timeBetweenSteps, int totalTime)
 {
 	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
-	int vertical = 1; 
-	int vShift = 0; 
-	int horizontal = 1; 
+	int vertical = 1;
+	int vShift = 0;
+	int horizontal = 1;
 	int hShift = 0;
 
 	elapsedMillis timer = 0;
 	while (timer < totalTime)
 	{
-	//	testAnimation(player);
+		//	testAnimation(player);
 		if (animation[10] > 0 && animation[11] > 0)
 		{
 			vShift = 1;
@@ -76,49 +76,122 @@ void ballAnimation(int player, int timeBetweenSteps, int totalTime)
 
 }
 
-void upToDown(int player, int size, int timeBetweenSteps)
+void upToDown(int player, int size, int timeBetweenSteps, int totalTime)
 {
-	for (int i = 0; i <= MIN; i++)
+	elapsedMillis timer;
+	while (timer < totalTime)
 	{
-		for (int x = 0; x < size; x++)
+		int shift = 0-size;
+		while (shift < 13 + size)
 		{
-			row(player, i - x, timeBetweenSteps);
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+			for (int i = 0; i < 13; i++)
+			{
+				for (int x = 0; x < size; x++)
+				{
+					if (i + x + shift >= 0 && i + x + shift < 13)
+					{
+						animation[i + x + shift] |= getRowArray()[i];
+					}
+				}
+			}
+			shift++;
+			elapsedMillis timer1 = 0;
+			while (timer1 < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
 		}
 	}
+	yield();
 }
 
 //size is thickness of line, size 0 = 1 line thick
-void downToUp(int player, int size, int timeBetweenSteps)
+void downToUp(int player, int size, int timeBetweenSteps, int totalTime)
 {
-	for (int i = MIN; i >= 0; i--)
+	elapsedMillis timer;
+	while (timer < totalTime)
 	{
-		for (int x = 0; x < size; x++)
+		int shift = 13 + size;
+		while (shift > 0 - size)
 		{
-			row(player, i + x, timeBetweenSteps);
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+			for (int i = 0; i < 13; i++)
+			{
+				for (int x = 0; x < size; x++)
+				{
+					if (i + x + shift >= 0 && i + x + shift < 13)
+					{
+						animation[i + x + shift] |= getRowArray()[i];
+					}
+				}
+			}
+			shift--;
+			elapsedMillis timer1;
+			while (timer1 < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
 		}
 	}
+	yield();
 }
 
 //size is thickness of line, size 0 = 1 line thick
-void leftToRight(int player, int size, int timeBetweenSteps)
+void leftToRight(int player, int size, int timeBetweenSteps, int totalTime)
 {
-	for (int i = 0; i <= PLUS; i++)
+	elapsedMillis timer0;
+	while (timer0 < totalTime)
 	{
-		for (int x = 0; x < size; x++)
+		int shift = 0;
+		while (shift < 18 + size)
 		{
-			column(player, i + x, timeBetweenSteps);
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			for (int i = 0; i < 13; i++)
+			{
+				for (int x = 0; x < size; x++)
+				{
+					animation[i] |= shiftRight(getColumnArray()[i], x + shift);
+				}
+
+			}
+			elapsedMillis timer;
+			while (timer < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+			shift++;
 		}
 	}
+
 }
 
 //size is thickness of line, size 0 = 1 line thick
-void rightToLeft(int player, int size, int timeBetweenSteps)
+void rightToLeft(int player, int size, int timeBetweenSteps, int totalTime)
 {
-	for (int i = PLUS; i >= 0; i--)
+	elapsedMillis timer0;
+	while (timer0 < totalTime)
 	{
-		for (int x = 0; x < size; x++)
+		int shift = 18;
+		while (shift > 0 - size)
 		{
-			column(player, i - x, timeBetweenSteps);
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			for (int i = 0; i < 13; i++)
+			{
+				for (int x = 0; x < size; x++)
+				{
+					animation[i] |= shiftRight(getColumnArray()[i], x + shift);
+				}
+
+			}
+			elapsedMillis timer;
+			while (timer < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+			shift--;
 		}
 	}
 }
@@ -131,10 +204,32 @@ void smileyBlijToBoos(int player, int timeBetweenSteps)
 	smileyBoos(player, timeBetweenSteps);
 }
 
+void smileyBlijToBoos(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		smileyBlij(player, timeBetweenSteps);
+		smileyNeutraal(player, timeBetweenSteps);
+		smileyBoos(player, timeBetweenSteps);
+	}
+}
+
 //timeBetweenSteps is time between simleys
 void smileyBoosToBlij(int player, int timeBetweenSteps)
 {
 	smileyBoos(player, timeBetweenSteps);
 	smileyNeutraal(player, timeBetweenSteps);
 	smileyBlij(player, timeBetweenSteps);
+}
+
+void smileyBoosToBlij(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		smileyBoos(player, timeBetweenSteps);
+		smileyNeutraal(player, timeBetweenSteps);
+		smileyBlij(player, timeBetweenSteps);
+	}
 }

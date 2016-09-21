@@ -9,10 +9,17 @@ int cupsOnP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
 int sensorValueP1[10] = { 0,0,0,0,0,0,0,0,0,0 };
 int sensorValueP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
 
+int sensorTimersOnP1[10] = { 0,0,0,0,0,0,0,0,0,0 };
+int sensorTimersOffP1[10] = { 0,0,0,0,0,0,0,0,0,0 };
+
+int sensorTimersOnP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
+int sensorTimersOffP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
+
+
 /*Deze methode berekent de infrarood waarde van alle sensoren zonder beker.*/
 void calibrateSensors()
 {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i <= 9; i++)
 	{
 		int valueP1 = 0;
 		int valueP2 = 0;
@@ -22,8 +29,8 @@ void calibrateSensors()
 			valueP2 += (readMux(2, i + 2) - ((readMux(2, 0) + readMux(2, 1)) / 2));
 		}
 
-		sensorValueP1[i] = valueP1 / 10;
-		sensorValueP2[i] = valueP2 / 10;
+		sensorValueP1[i] = valueP1 / 9;
+		sensorValueP2[i] = valueP2 / 9;
 		valueP1 = 0;
 		valueP2 = 0;
 	}
@@ -35,24 +42,29 @@ void checkCups(int player)
 	if (player == 1)
 	{
 		//Printen naar console
-		//Serial.println(readMux(player, 0 + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2));
+		//Serial.print("Default: ");
+		//Serial.println(sensorValueP1[-2 + 6]);
+		//Serial.print("Current: ");
+		//Serial.println(readMux(player, 0 + 6) - ((readMux(player, 0) + readMux(player, 1)) / 2));
 
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i <= 9; i++)
 		{
-			addRemoveCup(player, i, sensorValueP1[i] - 4); //4 is verschil
+			addRemoveCup(player, i, sensorValueP1[i]); //4 is verschil
 		}
 	}
 	else if (player == 2)
 	{
 		//Printen naar console. 
-		//Serial.println(readMux(player, 0 + 2) -((readMux(player, 0) + readMux(player, 1)) / 2));
-		Serial.println(readMux(player, 0 + 6));
+		//Serial.print("Default: ");
+		//Serial.println(sensorValueP2[-2 + 2]);
+		//Serial.print("Current: ");
+		//Serial.println(readMux(player, 0 + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2));
 
 
 
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i <= 9; i++)
 		{
-			addRemoveCup(player, i, sensorValueP2[i] - 4); //4 is verschil
+			addRemoveCup(player, i, sensorValueP2[i]); //4 is verschil
 		}
 
 		/*De oude manier*/
@@ -81,13 +93,47 @@ void addRemoveCup(int player, int cup, int value)
 	{
 		avg += readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2);
 	}
-	if (avg / 4 <= value)// | (readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2)) >= 200)
+	if (avg / 4 <= value)
 	{
-		cupsOnP2[cup] = 1;
+		if (player == 1)
+		{
+			sensorTimersOnP1[cup] += 1;
+			if (sensorTimersOnP1[cup] > 20)
+			{
+				cupsOnP1[cup] = 1;
+				sensorTimersOffP1[cup] = 0;
+			}
+		}
+		else
+		{
+			sensorTimersOnP2[cup] += 1;
+			if (sensorTimersOnP2[cup] > 20)
+			{
+				cupsOnP2[cup] = 1;
+				sensorTimersOffP2[cup] = 0;
+			}
+		}
 	}
 	else
 	{
-		cupsOnP2[cup] = 0;
+		if (player == 1)
+		{
+			sensorTimersOffP1[cup] += 1;
+			if (sensorTimersOffP1[cup] > 20)
+			{
+				cupsOnP1[cup] = 0;
+				sensorTimersOnP1[cup] = 0;
+			}
+		}
+		else
+		{
+			sensorTimersOffP2[cup] += 1;
+			if (sensorTimersOffP2[cup] > 20)
+			{
+				cupsOnP2[cup] = 0;
+				sensorTimersOnP2[cup] = 0;
+			}
+		}
 	}
 	yield();
 
