@@ -9,10 +9,6 @@ void text(int player, char textArray[], int totalTime)
 {
 	long finalData[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 	int length = strlen(textArray);
-	if (player == 2)
-	{
-		Serial.println(length);
-	}
 	if (length < 4 && length > 0) //Max 3 elements
 	{
 		switch (length)
@@ -50,6 +46,62 @@ void text(int player, char textArray[], int totalTime)
 		scrollingText(player, textArray, 75);
 	}
 	
+}
+
+void startUpText(int player, int count)
+{
+	char charArray[] = "0";
+	sprintf(charArray, "%ld", count);
+	long finalData[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	int length = strlen(charArray);
+	switch (length)
+	{
+	case 1:
+		for (int i = 0; i < 13; i++)
+		{
+			finalData[i] |= getCharArray(charArray[0])[i];
+		}
+		break;
+	case 2:
+		for (int i = 0; i < 13; i++)
+		{
+			finalData[i] |= (getCharArray(charArray[0])[i] << 3);
+			finalData[i] |= (getCharArray(charArray[1])[i] >> 3);
+		}
+		break;
+	}
+	if (player == 1)
+	{
+		finalData[9] |= 0b0110000000000000000;
+		finalData[10] |= 0b0110000000000000000;
+	}
+	else
+	{
+		finalData[1] |= 0b0000000000000000110;
+		finalData[2] |= 0b0000000000000000110;
+	}
+
+	drawTable(player, finalData);
+
+}
+
+void textByChar(int player, char textArray[], int timeBetweenSteps)
+{
+	int length = strlen(textArray);
+	for (int s = 0; s < length; s++)
+	{
+		long finalData[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		for (int i = 0; i < 13; i++)
+		{
+			finalData[i] |= getCharArray(textArray[s])[i];
+		}
+		elapsedMillis tempTimer = 0;
+		while (tempTimer < timeBetweenSteps)
+		{
+			drawTable(player, finalData);
+		}
+		allOff(player, 100);
+	}
 }
 
 void scrollingText(int player, char textArray[], int timeBetweenSteps)

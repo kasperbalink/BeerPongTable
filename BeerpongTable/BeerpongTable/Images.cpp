@@ -142,6 +142,34 @@ void pacMan(int player, int timeBetweenSteps, int totalTime)
 	}
 }
 
+void thumb(int player, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getThumb()[i];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+
+void thumbDown(int player, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getThumbDown()[i];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+
 long* getLogo()
 {
 	return logoArray;
@@ -164,4 +192,14 @@ long * getPacMan(int step)
 		return pacMan2;
 		break;
 	}
+}
+
+long * getThumb()
+{
+	return thumbArray;
+}
+
+long * getThumbDown()
+{
+	return thumbDownArray;
 }
