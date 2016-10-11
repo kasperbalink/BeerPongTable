@@ -48,6 +48,41 @@ void text(int player, char textArray[], int totalTime)
 	
 }
 
+void textNoYield(int player, char textArray[])
+{
+	long finalData[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	int length = strlen(textArray);
+	if (length < 4 && length > 0) //Max 3 elements
+	{
+		switch (length)
+		{
+		case 1:
+			for (int i = 0; i < 13; i++)
+			{
+				finalData[i] |= getCharArray(textArray[0])[i];
+			}
+			break;
+		case 2:
+			for (int i = 0; i < 13; i++)
+			{
+				finalData[i] |= (getCharArray(textArray[0])[i] << 3);
+				finalData[i] |= (getCharArray(textArray[1])[i] >> 3);
+			}
+			break;
+		case 3:
+			for (int i = 0; i < 13; i++)
+			{
+				finalData[i] |= (getCharArray(textArray[0])[i] << 5);
+				finalData[i] |= (getCharArray(textArray[1])[i] << 0);
+				finalData[i] |= (getCharArray(textArray[2])[i] >> 5);
+			}
+			break;
+		}
+		drawTableNoYield(player, finalData);
+	}
+}
+
+
 void startUpText(int player, int count)
 {
 	char charArray[] = "0";
@@ -265,7 +300,7 @@ long* getCharArray(char letter)
 		return min;
 		break;
 	default:
-		return empty;
+		return questionmark;
 		break;
 	}
 }

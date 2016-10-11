@@ -36,3 +36,7 @@ void drawTable(int player, long data[]);
 
 long shiftRight(long input, int bits);
 long shiftUp(long input[13], int current, int bits);
+
+void drawRowNoYield(int player, int _row, long inputdata);
+void drawLedCupsNoYield(int player);
+void drawTableNoYield(int player, long inputData[]);

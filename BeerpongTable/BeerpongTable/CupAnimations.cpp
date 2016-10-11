@@ -167,26 +167,60 @@ void allCupsOff(int player)
 	drawLedCups(player);
 }
 
-
-
-void drawLedCupScore(int player, int cupArray[10], int totalTime)
+void allCupsOnNoYield(int player)
 {
-	elapsedMillis timer;
-	while (timer < totalTime)
+	for (int i = 0; i < 10; i++)
 	{
-		
-		for (int i = 0; i < 10; i++)
-		{
-			if (cupArray[i] == 1)
-			{
-				addCup(player, i);
-			}
-			else
-			{
-				removeCup(player, i);
-			}
-		}
-		drawLedCups(player);
+		addCup(player, i);
 	}
-	yield();
+	drawLedCupsNoYield(player);
 }
+
+void allCupsOffNoYield(int player)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		removeCup(player, i);
+	}
+	drawLedCupsNoYield(player);
+}
+//
+//void drawLedCupScoreNoYield(int player, int cupArray[10])
+//{
+//	for (int i = 0; i < 10; i++)
+//	{
+//		if (cupArray[i] == 1)
+//		{
+//			addCup(player, i);
+//		}
+//		else
+//		{
+//			removeCup(player, i);
+//		}
+//	}
+//	drawLedCupsNoYield(player);
+//}
+
+
+
+//void drawLedCupScore(int player, int cupArray[10], int totalTime)
+//{
+//	elapsedMillis timer;
+//	while (timer < totalTime)
+//	{
+//
+//		for (int i = 0; i < 10; i++)
+//		{
+//			if (cupArray[i] == 1)
+//			{
+//				addCup(player, i);
+//			}
+//			else
+//			{
+//				removeCup(player, i);
+//			}
+//		}
+//		drawLedCups(player);
+//	}
+//	yield();
+//}

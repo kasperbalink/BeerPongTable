@@ -10,8 +10,12 @@ void thumbDown(int player, int totalTime);
 
 void pacMan(int player, int timeBetweenSteps, int totalTime);
 
+void logo2(int player, int totalTime);
+
 long* getLogo();
 long* getPacMan(int step);
 
 long* getThumb();
 long* getThumbDown();
+
+long* getLogo2();

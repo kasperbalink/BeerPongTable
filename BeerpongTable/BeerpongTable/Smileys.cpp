@@ -100,11 +100,24 @@ void smileyNeutraal(int player)
 	*/
 }
 
+void smiley(int player, int smiley, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getSmiley(smiley)[i];
+	}
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
 //nieuwe manier
 void smileyBlij(int player, int totalTime)
 {
-	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 	for (int i = 0; i < 13; i++)
 	{
 		animation[i] |= getSmileyBlij()[i];
@@ -129,6 +142,17 @@ void smileyBoos(int player, int totalTime)
 	{
 		drawTable(player, animation);
 	}
+}
+
+void smileyBoosNoYield(int player)
+{
+	long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getSmileyBoos()[i];
+	}
+	drawTableNoYield(player, animation);
+
 }
 void smileyNeutraal(int player, int totalTime)
 {
@@ -158,4 +182,26 @@ long* getSmileyNeutraal()
 long* getSmileyBoos()
 {
 	return smileyBoosArray;
+}
+
+long* getSmiley(int smiley)
+{
+	switch (smiley)
+	{
+	case 1:
+		return smiley1;
+		break;
+	case 2:
+		return smiley2;
+		break; 
+	case 3:
+		return smiley3;
+		break;
+	case 4:
+		return smiley4;
+		break;
+	case 5:
+		return smiley5;
+		break;
+	}
 }

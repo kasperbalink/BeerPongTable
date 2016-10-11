@@ -26,6 +26,20 @@ void logo(int player, int totalTime)
 	}
 }
 
+
+void logo2(int player, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getLogo2()[i];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
 void pacMan(int player, int timeBetweenSteps, int totalTime)
 {
 	int stepTime = timeBetweenSteps;
@@ -202,4 +216,9 @@ long * getThumb()
 long * getThumbDown()
 {
 	return thumbDownArray;
+}
+
+long * getLogo2()
+{
+	return logo2Array;
 }

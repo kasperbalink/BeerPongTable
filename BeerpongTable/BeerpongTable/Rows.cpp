@@ -7,8 +7,8 @@ void row(int player, int row)
 	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
 	for (int i = 0; i < 13; i++)
 	{
-		animation[i] |= shiftUp(getRowArray(),i , row);
-	}	
+		animation[i] |= shiftUp(getRowArray(), i, row);
+	}
 	drawTable(player, animation);
 }
 void row(int player, int row, int totalTime)
@@ -102,6 +102,26 @@ void rowBigInside(int player, int startRow, int endRow, int totalTime)
 	while (tempTimer < totalTime)
 	{
 		drawTable(player, animation);
+	}
+}
+
+void randomRows(int player, int count, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		for (int c = 0; c < count; c++)
+		{
+			int x = random(0, 12);
+			animation[x] |= 0b0111111111111111110;
+		}
+
+		elapsedMillis timer1 = 0;
+		while (timer1 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
 	}
 }
 

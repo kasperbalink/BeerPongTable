@@ -144,3 +144,32 @@ void randomLeds(int player, int timeBetweenSteps, int totalTime)
 		}
 	}
 }
+
+void randomLines(int player, int countRows, int countColumns, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		long animation[13]{ 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		for (int c = 0; c < countRows; c++)
+		{
+			int x = random(0, 12);
+			animation[x] |= 0b0111111111111111110;
+		}
+
+		for (int c = 0; c < countColumns; c++)
+		{
+			int x = pow(2, random(0, 18));
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= x;
+			}
+		}
+
+		elapsedMillis timer1 = 0;
+		while (timer1 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
+	}
+}

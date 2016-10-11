@@ -14,3 +14,5 @@ void outsideOn(int player);
 void outsideOn(int player, int totalTime);
 
 void randomLeds(int player, int timeBetweenSteps, int totalTime);
+
+void randomLines(int player, int countRows, int countColumns, int timeBetweenSteps, int totalTime);

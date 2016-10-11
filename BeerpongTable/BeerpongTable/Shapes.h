@@ -41,5 +41,9 @@ void diagonalLeftUpToLeft(int player, int size, int count, int timeBetweenSteps,
 void diagonalRightUpToRight(int player, int size, int count, int timeBetweenSteps, int totalTime);
 void diagonalRightUpToLeft(int player, int size, int count, int timeBetweenSteps, int totalTime);
 
+void squareInOut(int player, int timeBetweenSteps, int totalTime);
+void squareOutIn(int player, int timeBetweenSteps, int totalTime);
+
+
 
 void square_(int player, int size, int totalTime);

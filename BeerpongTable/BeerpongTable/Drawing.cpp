@@ -33,7 +33,7 @@ int addCup(int player, int cup)
 		return -1;
 	}
 	if (player == 1)
-	{	
+	{
 		cupData |= ((long)1 << (long)cup);
 	}
 	else if (player == 2)
@@ -49,7 +49,7 @@ int removeCup(int player, int cup)
 		return -1;
 	}
 	if (player == 1)
-	{		
+	{
 		cupData &= ~((long)1 << (long)cup);
 	}
 	else if (player == 2)
@@ -147,6 +147,7 @@ void drawRow(int player, int _row, long inputdata)
 	}
 	yield();
 }
+
 void clearData(int player)
 {
 	if (player == 1)
@@ -164,25 +165,23 @@ void clearData(int player)
 	}
 }
 
-
 void drawTable(int player, long inputData[])
 {
 	if (player == 1)
 	{
 		for (int i = 0; i < 13; i++)
 		{
-				drawRow(1, i, inputData[i]);
+			drawRow(1, i, inputData[i]);
 		}
 	}
 	else if (player == 2)
 	{
 		for (int i = 0; i < 13; i++)
 		{
-				drawRow(2, i, inputData[i]);
+			drawRow(2, i, inputData[i]);
 		}
 	}
 }
-
 
 long shiftRight(long input, int bits)
 {
@@ -227,5 +226,72 @@ long shiftUp(long input[13], int current, int bits)
 	else
 	{
 		return input[tmp];
+	}
+}
+
+void drawRowNoYield(int player, int _row, long inputdata)
+{
+	if (player == 1)
+	{
+		//0xFF = 255 
+		digitalWrite(latchPin_P1, LOW);
+
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, ~(1 << _row) & 0xFF); //min 8 t/m 12
+
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (inputdata >> 16) & 0xFF); //plus 0 t/m 7
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (inputdata >> 8) & 0xFF); //plus 8 t/m 15
+		shiftOut(dataPin_P1, clockPin_P1, LSBFIRST, (inputdata & 0xFF)); //plus 16 t/m 18
+
+		digitalWrite(latchPin_P1, HIGH);
+	}
+	else if (player == 2)
+	{
+		digitalWrite(latchPin_P2, LOW);
+
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, ~((1 << _row) >> 8) & 0xFF); //min 0 t/m 7
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, ~(1 << _row) & 0xFF); //min 8 t/m 12
+
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, (inputdata >> 16) & 0xFF); //plus 0 t/m 7
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, (inputdata >> 8) & 0xFF); //plus 8 t/m 15
+		shiftOut(dataPin_P2, clockPin_P2, LSBFIRST, (inputdata & 0xFF)); //plus 16 t/m 18
+
+		digitalWrite(latchPin_P2, HIGH);
+	}
+}
+
+void drawLedCupsNoYield(int player)
+{
+	if (player == 1)
+	{
+		digitalWrite(latchPinCup_P1, LOW);
+		shiftOut(dataPinCup_P1, clockPinCup_P1, LSBFIRST, (cupData >> 8) & 0xFF); //plus 0 t/m 7
+		shiftOut(dataPinCup_P1, clockPinCup_P1, LSBFIRST, (cupData & 0xFF)); //plus 8 t/m 15
+		digitalWrite(latchPinCup_P1, HIGH);
+	}
+	else if (player == 2)
+	{
+		digitalWrite(latchPinCup_P2, LOW);
+		shiftOut(dataPinCup_P2, clockPinCup_P2, LSBFIRST, (cupDataP2 >> 8) & 0xFF); //plus 0 t/m 7
+		shiftOut(dataPinCup_P2, clockPinCup_P2, LSBFIRST, (cupDataP2 & 0xFF)); //plus 8 t/m 15
+		digitalWrite(latchPinCup_P2, HIGH);
+	}
+}
+
+void drawTableNoYield(int player, long inputData[])
+{
+	if (player == 1)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			drawRowNoYield(1, i, inputData[i]);
+		}
+	}
+	else if (player == 2)
+	{
+		for (int i = 0; i < 13; i++)
+		{
+			drawRowNoYield(2, i, inputData[i]);
+		}
 	}
 }

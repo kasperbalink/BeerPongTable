@@ -2,6 +2,8 @@
 #include "Columns.h"
 #include "ColumnData.h"
 
+#include <math.h>
+
 
 void column(int player, int column)
 {
@@ -104,6 +106,30 @@ void columnBigInside(int player, int startColumn, int endColumn, int totalTime)
 	while (tempTimer < totalTime)
 	{
 		drawTable(player, animation);
+	}
+}
+
+void randomColumn(int player, int count, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+		for (int c = 0; c < count; c++)
+		{
+			int x = pow(2, random(0, 18));
+
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= x;
+			}
+		}
+
+		elapsedMillis timer1 = 0;
+		while (timer1 < timeBetweenSteps)
+		{
+			drawTable(player, animation);
+		}
 	}
 }
 

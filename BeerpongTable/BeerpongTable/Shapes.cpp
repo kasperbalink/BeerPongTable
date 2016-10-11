@@ -456,8 +456,55 @@ void diagonalRightUpToLeft(int player, int size, int count, int timeBetweenSteps
 	}
 }
 
+void squareInOut(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		for (int s = 1; s < 8; s++)
+		{
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= getSquareArray(s)[i];
+			}
+
+			elapsedMillis timer2 = 0;
+			while (timer2 < timeBetweenSteps)
+			{				
+				drawTable(player, animation);
+			}
+		}
+		
+	}
+}
+
+void squareOutIn(int player, int timeBetweenSteps, int totalTime)
+{
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		for (int s = 7; s > 0; s--)
+		{
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= getSquareArray(s)[i];
+			}
+
+			elapsedMillis timer2 = 0;
+			while (timer2 < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+		}
+
+	}
+}
+
 long* getSquareArray(int size)
 {
+	//1 is smallest square
 	switch (size)
 	{
 	case 1:

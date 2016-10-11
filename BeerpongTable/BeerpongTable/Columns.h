@@ -14,5 +14,7 @@ void columnInside(int player, int column, int totalTime);
 void columnBigInside(int player, int startColumn, int endColumn);
 void columnBigInside(int player, int startColumn, int endColumn, int totalTime);
 
+void randomColumn(int player, int count, int timeBetweenSteps, int totalTime);
+
 long* getColumnArray();
 long* getInsideColumnArray();

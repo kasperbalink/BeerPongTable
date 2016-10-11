@@ -8,6 +8,11 @@ void smileyBoos(int player, int interval);
 void smileyNeutraal(int player);
 void smileyNeutraal(int player, int interval);
 
+void smiley(int player, int smiley, int totalTime);
+
+void smileyBoosNoYield(int player);
+
 long* getSmileyBlij();
 long* getSmileyNeutraal();
 long* getSmileyBoos();
+long* getSmiley(int smiley);

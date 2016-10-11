@@ -10,15 +10,23 @@
 #define SIG_pin_1 A0
 #define SIG_pin_2 A1
 
-//void randomLedCups(int player, int count, int interval, int timer);
+void calibrateSensors();
+bool isCalibrated();
+
 void addRemoveCup(int player, int cup, int value);
 void checkCups(int player);
 int getCups(int player);
 void drawLedScore(int player, int totalTime);
 int readMux(int player, int channel);
 
-bool isCalibrated();
+void addRemoveCupNoYield(int player, int cup, int value);
+void checkCupsNoYield(int player);
+int getCupsNoYield(int player);
+void drawLedScoreNoYield(int player);
+int readMuxNoYield(int player, int channel);
 
-int* getScoreArray(int player);
+bool isScored();
+void setScored();
 
-void calibrateSensors();
+//int* getScoreArray(int player);
+
