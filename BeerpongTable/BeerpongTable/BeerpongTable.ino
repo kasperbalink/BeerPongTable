@@ -122,7 +122,7 @@ void loop()
 		while (isScored() && startLedBlue && startLedRed && startCupBlue && startCupRed)
 		{
 			elapsedMillis scoreTimer = 0;
-			while (scoreTimer < 10000)
+			while (scoreTimer < 5000)
 			{
 				checkCupsNoYield(blue);
 				checkCupsNoYield(red);
@@ -258,13 +258,20 @@ void randomCupAnimation(int player)
 	case 4:
 		oneToFour(player, random(100, 300), random(1000, 5000));
 		break;
+	case 5:
+		allCupsOn(player, random(2000, 5000));
+		break;
+	case 6:
+		allCupsOff(player, random(2000, 5000));
+		break;
 	}
 }
 
 void randomAnimations(int player)
 {
 	//min is inclusice, max is exclusive
-	int numberOfAnimation = random(0, 39);
+	int numberOfAnimation = random(0, 59);
+	
 
 	switch (numberOfAnimation)
 	{
@@ -389,7 +396,7 @@ void randomAnimations(int player)
 		randomLines(player, random(1, 7), random(1, 5), random(100, 400), random(2000, 5000));
 		break;
 	case 32: 
-		smiley(player, random(1, 6), random(2000, 5000));
+		smiley(player, 5, random(2000, 5000));
 		break;
 	case 33:
 		squareInOut(player, random(80, 200), random(2000, 5000));
@@ -398,12 +405,63 @@ void randomAnimations(int player)
 		squareOutIn(player, random(80, 200), random(2000, 5000));
 		break;
 	case 35:
+		randomLeds(player, random(50, 200), random(2000, 5000));
 		break;
 	case 36:
+		heart(player, 1, random(2000, 5000));
 		break;
 	case 37:
+		heartInToOut(player, random(80, 200), random(2000, 5000));
 		break;
-
+	case 38:
+		heartOutToIn(player, random(80, 200), random(2000, 5000));
+		break;
+	case 39:
+		smiley(player, 1, random(2000, 5000));
+		break;
+	case 40:
+		smiley(player, 2, random(2000, 5000));
+		break;
+	case 41:
+		smiley(player, 3, random(2000, 5000));
+		break;
+	case 42:
+		smiley(player, 4, random(2000, 5000));
+		break;
+	case 43:
+		text(player, "#fissa", random(200, 2000));
+	case 44:
+		textByChar(player, "fissa", random(100, 200));
+	case 45:
+		text(player, "#bier", random(200, 2000));
+	case 46:
+		textByChar(player, "bier", random(100, 200));
+	case 47:
+		text(player, "#party", random(200, 2000));
+	case 48:
+		textByChar(player, "party", random(100, 200));
+	case 49:
+		text(player, "#teamtrickshottim", random(200, 2000));
+	case 50:
+		text(player, "#teambae", random(200, 2000));
+	case 51:
+		text(player, "#musketiers", random(200, 2000));
+	case 52:
+		text(player, "#teamsquirtle", random(200, 2000));
+	case 53:
+		text(player, "#teamonverslaanbaar", random(200, 2000));
+	case 54:
+		text(player, "#teampolderstreet", random(200, 2000));
+	case 55:
+		text(player, "#team076", random(200, 2000));
+	case 56:
+		text(player, "#teamrood", random(200, 2000));
+	case 57:
+		text(player, "#teamblauw", random(200, 2000));
+	case 58:
+		heartFilled(player, random(2000, 5000));
+		
+		break; 
 
 	default:
 		if (player == 1)

@@ -142,7 +142,7 @@ void textByChar(int player, char textArray[], int timeBetweenSteps)
 void scrollingText(int player, char textArray[], int timeBetweenSteps)
 {
 	int length = strlen(textArray);
-	int shiftOriginal = 0;
+	int shiftOriginal = 12;
 	while (shiftOriginal > (length+1) * -6)
 	{
 		int shift = shiftOriginal;

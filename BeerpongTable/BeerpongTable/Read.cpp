@@ -17,8 +17,8 @@ int sensorTimersOffP2[10] = { 0,0,0,0,0,0,0,0,0,0 };
 
 bool isCalibrated_ = false;
 
-int oldCountP1 = 10;
-int oldCountP2 = 10;
+int oldCountP1 = 0;
+int oldCountP2 = 0;
 
 bool scoredP1 = false;
 bool scoredP2 = false;
@@ -29,7 +29,7 @@ void calibrateSensors()
 {
 	for (int i = 0; i < 10; i++)
 	{
-		int avg = 8;
+		int avg = 150;
 		int valueP1 = 0;
 		int valueP2 = 0;
 		for (int count = 0; count < avg; count++)
@@ -56,25 +56,18 @@ void checkCups(int player)
 {
 	if (player == 1)
 	{
-		//Printen naar console
-		//Serial.print("Default: ");
-		//Serial.println(sensorValueP1[-2 + 6]);
-		//Serial.print("Current: ");
-		//int current;
-		//readMux(player, 0 + 6) - ((readMux(player, 0) + readMux(player, 1)) / 2);
-		Serial.println(readMux(player, 2 + 3) - ((readMux(player, 0) + readMux(player, 1)) / 2));
-		
-
 		for (int i = 0; i < 10; i++)
 		{
-			addRemoveCup(player, i, sensorValueP1[i] - 3); //4 is verschil
+			addRemoveCup(player, i, sensorValueP1[i] - 3); 
+			//yield();
 		}
 	}
 	else if (player == 2)
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			addRemoveCup(player, i, sensorValueP2[i] - 4); //4 is verschil
+			addRemoveCup(player, i, sensorValueP2[i] - 3); //4 is verschil
+			//yield();
 		}
 	}
 	yield();
@@ -89,13 +82,18 @@ void addRemoveCup(int player, int cup, int value)
 	for (int i = 0; i < count; i++)
 	{
 		avg += readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2);
+		//yield();
 	}
 	if (avg / count <= value)
 	{
 		if (player == 1)
 		{
+			if (cup == 8)
+			{
+				Serial.println(avg / count);
+			}
 			sensorTimersOnP1[cup] += 1;
-			if (sensorTimersOnP1[cup] > 20)
+			if (sensorTimersOnP1[cup] > 70) //50
 			{
 				cupsOnP1[cup] = 1;
 				sensorTimersOffP1[cup] = 0;
@@ -103,8 +101,9 @@ void addRemoveCup(int player, int cup, int value)
 		}
 		else
 		{
+			
 			sensorTimersOnP2[cup] += 1;
-			if (sensorTimersOnP2[cup] > 20)
+			if (sensorTimersOnP2[cup] > 70)
 			{
 				cupsOnP2[cup] = 1;
 				sensorTimersOffP2[cup] = 0;
@@ -115,8 +114,12 @@ void addRemoveCup(int player, int cup, int value)
 	{
 		if (player == 1)
 		{
+			if (cup == 8)
+			{
+				Serial.println(avg / count);
+			}
 			sensorTimersOffP1[cup] += 1;
-			if (sensorTimersOffP1[cup] > 10)
+			if (sensorTimersOffP1[cup] > 15)
 			{
 				cupsOnP1[cup] = 0;
 				sensorTimersOnP1[cup] = 0;
@@ -125,7 +128,7 @@ void addRemoveCup(int player, int cup, int value)
 		else
 		{
 			sensorTimersOffP2[cup] += 1;
-			if (sensorTimersOffP2[cup] > 10)
+			if (sensorTimersOffP2[cup] > 15)
 			{
 				cupsOnP2[cup] = 0;
 				sensorTimersOnP2[cup] = 0;
@@ -174,7 +177,7 @@ void drawLedScore(int player, int totalTime)
 	//yield();
 }
 
-/*returnt de score van gegeven speler.*/
+/*returnt de aantal cups van gegeven speler.*/
 int getCups(int player)
 {
 	checkCups(player);
