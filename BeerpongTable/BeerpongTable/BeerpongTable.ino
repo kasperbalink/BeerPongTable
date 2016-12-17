@@ -279,18 +279,9 @@ void randomAnimations(int player)
 		diagonalRightUpToRight(player, random(1, 5), 25, 75, random(5000, 10000));
 		break;
 	case 1:
-		diagonalLeftUpToRight(player, random(1, 5), 25, 75, random(5000, 10000));
-		break;
-	case 2:
-		diagonalRightUpToLeft(player, random(1, 5), 25, 75, random(5000, 10000));
-		break;
-	case 3:
-		diagonalLeftUpToLeft(player, random(1, 5), 25, 75, random(5000, 10000));
-		break;
-	case 4:
 		ballAnimation(player, random(30, 80), random(5000, 10000));
 		break;
-	case 5:
+	case 2:
 	{
 		int totalTime = random(2000, 10000);
 		if (player == 1)
@@ -313,154 +304,177 @@ void randomAnimations(int player)
 		}
 	}
 		break;
-	case 6:
+	case 3:
 		bracketLeft(player, 19, random(30, 100), random(2000, 10000));
 		break;
-	case 7:
+	case 4:
 		bracketRight(player, 19, random(30, 100), random(2000, 10000));
 		break;
-	case 8:
+	case 5:
 		arrowDown(player, random(30, 100), random(2000, 10000));
 		break;
-	case 9:
+	case 6:
 		arrowUp(player, random(30, 100), random(2000, 10000));
 		break;
-	case 10:
+	case 7:
 		arrowLeft(player, random(30, 100), random(2000, 10000));
 		break;
-	case 11:
+	case 8:
 		arrowRight(player, random(30, 100), random(2000, 10000));
 		break;
-	case 12:
+	case 9:
 		for (int i = 0; i < random(5, 15); i++)
 		{
 			insideOn(player, 50);
 			outsideOn(player, 50);
 		}
 		break;
-	case 13:
-		text(player, "beerpong!", 100);
+	case 10:
+		diagonalLeftUpToRight(player, random(1, 5), 25, 75, random(5000, 10000));
 		break;
-	case 14:
-		circleInOut(player, random(25, 100), random(2000, 10000));
-		break;
-	case 15:
-		circleInOutFilled(player, random(25, 100), random(2000, 10000));
-		break;
-	case 16:
-		circleOutIn(player, random(25, 100), random(2000, 10000));
-		break;
-	case 17:
-		circleOutInFilled(player, random(25, 100), random(2000, 10000));
-		break;
-	case 18:
-		logo2(player, random(2000, 4000));
-		break;
-	case 19:
-		pacMan(player, 50, random(2000, 10000));
-		break;
-	case 20:
-		smileyBlijToBoos(player, random(100, 400), random(1000, 5000));
-		break;
-	case 21:
-		smileyBoosToBlij(player, random(100, 400), random(1000, 5000));
-		break;
-	case 22:
-		textByChar(player, "beerpong", 200);
-		break;
-	case 23:
-		thumb(player, 5000);
-		break;
-	case 24:
-		thumbDown(player, 5000);
-		break;
-	case 25:
-		leftToRight(player, random(1, 5), random(100, 400), random(2000, 5000));
-		break;
-	case 26:
-		rightToLeft(player, random(1, 5), random(100, 400), random(2000, 5000));
-		break;
-	case 27:
-		upToDown(player, random(1, 4), random(100, 400), random(2000, 5000));
-		break;
-	case 28:
-		downToUp(player, random(1, 4), random(100, 400), random(2000, 5000));
-		break;
-	case 29:
-		randomRows(player, random(1, 4), random(100, 400), random(2000, 5000));
-		break;
-	case 30:
-		randomColumn(player, random(1, 7), random(100, 400), random(2000, 5000));
-		break;
-	case 31:
+	case 11:
 		randomLines(player, random(1, 7), random(1, 5), random(100, 400), random(2000, 5000));
 		break;
-	case 32: 
+	case 12:
 		smiley(player, 5, random(2000, 5000));
 		break;
+	case 13:
+		text(player, "#teamtrickshottim", random(200, 2000));
+		break;
+	case 14:
+		text(player, "#teambae", random(200, 2000));
+		break;
+	case 15:
+		diagonalRightUpToLeft(player, random(1, 5), 25, 75, random(5000, 10000));
+		break;
+	case 16:
+		diagonalLeftUpToLeft(player, random(1, 5), 25, 75, random(5000, 10000));
+		break;
+	case 17:
+		text(player, "#teampolderstreet", random(200, 2000));
+		break;
+	case 18:
+		text(player, "#team076", random(200, 2000));
+		break;
+	case 19:
+		circleOutIn(player, random(25, 100), random(2000, 10000));
+		break;
+	case 20:
+		circleOutInFilled(player, random(25, 100), random(2000, 10000));
+		break;
+	case 21:
+		logo2(player, random(2000, 4000));
+		break;
+	case 22:
+		pacMan(player, 50, random(2000, 10000));
+		break;
+	case 23:
+		smileyBlijToBoos(player, random(100, 400), random(1000, 5000));
+		break;
+	case 24:
+		smileyBoosToBlij(player, random(100, 400), random(1000, 5000));
+		break;
+	case 25:
+		textByChar(player, "beerpong", 200);
+		break;
+	case 26:
+		thumb(player, 5000);
+		break;
+	case 27:
+		textByChar(player, "party", random(100, 200));
+		break;
+	case 28:
+		text(player, "#musketiers", random(200, 2000));
+		break;
+	case 29:
+		thumbDown(player, 5000);
+		break;
+	case 30:
+		leftToRight(player, random(1, 5), random(100, 400), random(2000, 5000));
+		break;
+	case 31:
+		rightToLeft(player, random(1, 5), random(100, 400), random(2000, 5000));
+		break;
+	case 32:
+		upToDown(player, random(1, 4), random(100, 400), random(2000, 5000));
+		break;
 	case 33:
-		squareInOut(player, random(80, 200), random(2000, 5000));
+		text(player, "beerpong!", 100);
 		break;
 	case 34:
-		squareOutIn(player, random(80, 200), random(2000, 5000));
+		circleInOut(player, random(25, 100), random(2000, 10000));
 		break;
 	case 35:
-		randomLeds(player, random(50, 200), random(2000, 5000));
+		circleInOutFilled(player, random(25, 100), random(2000, 10000));
 		break;
 	case 36:
-		heart(player, 1, random(2000, 5000));
+		downToUp(player, random(1, 4), random(100, 400), random(2000, 5000));
 		break;
 	case 37:
-		heartInToOut(player, random(80, 200), random(2000, 5000));
+		randomRows(player, random(1, 4), random(100, 400), random(2000, 5000));
 		break;
 	case 38:
-		heartOutToIn(player, random(80, 200), random(2000, 5000));
+		randomColumn(player, random(1, 7), random(100, 400), random(2000, 5000));
 		break;
 	case 39:
-		smiley(player, 1, random(2000, 5000));
+		text(player, "#teamsquirtle", random(200, 2000));
 		break;
 	case 40:
-		smiley(player, 2, random(2000, 5000));
+		text(player, "#teamonverslaanbaar", random(200, 2000));
 		break;
 	case 41:
-		smiley(player, 3, random(2000, 5000));
+		squareInOut(player, random(80, 200), random(2000, 5000));
 		break;
 	case 42:
-		smiley(player, 4, random(2000, 5000));
+		squareOutIn(player, random(80, 200), random(2000, 5000));
 		break;
 	case 43:
-		text(player, "#fissa", random(200, 2000));
+		randomLeds(player, random(50, 200), random(2000, 5000));
+		break;
 	case 44:
-		textByChar(player, "fissa", random(100, 200));
+		heart(player, 1, random(2000, 5000));
+		break;
 	case 45:
-		text(player, "#bier", random(200, 2000));
+		heartInToOut(player, random(80, 200), random(2000, 5000));
+		break;
 	case 46:
-		textByChar(player, "bier", random(100, 200));
+		heartOutToIn(player, random(80, 200), random(2000, 5000));
+		break;
 	case 47:
-		text(player, "#party", random(200, 2000));
+		smiley(player, 1, random(2000, 5000));
+		break;
 	case 48:
-		textByChar(player, "party", random(100, 200));
+		smiley(player, 2, random(2000, 5000));
+		break;
 	case 49:
-		text(player, "#teamtrickshottim", random(200, 2000));
+		smiley(player, 3, random(2000, 5000));
+		break;
 	case 50:
-		text(player, "#teambae", random(200, 2000));
+		smiley(player, 4, random(2000, 5000));
+		break;
 	case 51:
-		text(player, "#musketiers", random(200, 2000));
+		text(player, "#fissa", random(200, 2000));
+		break;
 	case 52:
-		text(player, "#teamsquirtle", random(200, 2000));
+		textByChar(player, "fissa", random(100, 200));
+		break;
 	case 53:
-		text(player, "#teamonverslaanbaar", random(200, 2000));
+		text(player, "#bier", random(200, 2000));
+		break;
 	case 54:
-		text(player, "#teampolderstreet", random(200, 2000));
+		textByChar(player, "bier", random(100, 200));
+		break;
 	case 55:
-		text(player, "#team076", random(200, 2000));
+		text(player, "#party", random(200, 2000));
+		break;
 	case 56:
 		text(player, "#teamrood", random(200, 2000));
+		break;
 	case 57:
 		text(player, "#teamblauw", random(200, 2000));
+		break;
 	case 58:
 		heartFilled(player, random(2000, 5000));
-		
 		break; 
 
 	default:
