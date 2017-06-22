@@ -255,6 +255,20 @@ void heartOutToIn(int player, int timeBetweenSteps, int totalTime)
 	}
 }
 
+void labelALogo(int player, int totalTime)
+{
+  long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+  for (int i = 0; i < 13; i++)
+  {
+    animation[i] |= getLabelALogo()[i];
+  }
+  elapsedMillis tempTimer;
+  while (tempTimer < totalTime)
+  {
+    drawTable(player, animation);
+  }
+}
+
 long* getHeart(int size)
 {
 	switch (size)
@@ -312,3 +326,9 @@ long * getLogo2()
 {
 	return logo2Array;
 }
+
+long * getLabelALogo() 
+{
+  return labelALogoArray;
+}
+
