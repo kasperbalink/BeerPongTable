@@ -295,3 +295,56 @@ void drawTableNoYield(int player, long inputData[])
 		}
 	}
 }
+
+void allCupsOn(int player, int totalTime)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		addCup(player, i);
+	}
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		drawLedCups(player);
+	}
+}
+
+void allCupsOff(int player, int totalTime)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		removeCup(player, i);
+	}
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		drawLedCups(player);
+	}
+}
+
+void allCupsOff(int player)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		removeCup(player, i);
+	}
+	drawLedCups(player);
+}
+
+void allCupsOnNoYield(int player)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		addCup(player, i);
+	}
+	drawLedCupsNoYield(player);
+}
+
+void allCupsOffNoYield(int player)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		removeCup(player, i);
+	}
+	drawLedCupsNoYield(player);
+}

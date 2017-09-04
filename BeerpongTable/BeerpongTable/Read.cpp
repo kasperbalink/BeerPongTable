@@ -58,8 +58,7 @@ void checkCups(int player)
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			addRemoveCup(player, i, sensorValueP1[i] - 3); 
-			//yield();
+			addRemoveCup(player, i, sensorValueP1[i] - 3);
 		}
 	}
 	else if (player == 2)
@@ -67,7 +66,6 @@ void checkCups(int player)
 		for (int i = 0; i < 10; i++)
 		{
 			addRemoveCup(player, i, sensorValueP2[i] - 3); //4 is verschil
-			//yield();
 		}
 	}
 	yield();
@@ -82,7 +80,6 @@ void addRemoveCup(int player, int cup, int value)
 	for (int i = 0; i < count; i++)
 	{
 		avg += readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2);
-		//yield();
 	}
 	if (avg / count <= value)
 	{
@@ -101,7 +98,7 @@ void addRemoveCup(int player, int cup, int value)
 		}
 		else
 		{
-			
+
 			sensorTimersOnP2[cup] += 1;
 			if (sensorTimersOnP2[cup] > 70)
 			{
@@ -140,7 +137,7 @@ void addRemoveCup(int player, int cup, int value)
 }
 
 /*Deze methode zet de leds aan als er een beker staat*/
-void drawLedScore(int player, int totalTime)
+void showStandingCups(int player, int totalTime)
 {
 	checkCups(player);
 	elapsedMillis timer;
@@ -174,8 +171,52 @@ void drawLedScore(int player, int totalTime)
 		}
 		drawLedCups(player);
 	}
-	//yield();
 }
+
+void blinkStandingCups(int player, int onTime, int offTime, int totalTime)
+{
+	checkCups(player);
+	elapsedMillis timer;
+	while (timer < totalTime)
+	{
+		checkCups(player);
+		for (int i = 0; i < 10; i++)
+		{
+			if (player == 1)
+			{
+				if (cupsOnP1[i] == 1)
+				{
+					addCup(player, i);
+				}
+				else
+				{
+					removeCup(player, i);
+				}
+			}
+			else if (player == 2)
+			{
+				if (cupsOnP2[i] == 1)
+				{
+					addCup(player, i);
+				}
+				else
+				{
+					removeCup(player, i);
+				}
+			}
+		}
+		elapsedMillis onTimer = 0;
+		while (onTimer < onTime) {
+			drawLedCups(player);
+		}
+		elapsedMillis offTimer = 0;
+		while (offTimer < offTime) {
+			allCupsOff(player);
+		}
+
+	}
+}
+
 
 /*returnt de aantal cups van gegeven speler.*/
 int getCups(int player)
@@ -196,7 +237,7 @@ int getCups(int player)
 	}
 	if (player == 1)
 	{
-		if (scoreCount != oldCountP1)
+		if (scoreCount != oldCountP1 && scoreCount < oldCountP1) //added <
 		{
 			scoredP1 = true;
 			oldCountP1 = scoreCount;
@@ -204,7 +245,7 @@ int getCups(int player)
 	}
 	else if (player == 2)
 	{
-		if (scoreCount != oldCountP2)
+		if (scoreCount != oldCountP2 && scoreCount < oldCountP2) // added <
 		{
 			scoredP2 = true;
 			oldCountP2 = scoreCount;

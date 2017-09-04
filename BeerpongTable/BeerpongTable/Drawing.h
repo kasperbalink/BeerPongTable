@@ -25,8 +25,6 @@ void clearCupData(int player);
 int addCup(int player, int cup);
 int removeCup(int player, int cup);
 
-void setRawRowData(int player, int data);
-
 void drawRow(int player, int _row, long inputdata);
 void setRowData(int player, int _column);
 void drawRow(int player, int _row);
@@ -40,3 +38,11 @@ long shiftUp(long input[13], int current, int bits);
 void drawRowNoYield(int player, int _row, long inputdata);
 void drawLedCupsNoYield(int player);
 void drawTableNoYield(int player, long inputData[]);
+
+void allCupsOn(int player, int totalTime);
+void allCupsOff(int player, int totalTime);
+void allCupsOff(int player);
+//void drawLedCupScore(int player, int cupArray[10], int totalTime);
+
+void allCupsOnNoYield(int player);
+void allCupsOffNoYield(int player);

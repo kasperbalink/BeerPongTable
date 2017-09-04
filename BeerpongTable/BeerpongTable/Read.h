@@ -16,7 +16,8 @@ bool isCalibrated();
 void addRemoveCup(int player, int cup, int value);
 void checkCups(int player);
 int getCups(int player);
-void drawLedScore(int player, int totalTime);
+void showStandingCups(int player, int totalTime);
+void blinkStandingCups(int player, int onTime, int offTime, int totalTime);
 int readMux(int player, int channel);
 
 void addRemoveCupNoYield(int player, int cup, int value);
