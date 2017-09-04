@@ -269,7 +269,7 @@ void randomCupAnimation(int player)
 
 void randomAnimations(int player)
 {
-	int numberOfAnimation = random(0, 52);
+	int numberOfAnimation = random(0, 47);
 
 
 	switch (numberOfAnimation)
@@ -439,22 +439,6 @@ void randomAnimations(int player)
 	case 46:
 		text(player, "#party", random(200, 2000));
 		break;
-	case 47:
-		text(player, "hiep hiep hoera", random(200, 2000));
-		break;
-	case 48:
-		text(player, "gefeliciteerd!", random(200, 2000));
-		break;
-	case 49:
-		text(player, "tim", random(200, 2000));
-		break;
-	case 50:
-		text(player, "annabel", random(200, 2000));
-		break;
-	case 51:
-		textByChar(player, "gefeliciteerd", random(100, 200));
-		break;
-
 
 	default:
 		if (player == 1)
