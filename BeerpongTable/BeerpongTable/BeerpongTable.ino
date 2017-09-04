@@ -240,7 +240,8 @@ void drawLedCupsPlayerRed() { //in loop
 
 void randomCupAnimation(int player)
 {
-	int numberOfAnimation = random(0, 5);
+	//min is included, max is exclusive
+	int numberOfAnimation = random(0, 6);
 	switch (numberOfAnimation)
 	{
 	case 0:
@@ -250,27 +251,25 @@ void randomCupAnimation(int player)
 		fourToOne(player, random(100, 300), random(1000, 7000));
 		break;
 	case 2:
-		drawLedScore(player, random(4000, 15000));
+		showStandingCups(player, random(4000, 15000));
 		break;
 	case 3:
+		int onTime;
+		onTime = random(200, 1000);
+		blinkStandingCups(player, onTime, random(100, onTime), random(4000, 15000));
+		break;
+	case 4:
 		randomCups(player, random(1, 5), random(100, 300), random(500, 5000));
 		break; 
-	case 4:
-		oneToFour(player, random(100, 300), random(1000, 5000));
-		break;
 	case 5:
-		allCupsOn(player, random(2000, 5000));
-		break;
-	case 6:
-		allCupsOff(player, random(2000, 5000));
+		oneToFour(player, random(100, 300), random(1000, 5000));
 		break;
 	}
 }
 
 void randomAnimations(int player)
 {
-	//min is inclusice, max is exclusive
-	int numberOfAnimation = random(0, 47);
+	int numberOfAnimation = random(0, 52);
 
 
 	switch (numberOfAnimation)
@@ -440,6 +439,22 @@ void randomAnimations(int player)
 	case 46:
 		text(player, "#party", random(200, 2000));
 		break;
+	case 47:
+		text(player, "hiep hiep hoera", random(200, 2000));
+		break;
+	case 48:
+		text(player, "gefeliciteerd!", random(200, 2000));
+		break;
+	case 49:
+		text(player, "tim", random(200, 2000));
+		break;
+	case 50:
+		text(player, "annabel", random(200, 2000));
+		break;
+	case 51:
+		textByChar(player, "gefeliciteerd", random(100, 200));
+		break;
+
 
 	default:
 		if (player == 1)
