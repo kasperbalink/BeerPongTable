@@ -237,7 +237,7 @@ int getCups(int player)
 	}
 	if (player == 1)
 	{
-		if (scoreCount != oldCountP1 && scoreCount < oldCountP1) //added <
+		if (scoreCount != oldCountP1) //added <
 		{
 			scoredP1 = true;
 			oldCountP1 = scoreCount;
@@ -245,7 +245,7 @@ int getCups(int player)
 	}
 	else if (player == 2)
 	{
-		if (scoreCount != oldCountP2 && scoreCount < oldCountP2) // added <
+		if (scoreCount != oldCountP2) // added <
 		{
 			scoredP2 = true;
 			oldCountP2 = scoreCount;
