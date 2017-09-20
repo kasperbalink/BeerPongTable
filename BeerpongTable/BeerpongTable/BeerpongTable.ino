@@ -269,8 +269,8 @@ void randomCupAnimation(int player)
 
 void randomAnimations(int player)
 {
-	int numberOfAnimation = random(0, 52);
-
+	//min is included, max is exclusive
+	int numberOfAnimation = random(0, 50);
 
 	switch (numberOfAnimation)
 	{
@@ -446,15 +446,8 @@ void randomAnimations(int player)
 		text(player, "gefeliciteerd!", random(200, 2000));
 		break;
 	case 49:
-		text(player, "tim", random(200, 2000));
-		break;
-	case 50:
-		text(player, "annabel", random(200, 2000));
-		break;
-	case 51:
 		textByChar(player, "gefeliciteerd", random(100, 200));
 		break;
-
 
 	default:
 		if (player == 1)
