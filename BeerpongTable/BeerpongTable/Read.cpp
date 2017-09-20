@@ -44,6 +44,7 @@ void calibrateSensors()
 		valueP2 = 0;
 	}
 	isCalibrated_ = true;
+	Serial.println("Calibration Success!");
 }
 
 bool isCalibrated()
@@ -85,10 +86,6 @@ void addRemoveCup(int player, int cup, int value)
 	{
 		if (player == 1)
 		{
-			if (cup == 8)
-			{
-				Serial.println(avg / count);
-			}
 			sensorTimersOnP1[cup] += 1;
 			if (sensorTimersOnP1[cup] > 70) //50
 			{
@@ -111,10 +108,6 @@ void addRemoveCup(int player, int cup, int value)
 	{
 		if (player == 1)
 		{
-			if (cup == 8)
-			{
-				Serial.println(avg / count);
-			}
 			sensorTimersOffP1[cup] += 1;
 			if (sensorTimersOffP1[cup] > 15)
 			{
@@ -237,7 +230,7 @@ int getCups(int player)
 	}
 	if (player == 1)
 	{
-		if (scoreCount != oldCountP1 && scoreCount < oldCountP1) //added <
+		if (scoreCount != oldCountP1) //added <
 		{
 			scoredP1 = true;
 			oldCountP1 = scoreCount;
@@ -245,7 +238,7 @@ int getCups(int player)
 	}
 	else if (player == 2)
 	{
-		if (scoreCount != oldCountP2 && scoreCount < oldCountP2) // added <
+		if (scoreCount != oldCountP2) // added <
 		{
 			scoredP2 = true;
 			oldCountP2 = scoreCount;
