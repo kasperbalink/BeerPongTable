@@ -55,18 +55,20 @@ bool isCalibrated()
 /*Deze methode berekent of er een beker op staat. Voor speler 1 of speler 2: Standaard waarde - 4.*/
 void checkCups(int player)
 {
-	if (player == 1)
+	int valueOffset = -3;
+
+	if (player == 1) //blue
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			addRemoveCup(player, i, sensorValueP1[i] - 3);
+			addRemoveCup(player, i, sensorValueP1[i] + valueOffset);
 		}
 	}
-	else if (player == 2)
+	else if (player == 2) //red
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			addRemoveCup(player, i, sensorValueP2[i] - 3); //4 is verschil
+			addRemoveCup(player, i, sensorValueP2[i] + valueOffset);
 		}
 	}
 	yield();
@@ -74,7 +76,7 @@ void checkCups(int player)
 
 /*Deze methode zet in een array of de beker aan of uit staat
 int value = verschil in standaard waarde*/
-void addRemoveCup(int player, int cup, int value)
+void addRemoveCup(int player, int cup, int valueOffset)
 {
 	int avg = 0;
 	int count = 5;
@@ -82,12 +84,12 @@ void addRemoveCup(int player, int cup, int value)
 	{
 		avg += readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2);
 	}
-	if (avg / count <= value)
+	if (avg / count <= valueOffset)
 	{
-		if (player == 1)
+		if (player == 1) //blue
 		{
 			sensorTimersOnP1[cup] += 1;
-			if (sensorTimersOnP1[cup] > 70) //50
+			if (sensorTimersOnP1[cup] > 50) //70
 			{
 				cupsOnP1[cup] = 1;
 				sensorTimersOffP1[cup] = 0;
@@ -97,7 +99,7 @@ void addRemoveCup(int player, int cup, int value)
 		{
 
 			sensorTimersOnP2[cup] += 1;
-			if (sensorTimersOnP2[cup] > 70)
+			if (sensorTimersOnP2[cup] > 50)
 			{
 				cupsOnP2[cup] = 1;
 				sensorTimersOffP2[cup] = 0;
@@ -265,18 +267,6 @@ void setScored()
 	scoredP2 = false;
 }
 
-
-//int* getScoreArray(int player)
-//{
-//	if (player == 1)
-//	{
-//		return cupsOnP1;
-//	}
-//	else if (player == 2)
-//	{
-//		return cupsOnP2;
-//	}
-//}
 
 //info voor de multiplexer
 int muxChannel[16][4] = {
