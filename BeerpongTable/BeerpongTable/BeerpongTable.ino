@@ -16,6 +16,9 @@
 #define blue 1
 #define red 2
 
+static bool SHOW_COUNT_AT_SCORE = true;
+static bool SHOW_COUNT_AT_STARTUP = false;
+
 long rowDataArray[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 bool firsttime;
 
@@ -25,11 +28,9 @@ int startCupRed;
 int startCupBlue;
 
 
-bool showScore;
-
-
 int currentScoreBlue = 0;
 int currentScoreRed = 0;
+
 
 void setup()
 {
@@ -74,8 +75,6 @@ void setup()
 	startLedBlue = false;
 	startLedRed = false;
 
-	showScore = false;
-
 	delay(1000);
 }
 int data[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
@@ -119,8 +118,9 @@ void loop()
 		checkCups(red);
 		checkCups(blue);
 		//show score when value of cups changed.
-		while (isScored() && startLedBlue && startLedRed && startCupBlue && startCupRed)
+		while (isScored() && startLedBlue && startLedRed && startCupBlue && startCupRed && SHOW_COUNT_AT_SCORE)
 		{
+			Serial.println("SCORED!!");
 			elapsedMillis scoreTimer = 0;
 			while (scoreTimer < 5000)
 			{
@@ -153,7 +153,7 @@ void loop()
 		calibrateSensors();
 		firsttime = false;
 	}
-	if (isCalibrated())
+	if (isCalibrated() && SHOW_COUNT_AT_STARTUP)
 	{
 		if (getCups(blue) == 10)
 		{
@@ -176,6 +176,15 @@ void loop()
 		{
 			startLedBlue = false;
 		}
+	}
+	else if (isCalibrated() && !SHOW_COUNT_AT_STARTUP && (!startLedRed || !startLedBlue || !startCupBlue || !startCupRed)) {
+		Serial.println("set true");
+		getCups(blue);
+		getCups(red);
+		startLedBlue = true;
+		startLedRed = true;
+		startCupBlue = true;
+		startCupRed = true;
 	}
 
 	yield(); //switch to other threads.
