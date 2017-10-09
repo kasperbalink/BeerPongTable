@@ -11,13 +11,15 @@
 #include "Read.h"
 #include <stdio.h>
 #include <string>
+#include <time.h>
+
 
 
 #define blue 1
 #define red 2
 
 static bool SHOW_COUNT_AT_SCORE = true;
-static bool SHOW_COUNT_AT_STARTUP = false;
+static bool SHOW_COUNT_AT_STARTUP = true;
 
 long rowDataArray[13] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 bool firsttime;
@@ -31,11 +33,13 @@ int startCupBlue;
 int currentScoreBlue = 0;
 int currentScoreRed = 0;
 
+bool endGame = false;
 
 void setup()
 {
 
 	Serial.begin(9600);
+
 	//set pins as output
 	pinMode(latchPin_P1, OUTPUT);
 	pinMode(clockPin_P1, OUTPUT);
@@ -60,6 +64,8 @@ void setup()
 
 	pinMode(A0, INPUT);
 	pinMode(A1, INPUT);
+	pinMode(A2, INPUT);
+
 
 	//start threads
 	Scheduler.startLoop(drawTablePlayerBlue);
@@ -112,7 +118,9 @@ S3: 42
 */
 
 void loop()
-{	
+{
+	randomSeed(analogRead(A2));
+
 	if (startLedBlue && startLedRed && startCupBlue && startCupRed)
 	{
 		checkCups(red);
@@ -120,7 +128,6 @@ void loop()
 		//show score when value of cups changed.
 		while (isScored() && startLedBlue && startLedRed && startCupBlue && startCupRed && SHOW_COUNT_AT_SCORE)
 		{
-			Serial.println("SCORED!!");
 			elapsedMillis scoreTimer = 0;
 			while (scoreTimer < 5000)
 			{
@@ -130,10 +137,12 @@ void loop()
 				int cupsRed = getCupsNoYield(red);
 				if (cupsBlue == 0)
 				{
+					endGame = true;
 					showScoreFromPlayerNoYield(red, cupsBlue);
 				}
 				else if (cupsRed == 0)
 				{
+					endGame = true;
 					showScoreFromPlayerNoYield(blue, cupsRed);
 				}
 				else
@@ -177,8 +186,7 @@ void loop()
 			startLedBlue = false;
 		}
 	}
-	else if (isCalibrated() && !SHOW_COUNT_AT_STARTUP && (!startLedRed || !startLedBlue || !startCupBlue || !startCupRed)) {
-		Serial.println("set true");
+	else if (isCalibrated()) {
 		getCups(blue);
 		getCups(red);
 		startLedBlue = true;
@@ -250,7 +258,8 @@ void drawLedCupsPlayerRed() { //in loop
 void randomCupAnimation(int player)
 {
 	//min is included, max is exclusive
-	int numberOfAnimation = random(0, 6);
+	int numberOfAnimation = endGame ? 10 : random(0, 6);
+	
 	switch (numberOfAnimation)
 	{
 	case 0:
@@ -273,13 +282,18 @@ void randomCupAnimation(int player)
 	case 5:
 		oneToFour(player, random(100, 300), random(1000, 5000));
 		break;
+	case 10: //endgame
+		SHOW_COUNT_AT_SCORE = false;
+		allCupsOff(player);
+		break;
 	}
 }
 
 void randomAnimations(int player)
 {
 	//min is included, max is exclusive
-	int numberOfAnimation = random(0, 50);
+	
+	int numberOfAnimation = endGame ? 100 : random(0, 52);
 
 	switch (numberOfAnimation)
 	{
@@ -443,7 +457,7 @@ void randomAnimations(int player)
 		text(player, "#fissa", random(200, 2000));
 		break;
 	case 45:
-		textByChar(player, "#bier", random(100, 200));
+		textByChar(player, "#bier", random(200, 300));
 		break;
 	case 46:
 		text(player, "#party", random(200, 2000));
@@ -455,8 +469,23 @@ void randomAnimations(int player)
 		text(player, "gefeliciteerd!", random(200, 2000));
 		break;
 	case 49:
-		textByChar(player, "gefeliciteerd", random(100, 200));
+		textByChar(player, "gefeliciteerd", random(200, 300));
 		break;
+	case 50:
+		text(player, "team red", random(200, 300));
+		break;
+	case 51:
+		text(player, "team blue", random(200, 300));
+		break;
+	case 100:
+		if (player == 1) {
+			text(player, "new game?", 10000);
+		}
+		else {
+			text(player, "reboot!   ", 10000);
+		}
+		break;
+
 
 	default:
 		if (player == 1)

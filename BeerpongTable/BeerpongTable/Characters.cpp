@@ -43,7 +43,7 @@ void text(int player, char textArray[], int totalTime)
 	}
 	else if (length >= 4)
 	{
-		scrollingText(player, textArray, 75);
+		scrollingText(player, textArray, 100);
 	}
 	
 }
