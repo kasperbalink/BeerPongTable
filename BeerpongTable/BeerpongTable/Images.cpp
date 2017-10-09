@@ -26,6 +26,34 @@ void logo(int player, int totalTime)
 	}
 }
 
+void christmasTree(int player, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getChristmasTree()[i];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+
+void snowflake(int player, int totalTime)
+{
+	long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+	for (int i = 0; i < 13; i++)
+	{
+		animation[i] |= getSnowFlake()[i];
+	}
+	elapsedMillis tempTimer;
+	while (tempTimer < totalTime)
+	{
+		drawTable(player, animation);
+	}
+}
+
 
 void logo2(int player, int totalTime)
 {
@@ -311,4 +339,14 @@ long * getThumbDown()
 long * getLogo2()
 {
 	return logo2Array;
+}
+
+long * getChristmasTree()
+{
+	return christmasTreeArray;
+}
+
+long * getSnowFlake()
+{
+	return snowFlakeArray;
 }

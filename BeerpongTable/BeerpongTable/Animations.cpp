@@ -81,7 +81,7 @@ void upToDown(int player, int size, int timeBetweenSteps, int totalTime)
 	elapsedMillis timer;
 	while (timer < totalTime)
 	{
-		int shift = 0-size;
+		int shift = 0 - size;
 		while (shift < 13 + size)
 		{
 			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
@@ -231,5 +231,57 @@ void smileyBoosToBlij(int player, int timeBetweenSteps, int totalTime)
 		smileyBoos(player, timeBetweenSteps);
 		smileyNeutraal(player, timeBetweenSteps);
 		smileyBlij(player, timeBetweenSteps);
+	}
+}
+
+void christmasTreeLeftRight(int player, int timeBetweenSteps, int totalTime) {
+	elapsedMillis timer0;
+	while (timer0 < totalTime)
+	{
+		int shift = -15;
+		while (shift < 15)
+		{
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= shiftRight(getChristmasTree()[i], shift - 20);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift - 10);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift + 10);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift + 20);
+			}
+			elapsedMillis timer;
+			while (timer < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+			shift++;
+		}
+	}
+}
+
+void christmasTreeRightLeft(int player, int timeBetweenSteps, int totalTime) {
+	elapsedMillis timer0;
+	while (timer0 < totalTime)
+	{
+		int shift = 15;
+		while (shift > -15)
+		{
+			long animation[13] = { 0,0,0,0,0,0,0,0,0,0,0,0,0 };
+			for (int i = 0; i < 13; i++)
+			{
+				animation[i] |= shiftRight(getChristmasTree()[i], shift - 20);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift - 10);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift + 10);
+				animation[i] |= shiftRight(getChristmasTree()[i], shift + 20);
+			}
+			elapsedMillis timer;
+			while (timer < timeBetweenSteps)
+			{
+				drawTable(player, animation);
+			}
+			shift--;
+		}
 	}
 }

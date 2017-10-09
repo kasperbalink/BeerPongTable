@@ -84,6 +84,12 @@ void addRemoveCup(int player, int cup, int valueOffset)
 	{
 		avg += readMux(player, cup + 2) - ((readMux(player, 0) + readMux(player, 1)) / 2);
 	}
+
+	/*
+	if (cup == 1 && player == 1) {
+		Serial.println(avg / count);
+	}
+	*/
 	if (avg / count <= valueOffset)
 	{
 		if (player == 1) //blue

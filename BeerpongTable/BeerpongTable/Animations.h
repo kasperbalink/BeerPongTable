@@ -24,3 +24,6 @@ void smileyBoosToBlij(int player, int timeBetweenSteps);
 
 void smileyBlijToBoos(int player, int timeBetweenSteps, int totalTime);
 void smileyBoosToBlij(int player, int timeBetweenSteps, int totalTime);
+
+void christmasTreeRightLeft(int player, int timeBetweenSteps, int totalTime);
+void christmasTreeLeftRight(int player, int timeBetweenSteps, int totalTime);

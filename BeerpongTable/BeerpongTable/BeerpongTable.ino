@@ -64,7 +64,6 @@ void setup()
 
 	pinMode(A0, INPUT);
 	pinMode(A1, INPUT);
-	pinMode(A2, INPUT);
 
 
 	//start threads
@@ -119,7 +118,23 @@ S3: 42
 
 void loop()
 {
-	randomSeed(analogRead(A2));
+	switch (random(0, 5))
+	{
+	case 0:
+		randomSeed(analogRead(A2));
+		break;
+	case 1:
+		randomSeed(analogRead(A3));
+		break;
+	case 2:
+		randomSeed(analogRead(A4));
+		break;
+	case 3:
+		randomSeed(analogRead(A5));
+		break;
+	default:
+		break;
+	}
 
 	if (startLedBlue && startLedRed && startCupBlue && startCupRed)
 	{
@@ -202,7 +217,7 @@ void loop()
 void drawTablePlayerBlue() { //in loop
 	if (startLedBlue && startCupBlue)
 	{
-			randomAnimations(blue);
+		randomAnimations(blue);
 	}
 	else if (startLedBlue && !startCupBlue)
 	{
@@ -211,13 +226,13 @@ void drawTablePlayerBlue() { //in loop
 	else
 	{
 		startUpText(blue, getCups(blue));
-	}	
+	}
 }
 
 void drawTablePlayerRed() { //in loop
 
 	if (startLedRed && startCupRed)
-	{	
+	{
 		randomAnimations(red);
 	}
 	else if (startLedRed && !startCupRed)
@@ -258,8 +273,8 @@ void drawLedCupsPlayerRed() { //in loop
 void randomCupAnimation(int player)
 {
 	//min is included, max is exclusive
-	int numberOfAnimation = endGame ? 10 : random(0, 6);
-	
+	int numberOfAnimation = endGame ? 10 : random(0, 7);
+
 	switch (numberOfAnimation)
 	{
 	case 0:
@@ -278,9 +293,12 @@ void randomCupAnimation(int player)
 		break;
 	case 4:
 		randomCups(player, random(1, 5), random(100, 300), random(500, 5000));
-		break; 
+		break;
 	case 5:
 		oneToFour(player, random(100, 300), random(1000, 5000));
+		break;
+	case 6:
+		allCupsOn(player, random(500, 3000));
 		break;
 	case 10: //endgame
 		SHOW_COUNT_AT_SCORE = false;
@@ -292,9 +310,9 @@ void randomCupAnimation(int player)
 void randomAnimations(int player)
 {
 	//min is included, max is exclusive
-	
-	int numberOfAnimation = endGame ? 100 : random(0, 52);
 
+	int numberOfAnimation = endGame ? 100 : random(0, 58);
+	Serial.println(numberOfAnimation);
 	switch (numberOfAnimation)
 	{
 	case 0:
@@ -476,6 +494,24 @@ void randomAnimations(int player)
 		break;
 	case 51:
 		text(player, "team blue", random(200, 300));
+		break;
+	case 52:
+		christmasTree(player, random(1000, 3000));
+		break;
+	case 53:
+		snowflake(player, random(500, 2000));
+		break;
+	case 54:
+		christmasTreeLeftRight(player, random(100, 400), random(500, 2000));
+		break;
+	case 55:
+		christmasTreeRightLeft(player, random(100, 400), random(500, 2000));
+		break;
+	case 56:
+		text(player, "ho ho ho", random(1000, 2000));
+		break;
+	case 57:
+		text(player, "x-mas", random(1000, 2000));
 		break;
 	case 100:
 		if (player == 1) {

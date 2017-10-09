@@ -5,6 +5,10 @@
 void logo(int player);
 void logo(int player, int interval);
 
+void christmasTree(int player, int totalTime);
+void snowflake(int player, int totalTime);
+
+
 void thumb(int player, int totalTime);
 void thumbDown(int player, int totalTime);
 
@@ -26,3 +30,6 @@ long* getThumb();
 long* getThumbDown();
 
 long* getLogo2();
+
+long* getChristmasTree();
+long* getSnowFlake();
