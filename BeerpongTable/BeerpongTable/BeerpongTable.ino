@@ -64,6 +64,8 @@ void setup()
 
 	pinMode(A0, INPUT);
 	pinMode(A1, INPUT);
+	pinMode(A2, INPUT);
+
 
 	//start threads
 	Scheduler.startLoop(drawTablePlayerBlue);
@@ -184,7 +186,7 @@ void loop()
 			startLedBlue = false;
 		}
 	}
-	else if (isCalibrated() && !SHOW_COUNT_AT_STARTUP && (!startLedRed || !startLedBlue || !startCupBlue || !startCupRed)) {
+	else if (isCalibrated()) {
 		getCups(blue);
 		getCups(red);
 		startLedBlue = true;
@@ -291,7 +293,7 @@ void randomAnimations(int player)
 {
 	//min is included, max is exclusive
 	
-	int numberOfAnimation = endGame ? 100 : random(0, 53);
+	int numberOfAnimation = endGame ? 100 : random(0, 52);
 
 	switch (numberOfAnimation)
 	{
@@ -474,12 +476,6 @@ void randomAnimations(int player)
 		break;
 	case 51:
 		text(player, "team blue", random(200, 300));
-		break;
-	case 52:
-		text(player, "britta!", random(200, 300));
-		break;
-	case 53:
-		textByChar(player, "britta", random(200, 300));
 		break;
 	case 100:
 		if (player == 1) {
